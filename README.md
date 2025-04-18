@@ -26,7 +26,7 @@ Este repositório contém o código-fonte e a documentação do AppBemEstar, uma
 - GitHub
 
 ### Prototipação
-- Figma
+- [Figma](https://www.figma.com/design/vC5Nc7ZENr5TFGmUFfaokF/Certificadora-Espec%C3%ADfica?node-id=0-1&p=f&t=kHohjtcO5Gq49mtP-0)
 
 ---
 
