@@ -28,6 +28,12 @@ Este repositório contém o código-fonte e a documentação do AppBemEstar, uma
 ### Prototipação
 - [Figma](https://www.figma.com/design/vC5Nc7ZENr5TFGmUFfaokF/Certificadora-Espec%C3%ADfica?node-id=0-1&p=f&t=kHohjtcO5Gq49mtP-0)
 
+## 🗺️ Fluxograma de Navegação
+
+Abaixo está o fluxograma representando as principais telas e caminhos do AppBemEstar:
+![image](https://github.com/user-attachments/assets/c854343d-5f87-477b-a177-b25aacfc2980)
+
+
 ---
 
 ## 👨‍💻 Equipe e Divisão de Tarefas
