@@ -56,12 +56,12 @@ Este repositório contém o código-fonte e a documentação do AppBemEstar, uma
 
 | Semana | Período               | Atividades                                                                 |
 |--------|------------------------|----------------------------------------------------------------------------|
-| 1      | 22 a 27 de abril       | ✅ Definição das telas, levantamento de requisitos e finalização do protótipo no Figma |
+| 1      | 22 a 27 de abril       |  levantamento de requisitos com a psicologa da NUAPE                      | 
 | 2      | 28 de abril a 4 de maio| Estruturação do repositório, setup inicial do backend e frontend          |
 | 3      | 5 a 11 de maio         | Desenvolvimento do backend: rotas e modelos iniciais no MongoDB           |
 | 4      | 12 a 18 de maio        | Início do desenvolvimento do frontend: layout base e navegação            |
 | 5      | 19 a 25 de maio        | Integração frontend-backend, ajustes de layout, início dos testes         |
-| 6      | 26 de maio a 1º de junho| Refino das funcionalidades, testes e melhorias com base em feedback       |
+| 6      | 26 de maio a 1º de junho| Refino das funcionalidades, testes e melhorias com base em feedback      |
 | 7      | 2 a 8 de junho         | Ajustes finais, testes completos e entrega do projeto                     |
 
 
