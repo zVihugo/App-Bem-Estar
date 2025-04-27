@@ -1,0 +1,78 @@
+.navbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0; 
+    z-index: 1000;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0.5em 1em; 
+    background-color: "#FDF2FA";
+}
+
+.brand {
+    font-size: 1.2em;
+}
+
+.brand span {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.links_list {
+    display: flex;
+    list-style: none;
+    margin: 0; 
+    padding: 0; 
+    text-decoration: none;
+    color: inherit;
+}
+
+.links_list li a {
+    padding: 0.5em 2em; 
+    color: black;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center; 
+    text-decoration: none;
+    font-family: 'Montserrat';
+}
+
+.links_list li a:hover {
+    background-color: #FFDBDB;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.active {
+    background-color: #FD6C6C;
+    color: #FFDBDB;
+    border-radius: 20px;
+}
+
+.no-effect {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tam {
+    height: 50px;
+}
+.logo {
+    display: flex; 
+   align-items: center;
+    gap: 10px;
+}
+
+.tam {
+    height: 50px;
+}
+
+.title {
+    font-size: 1.5em; 
+    color: #FD6C6C; 
+    font-family: 'Montaga';
+    margin: 0;
+}
