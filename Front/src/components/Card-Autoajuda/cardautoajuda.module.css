@@ -1,4 +1,4 @@
-.card_humor {
+.card_autoajuda {
     width: 552px;
     height: 255px;
     flex-shrink: 0;
@@ -12,7 +12,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-.card_humor p {
+.card_autoajuda p {
     color: #000;
     font-family: Montserrat, sans-serif;
     font-size: 24px;
@@ -24,8 +24,8 @@
     margin: 0;
 }
 
-.card_humor button {
-    width: 250px;
+.card_autoajuda button {
+    width: 340px;
     height: 60px;
     flex-shrink: 0;
     border-radius: 20px;
@@ -40,11 +40,11 @@
     cursor: pointer;
 }
 
-.card_humor button:hover {
+.card_autoajuda button:hover {
     background: var(--Cosmos-400, #ff5e5e);
 }
 
-.card_humor span {
+.card_autoajuda span {
     color: var(--Black-950, #050505);
     font-family: Montserrat;
     font-size: 20px;
