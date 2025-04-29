@@ -1,10 +1,13 @@
 import React from 'react'
 import CardWelcome from '../../components/Card-Welcome/cardwelcome'
+import CardAutoAvaliacao from '../../components/Card-AutoAvaliacao/cardautoavaliacao'
+import CardHumor from '../../components/Card-Humor/cardhumor'
 const Principal = () => {
   return (
-    <div>
+    <div className='principal'>
       <CardWelcome />
-
+      <CardAutoAvaliacao />
+      <CardHumor />
     </div>
   )
 }
