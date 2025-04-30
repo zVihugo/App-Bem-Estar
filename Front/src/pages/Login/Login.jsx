@@ -1,8 +1,13 @@
 import React from 'react'
+import CardFormulario from '../../components/Card-FormLogin/cardformlogin'
+import CardImage from '../../components/Card-ImgLogin/cardimglogin'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div className='login'>
+      <CardFormulario />
+      <CardImage />
+    </div>
   )
 }
 
