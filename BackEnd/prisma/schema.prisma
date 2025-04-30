@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  name     String 
+  password String
+
+  avaliacoes Avaliacao[]
+  @@map("users")
+}
+
+model Avaliacao {
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  usuarioId                 String   @db.ObjectId
+  data                      DateTime
+  sonoHoras                 Float
+
+  dificuldadeSonoFrequencia DificuldadeSonoFrequencia
+  acordaDescansado          AcordaDescansado
+  sonolenciaDiurna          SonolenciaDiurna
+  usoTelaAntesDormir        UsoTelaAntesDormir
+  temRotinaSono             Boolean
+
+  usuario                   Usuario  @relation(fields: [usuarioId], references: [id])
+
+  @@map("avaliacoes")
+}
+
+enum DificuldadeSonoFrequencia {
+  nunca
+  raramente
+  as_vezes
+  frequentemente
+  quase_sempre
+}
+
+enum AcordaDescansado {
+  sempre
+  as_vezes
+  raramente
+  nunca
+}
+
+enum SonolenciaDiurna {
+  nunca
+  raramente
+  frequentemente
+  sempre
+}
+
+enum UsoTelaAntesDormir {
+  nunca
+  raramente
+  as_vezes
+  quase_sempre
+  sempre
+}
