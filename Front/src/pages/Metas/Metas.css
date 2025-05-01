@@ -1,0 +1,13 @@
+.metas{
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;              
+    padding: 20px;
+    align-items: center;     
+}
+
+.metas > * {
+    width: 100%;              
+    max-width: 700px;      
+    box-sizing: border-box;   
+}
