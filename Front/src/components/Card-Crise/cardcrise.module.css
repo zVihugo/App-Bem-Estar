@@ -1,9 +1,57 @@
-.card_crise{
-    width: 1127px;
-    height: 160px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: purple;
-    text-align: left;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+.card_crise {
+  width: 100%;
+  max-width: 1127px;
+  min-height: 160px;
+  border-radius: 10px;
+  background: #FFA2A2;
+  text-align: left;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
 }
+
+  
+  .card_contenudo {
+    display: flex;
+    flex-direction: row;        
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    padding: 20px;
+    flex-wrap: wrap;             
+  }
+  
+  .card_contenudo h2 {
+    font-family: Montserrat;
+    color: #BF1616;
+    font-size: 30px;
+    font-weight: 300;
+    margin: 0;
+  }
+  
+  .botao_grupo {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; 
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #f55656;
+    border: none;
+    border-radius: 20px;
+    color: #F6F6F6;
+    font-size: 15px;
+    font-family: Montserrat;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: 400;
+  }
+  
+  .btn:hover {
+    background-color: #cc1f1f;
+  }
+  

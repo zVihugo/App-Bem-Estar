@@ -1,4 +1,5 @@
 import React from 'react'
+import './Suporte.css'
 import CardSuporte from '../../components/Card-SuporteImediato/cardsuporte'
 import CardCrise from '../../components/Card-Crise/cardcrise'
 import CardDicasrapidas from '../../components/Card-DicasRapidas/carddicasrapidas'
