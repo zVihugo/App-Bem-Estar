@@ -5,7 +5,7 @@ import { FaEdit } from 'react-icons/fa';
 const CardDicasrapidas = () => {
   const [editando, setEditando] = useState(false);
   const [texto, setTexto] = useState(
-    `- Inspire profundamente por 4 segundos\n- Segure por 4 segundos\n- Expire lentamente por 6 segundos`
+    `- Inspire profundamente por 4 segundos\n- Segure por 4 segundos\n- Expire lentamente por 6 segundos\n- Respire fundo e diga para si mesmo: "Estou seguro agora."\n- Nomeie mentalmente 3 coisas pelas quais você é grato neste momento.`
   );
 
   return (

@@ -9,7 +9,9 @@ const CardCrise = () => {
 
         <div className={styles.botao_grupo}>
           <button className={styles.btn}>Ligar para 188 (CVV)</button>
-          <button className={styles.btn}>Chat de apoio</button>
+          <button className={styles.btn}>
+            <a href="https://www.cvv.org.br/chat/" target="_blank" rel="noopener noreferrer">Chat de apoio</a>
+          </button>
         </div>
       </div>
     </div>
