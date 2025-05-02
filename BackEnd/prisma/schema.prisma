@@ -8,10 +8,15 @@ datasource db {
 }
 
 model Usuario {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  email    String @unique
-  name     String 
-  password String
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  email          String @unique
+  name           String 
+  password       String
+
+  dataNascimento String
+  faculdade      String
+  curso          String
+
 
   avaliacoes Avaliacao[]
   @@map("users")
