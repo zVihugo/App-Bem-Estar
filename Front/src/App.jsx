@@ -29,7 +29,7 @@ function Content() {
   const shouldShowNavbar = !hideNavbarPaths.some(path => location.pathname.startsWith(path));
 
   return (
-    <div style={{ paddingTop: '3px', flex: '1', backgroundColor: '#FDF2FA' }}>
+    <div style={{ paddingTop: '3px', flex: '1'}}>
       {shouldShowNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Principal />} />
