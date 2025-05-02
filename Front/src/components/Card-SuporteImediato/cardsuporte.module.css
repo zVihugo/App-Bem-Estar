@@ -1,0 +1,30 @@
+.card_suporte {
+    width: 100%;
+    max-width: 1127px;
+    border-radius: 20px;
+    background: white;
+    text-align: left;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-top: 30px ;
+    padding-right: 50px;
+  }
+  
+  .card_suporte h1 {
+    color: var(--Black-950, #050505);
+    font-family: Montserrat;
+    font-size: clamp(24px, 5vw, 40px);
+    font-weight: 400;
+    margin: 0;
+    font-size: 40px;
+  }
+  
+  .card_suporte h2 {
+    color: var(--Black-950, #050505);
+    font-family: Montserrat;
+    font-size: clamp(18px, 4vw, 32px);
+    font-weight: 200;
+    margin-top: 8px;
+    font-size: 30px;
+  }
+  

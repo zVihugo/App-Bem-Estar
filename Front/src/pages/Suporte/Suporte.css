@@ -1,0 +1,14 @@
+.suporte {
+    display: flex;
+    flex-direction: column; 
+    gap: 30px;              
+    padding: 20px;
+    align-items: center;     
+  }
+  
+  .suporte > * {
+    width: 100%;              
+    max-width: 700px;      
+    box-sizing: border-box;   
+  }
+  
