@@ -1,9 +1,62 @@
-.card_formlogin{
-    width: 1127px;
-    height: 160px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: greenyellow;
+.card_formlogin {
+    background-color: white;
+    padding: 2rem;
+    width: 90%;
+    max-width: 100px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    font-weight: 400;
+    text-align: center;
+}
+
+.label{
+    color: rgba(0, 0, 0, 0.863);
+    font-size: 20px;
+    margin-top: 10px;
     text-align: left;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.input{
+    padding: 10px;
+    border: 1px solid #B0B0B0;
+    background-color: #E7E7E7;
+    border-radius: 10px;
+    outline: none;
+    color: black;
+}
+
+.button{
+    background-color: #E7E7E7;
+    color: rgba(0, 0, 0, 0.863);
+    border: 1px solid #B0B0B0;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 30px;
+}
+
+.button:hover {
+    background-color: #FD6C6C;
+}
+
+.registro {
+    color: rgba(0, 0, 0, 0.863);
+    font-size: 10px;
+}
+
+.registro a {
+    color: black;
+    font-weight: bold;
+}
+
+.registro a:hover {
+    text-decoration: underline;
 }
