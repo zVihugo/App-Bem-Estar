@@ -23,10 +23,14 @@ function App() {
 function Content() {
   const location = useLocation();
 
+  const hideNavbarPaths = ['/Auth', '/Register'];
+
+
+  const shouldShowNavbar = !hideNavbarPaths.some(path => location.pathname.startsWith(path));
+
   return (
-    <div style={{ paddingTop: '3px', flex: '1' }}>
-     
-      {location.pathname !== '/Auth' && location.pathname !== '/Register' && <Navbar />}
+    <div style={{ paddingTop: '3px', flex: '1', backgroundColor: '#FDF2FA' }}>
+      {shouldShowNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Principal />} />
         <Route path="/Autoavaliacao" element={<Autoavaliacao />} />
