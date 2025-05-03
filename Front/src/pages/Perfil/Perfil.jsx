@@ -6,12 +6,14 @@ import ModalExcluirConta from '../../components/Modal-Excluir/Excluir';
 import ModalSessao from '../../components/Model-Sessao/Sessao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import ModalPerfil from '../../components/Modal-Perfil/modalPerfil';
 
 
 const Perfil = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalExcluir, setShowModalExcluir] = useState(false);
   const [showModalSair, setShowModalSair] = useState(false);
+  const [showModalPerfil, setShowModalPerfil] = useState(false);
   const [novaSenha, setNovaSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
 
@@ -38,11 +40,16 @@ const Perfil = () => {
     setShowModalSair(false);
   }
 
+  const handleModalPerfil = () => {
+    console.log("Dados atualizado!");
+    setShowModalPerfil(false);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.containerInformacao}>
         <h1 className={styles.titulo}>Minhas informações</h1>
-        <FontAwesomeIcon icon={faEdit} className={styles.icon} />
+        <FontAwesomeIcon icon={faEdit} className={styles.icon} onClick={() => setShowModalPerfil(true)}/>
       </div>
     
       <InformacaoUsuario label="Nome" valor="Victor Moreira" />
@@ -88,6 +95,15 @@ const Perfil = () => {
           cancelar={() => setShowModalSair(false)}
           />
       )}
+
+      {
+        showModalPerfil && (
+          <ModalPerfil
+            confirmar={handleModalPerfil}
+            cancelar={() => setShowModalPerfil(false)}
+          />
+        )
+      }
 
     </div>
   );

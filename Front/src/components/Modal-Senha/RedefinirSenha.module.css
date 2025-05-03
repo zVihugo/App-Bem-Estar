@@ -22,7 +22,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
     align-self: center;
-    cursor: pointer;
+    cursor: pointer; 
     transition: all 0.3s ease;
 }
 
