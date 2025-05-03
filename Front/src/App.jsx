@@ -24,7 +24,7 @@ function Content() {
   const location = useLocation();
 
   return (
-    <div style={{ paddingTop: '3px', flex: '1' }}>
+    <div style={{ paddingTop: '3px', flex: '1'}}>
      
       {location.pathname !== '/Auth' && location.pathname !== '/Register' && <Navbar />}
       <Routes>
