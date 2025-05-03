@@ -30,6 +30,9 @@ const Navbar = () => {
                 <li>
                     <NavLink to="/Suporte" className={({ isActive }) => `${styles.noEffect} ${isActive ? styles.active : ""}`}>Emergência</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/Perfil" className={({ isActive }) => `${styles.noEffect} ${isActive ? styles.active : ""}`}>Perfil</NavLink>
+                </li>
 
             </ul>
         </nav>

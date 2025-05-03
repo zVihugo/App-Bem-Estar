@@ -1,0 +1,78 @@
+.botao {
+    background-color: #ff7b9c;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    width: 50%;
+    align-self: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.botao:hover {
+    background-color: #e96689;
+}
+
+.botaoCancelar {
+    background-color: transparent;
+    color: #c62828;
+    border: 1px solid #c62828;
+    width: 50%;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    align-self: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botaoCancelar:hover {
+    background-color: #ffcdd2;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modalContent h2 {
+    margin-bottom: 1rem;
+}
+
+.modalContent label {
+    display: block;
+    margin: 0.5rem 0 0.3rem;
+    font-weight: 600;
+}
+
+.modalContent input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
