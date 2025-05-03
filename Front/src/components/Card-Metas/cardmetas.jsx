@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './cardmetas.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const CardMetas = () => {
+    const navigate = useNavigate();
     const [metas, setMetas] = useState([
         { id: 1, texto: 'Meditar por 10min', concluida: false },
         { id: 2, texto: 'Dormir 8h por noites', concluida: false },
@@ -12,6 +15,10 @@ const CardMetas = () => {
           meta.id === id ? { ...meta, concluida: !meta.concluida } : meta
         ));
       };
+
+      const handleClick = () => {
+        navigate('/Metas');
+      }
     
       return (
         <div className={styles.card_metas}>
@@ -33,7 +40,7 @@ const CardMetas = () => {
               </li>
             ))}
           </ul>
-            <button className={styles.button}>Ver todas as metas</button>
+            <button className={styles.button} onClick={handleClick}>Ver todas as metas</button>
         </div>
       );
 };
