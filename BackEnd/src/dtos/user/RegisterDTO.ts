@@ -1,14 +1,8 @@
-export type UserProps = {
-  id: string;
+export interface RegisterDTO {
   name: string;
   email: string;
   password: string;
   dateOfBirth: string;
   faculty: string;
   course: string;
-};
-
-export type JwtUserPayload = {
-  id: string;
-  email: string;
-};
+}
