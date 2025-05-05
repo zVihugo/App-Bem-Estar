@@ -1,10 +1,10 @@
 import { UserProps } from '../../@types/UserProps';
 
-export class Usuario {
+export class User {
   constructor(private readonly props: UserProps) {}
 
   public static create(props: UserProps) {
-    return new Usuario(props);
+    return new User(props);
   }
 
   public get id(): string {
@@ -23,15 +23,15 @@ export class Usuario {
     return this.props.password;
   }
 
-  public get dataNascimento(): string {
-    return this.props.dataNascimento;
+  public get dateOfBirth(): string {
+    return this.props.dateOfBirth;
   }
 
-  public get faculdade(): string {
-    return this.props.faculdade;
+  public get faculty(): string {
+    return this.props.faculty;
   }
 
-  public get curso(): string {
-    return this.props.curso;
+  public get course(): string {
+    return this.props.course;
   }
 }

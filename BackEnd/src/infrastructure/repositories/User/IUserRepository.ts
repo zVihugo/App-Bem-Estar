@@ -1,9 +1,14 @@
-import { Usuario } from '../../models/User';
+import { UserProps } from '../../../@types/UserProps';
+import { User } from '../../models/User';
 
 export interface IUserRepository {
-  salvar(data: Usuario): Promise<Usuario>;
-  buscar(id: string): Promise<Usuario | null>;
-  buscarComEmail(email: string): Promise<Usuario | null>;
-  atualizar(id: string, password: string): Promise<void>;
-  deletar(id: string): Promise<void>;
+  save(data: User): Promise<User>;
+  find(id: string): Promise<User | null>;
+  findByEmail(email: string): Promise<User | null>;
+  updatePassword(id: string, password: string): Promise<void>;
+  updateProfile(
+    id: string,
+    data: Partial<Omit<UserProps, 'id' | 'email' | 'password'>>
+  ): Promise<User>;
+  delete(id: string): Promise<void>;
 }

@@ -7,64 +7,62 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario {
+model User {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
   email          String @unique
   name           String 
   password       String
 
-  dataNascimento String
-  faculdade      String
-  curso          String
+  dateOfBirth    String
+  faculty        String
+  course         String
 
-
-  avaliacoes Avaliacao[]
+  reviews Review[]
   @@map("users")
 }
 
-model Avaliacao {
+model Review {
   id                        String   @id @default(auto()) @map("_id") @db.ObjectId
-  usuarioId                 String   @db.ObjectId
-  data                      DateTime
-  sonoHoras                 Float
+  userId                    String   @db.ObjectId
+  date                      DateTime
+  sleepHours                Float
 
-  dificuldadeSonoFrequencia DificuldadeSonoFrequencia
-  acordaDescansado          AcordaDescansado
-  sonolenciaDiurna          SonolenciaDiurna
-  usoTelaAntesDormir        UsoTelaAntesDormir
-  temRotinaSono             Boolean
+  difficultySleepFrequency  DifficultySleepFrequency
+  wakeUpRested              WakeUpRested
+  daytimeDrowsiness         DaytimeDrowsiness
+  usageScreenBeforeSleep    UsageScreenBeforeSleep
+  hasRoutineSleep           Boolean
 
-  usuario                   Usuario  @relation(fields: [usuarioId], references: [id])
-
-  @@map("avaliacoes")
+  user                      User  @relation(fields: [userId], references: [id])
+  @@map("reviews")
 }
 
-enum DificuldadeSonoFrequencia {
-  nunca
-  raramente
-  as_vezes
-  frequentemente
-  quase_sempre
+enum DifficultySleepFrequency {
+  never
+  rarely
+  sometimes
+  often
+  almost_always
 }
 
-enum AcordaDescansado {
-  sempre
-  as_vezes
-  raramente
-  nunca
+enum WakeUpRested {
+  always
+  sometimes
+  rarely
+  never
 }
 
-enum SonolenciaDiurna {
-  nunca
-  raramente
-  frequentemente
-  sempre
+enum DaytimeDrowsiness {
+  never
+  rarely
+  often
+  always
 }
 
-enum UsoTelaAntesDormir {
-  nunca
-  raramente
-  as_vezes
-  quase_sempre
-  sempre
+enum UsageScreenBeforeSleep {
+  never
+  rarely
+  sometimes
+  almost_always
+  always
 }
