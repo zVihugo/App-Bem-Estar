@@ -42,9 +42,6 @@ const AutoajudaCard = ({ content }) => {
       )}
       <div className={styles.autoajuda_card_content}>
         <h3 className={styles.autoajuda_card_title}>{content.title}</h3>
-        {content.description && (
-          <p className={styles.autoajuda_card_description}>{content.description}</p>
-        )}
         <button 
           onClick={handleAction}
           className={`${styles.autoajuda_action_button} ${content.type}`}

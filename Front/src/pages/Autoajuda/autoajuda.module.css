@@ -10,21 +10,33 @@
   }
   
   .autoajuda_header h1 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1a202c;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
   }
   
   .autoajuda_subtitle {
-    font-size: 18px;
-    color: #4a5568;
-    margin-bottom: 32px;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    text-align: left;
   }
   
   .autoajuda_secao_title {
-    font-size: 20px;
-    font-weight: 500;
-    color: #2d3748;
+    text-align: left;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
     margin-bottom: 24px;
   }
   
