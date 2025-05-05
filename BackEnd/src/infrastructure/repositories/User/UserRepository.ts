@@ -1,77 +1,107 @@
 import { PrismaClient } from '@prisma/client';
-import { Usuario } from '../../models/User';
+import { UpdateProfileDTO } from '../../../dtos/user/UpdateProfileDTO';
+import { UserDTO } from '../../../dtos/user/UserDTO';
+import { User } from '../../models/User';
 import { IUserRepository } from './IUserRepository';
-
 export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
-  public async salvar(data: Usuario): Promise<Usuario> {
-    const usuario = await this.prisma.usuario.create({
+  public static build(prisma: PrismaClient) {
+    return new UserRepository(prisma);
+  }
+
+  public async save(data: User): Promise<User> {
+    const user = await this.prisma.user.create({
       data: {
         name: data.name,
         email: data.email,
         password: data.getPassword(),
-        dataNascimento: data.dataNascimento,
-        faculdade: data.faculdade,
-        curso: data.curso,
+        dateOfBirth: data.dateOfBirth,
+        faculty: data.faculty,
+        course: data.course,
       },
     });
 
-    return Usuario.create({
-      id: usuario.id,
-      name: usuario.name,
-      email: usuario.email,
-      password: usuario.password,
-      dataNascimento: usuario.dataNascimento,
-      faculdade: usuario.faculdade,
-      curso: usuario.curso,
+    return User.create({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      dateOfBirth: user.dateOfBirth,
+      faculty: user.faculty,
+      course: user.course,
     });
   }
 
-  public async buscar(id: string): Promise<Usuario | null> {
-    const usuario = await this.prisma.usuario.findUnique({
+  public async find(id: string): Promise<User | null> {
+    const user = await this.prisma.user.findUnique({
       where: { id },
     });
 
-    if (!usuario) return null;
+    if (!user) return null;
 
-    return Usuario.create({
-      id: usuario.id,
-      name: usuario.name,
-      email: usuario.email,
-      password: usuario.password,
-      dataNascimento: usuario.dataNascimento,
-      faculdade: usuario.faculdade,
-      curso: usuario.curso,
+    return User.create({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      dateOfBirth: user.dateOfBirth,
+      faculty: user.faculty,
+      course: user.course,
     });
   }
 
-  public async buscarComEmail(email: string): Promise<Usuario | null> {
-    const usuario = await this.prisma.usuario.findUnique({
+  public async findByEmail(email: string): Promise<User | null> {
+    const user = await this.prisma.user.findUnique({
       where: { email },
     });
 
-    if (!usuario) return null;
+    if (!user) return null;
 
-    return Usuario.create({
-      id: usuario.id,
-      name: usuario.name,
-      email: usuario.email,
-      password: usuario.password,
-      dataNascimento: usuario.dataNascimento,
-      faculdade: usuario.faculdade,
-      curso: usuario.curso,
+    return User.create({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      dateOfBirth: user.dateOfBirth,
+      faculty: user.faculty,
+      course: user.course,
     });
   }
 
-  public async atualizar(id: string, password: string): Promise<void> {
+  public async updatePassword(id: string, password: string): Promise<void> {
     const data = {
       password: password,
     };
-    await this.prisma.usuario.update({ where: { id }, data });
+    await this.prisma.user.update({ where: { id }, data });
   }
 
-  public async deletar(id: string): Promise<void> {
-    await this.prisma.usuario.delete({ where: { id } });
+  public async updateProfile(
+    id: string,
+    data: UpdateProfileDTO
+  ): Promise<User> {
+    const user = await this.prisma.user.update({
+      where: { id },
+      data: {
+        name: data.name,
+        dateOfBirth: data.dateOfBirth,
+        faculty: data.faculty,
+        course: data.course,
+      },
+    });
+
+    return User.create({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      dateOfBirth: user.dateOfBirth,
+      faculty: user.faculty,
+      course: user.course,
+    });
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.prisma.user.delete({ where: { id } });
   }
 }
