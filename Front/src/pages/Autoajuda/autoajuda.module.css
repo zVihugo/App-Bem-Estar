@@ -1,0 +1,74 @@
+.autoajuda_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-top: 50px;
+  }
+  
+  .autoajuda_header {
+    margin-bottom: 8px;
+  }
+  
+  .autoajuda_header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a202c;
+  }
+  
+  .autoajuda_subtitle {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 32px;
+  }
+  
+  .autoajuda_secao_title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2d3748;
+    margin-bottom: 24px;
+  }
+  
+  .autoajuda_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  
+  .autoajuda_add_button_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .autoajuda_add_button {
+    background-color: #FF6B6B;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .autoajuda_add_button:hover {
+    background-color: #FF5252;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (min-width: 640px) {
+    .autoajuda_grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .autoajuda_grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
