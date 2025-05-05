@@ -3,7 +3,12 @@ export type UserProps = {
   name: string;
   email: string;
   password: string;
-  dataNascimento: string;
-  faculdade: string;
-  curso: string;
+  dateOfBirth: string;
+  faculty: string;
+  course: string;
+};
+
+export type JwtUserPayload = {
+  id: string;
+  email: string;
 };
