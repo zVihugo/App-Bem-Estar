@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import { connectToDatabase } from './infrastructure/bancoContext/prisma';
+import { requestError } from './middleware/requestError';
 import { authRoutes } from './routes/user/authRoutes';
 import { userRoutes } from './routes/user/userRoutes';
 
@@ -13,5 +14,6 @@ connectToDatabase();
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use(requestError);
 
 export { app };
