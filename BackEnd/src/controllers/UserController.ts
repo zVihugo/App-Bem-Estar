@@ -60,7 +60,7 @@ export class UserController {
       const { id } = request.params;
       await this.userApplication.delete(id);
       return response
-        .status(204)
+        .status(200)
         .json({ message: 'Usuário deletado com sucesso.' });
     } catch (error) {
       if (error instanceof Error)
