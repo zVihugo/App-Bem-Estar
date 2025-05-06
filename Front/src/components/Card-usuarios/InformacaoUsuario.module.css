@@ -1,0 +1,28 @@
+
+  .secao {
+    margin-bottom: 1rem;
+  }
+
+  .secao label {
+    font-weight: 600;
+    display: block;
+    text-align: left;
+    margin-bottom: 0.3rem;
+    cursor: auto;
+    text-decoration: none;
+  }
+  
+  .secao label:hover {
+      color: inherit;     
+      background-color: transparent; 
+      text-decoration: none; 
+      cursor: default; 
+    }
+  .secao p {
+    margin: 0;
+    padding: 0.5rem;
+    background-color: #ffe4e9;
+    text-align: left;
+    border-radius: 8px;
+  }
+  

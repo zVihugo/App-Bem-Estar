@@ -1,0 +1,100 @@
+.modal {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 700px;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modalContent h2 {
+    margin-bottom: 1rem;
+}
+
+.modalContent label {
+    display: block;
+    font-family: 'Montserrat';
+    text-align: left;
+    font-size: 18px;
+    margin: 0.5rem 0 0.3rem;
+    font-weight: 600;
+}
+
+.modalContent input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    align-self: flex-start;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.input:focus {
+    border-color: #ff7b9c;
+    outline: none;
+
+}
+
+.botaoSalvar {
+    background-color: #ff7b9c;
+    color: white;
+    width: 25%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.botaoSalvar:hover {
+    background-color: #e96689;
+}
+
+.botaoCancelar {
+    background-color: transparent;
+    color: #c62828;
+    border: 1px solid #c62828;
+    width: 25%;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    align-self: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botaoCancelar:hover {
+    background-color: #ffcdd2;
+
+}
