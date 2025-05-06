@@ -2,6 +2,7 @@ import React from 'react'
 import CardAutoajuda from '../../components/Card-Autoajuda/cardautoajuda'
 import CardMetas from '../../components/Card-Metas/cardmetas'
 import CardAutoavaliacao from '../../components/Card-AutoAvaliacao/cardautoavaliacao'
+import CardHumor from '../../components/Card-Humor/cardhumor'
 import styles from './principal.module.css'
 import { useNavigate } from 'react-router-dom';
 
@@ -18,11 +19,7 @@ const Principal = () => {
         <h2>Como você está se sentido hoje?</h2>
       </div>
       <CardAutoavaliacao />
-      <div className={styles.card_humor}>
-            <p>📊 Seu humor nos últimos dias</p>
-            <button onClick={handleClick_relatorio}>Ver Relatórios</button>
-            <span>Tendência: Você tem se sentido mais calmo 😊</span>
-      </div>
+      <CardHumor />
       <CardAutoajuda />
       <CardMetas />
     </div>
