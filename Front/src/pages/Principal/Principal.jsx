@@ -1,5 +1,4 @@
 import React from 'react'
-import CardHumor from '../../components/Card-Humor/cardhumor'
 import CardAutoajuda from '../../components/Card-Autoajuda/cardautoajuda'
 import CardMetas from '../../components/Card-Metas/cardmetas'
 import styles from './principal.module.css'
@@ -7,8 +6,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Principal = () => {
   const navigate = useNavigate();
-    const handleClick = () => {
+    const handleClick_autoavaliacao = () => {
         navigate('/Autoavaliacao');
+    }
+    const handleClick_relatorio = () => {
+        navigate('/Relatorios');
     }
   return (
     <div className='principal'>
@@ -18,10 +20,14 @@ const Principal = () => {
       </div>
       <div className={styles.card_autoavaliacao}>
         <p>😌 Faça sua autoavaliação de hoje</p>
-        <button onClick={handleClick}>Avaliar Agora</button>
+        <button onClick={handleClick_autoavaliacao}>Avaliar Agora</button>
         <p>Progresso: <span>1/3 Avaliações esta semana</span></p>
       </div>
-      <CardHumor />
+      <div className={styles.card_humor}>
+            <p>📊 Seu humor nos últimos dias</p>
+            <button onClick={handleClick_relatorio}>Ver Relatórios</button>
+            <span>Tendência: Você tem se sentido mais calmo 😊</span>
+      </div>
       <CardAutoajuda />
       <CardMetas />
     </div>
