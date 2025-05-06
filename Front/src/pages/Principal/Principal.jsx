@@ -13,10 +13,12 @@ const Principal = () => {
         <h1>Olá, Fulano! 😊 </h1>
         <h2>Como você está se sentido hoje?</h2>
       </div>
-      <CardAutoavaliacao />
-      <CardHumor />
-      <CardAutoajuda />
-      <CardMetas />
+      <div className={styles.cardsGrid}>
+        <CardAutoavaliacao />
+        <CardHumor />
+        <CardAutoajuda />
+        <CardMetas />
+      </div>
       <div className={styles.card_ajuda}>
         <p>💬 Precisa de ajuda agora?</p>
         <button>Falar com um profissional</button>
