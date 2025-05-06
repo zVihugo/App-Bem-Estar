@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import { UpdateProfileDTO } from '../../../dtos/user/UpdateProfileDTO';
-import { UserDTO } from '../../../dtos/user/UserDTO';
 import { User } from '../../models/User';
 import { IUserRepository } from './IUserRepository';
 export class UserRepository implements IUserRepository {
