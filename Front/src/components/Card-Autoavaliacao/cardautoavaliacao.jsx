@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from './cardautoavaliacao.module.css';
 import { useNavigate } from 'react-router-dom';
-
 const CardAutoAvaliacao = () => {
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/Autoavaliacao');
     }
-
     return (
         <div className={styles.card_autoavaliacao}>
             <p>😌 Faça sua autoavaliação de hoje</p>

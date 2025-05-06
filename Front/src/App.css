@@ -53,6 +53,7 @@ body {
 }
 
 .principal {
+  max-width: 1140px;
   padding-top: 3.5rem;
   display: flex;
   gap: 32px;

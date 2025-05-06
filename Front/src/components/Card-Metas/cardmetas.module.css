@@ -1,5 +1,6 @@
 .card_metas {
-    width: 552px;
+    width: 100%;
+    max-width: 552px;
     height: 255px;
     flex-shrink: 0;
     border-radius: 20px;
@@ -78,4 +79,52 @@
 
 .card_metas button:hover {
     background: var(--Cosmos-400, #ff5e5e);
+}
+
+@media (max-width: 1024px) {
+  .card_metas p {
+    font-size: 20px;
+  }
+
+  .meta_item span {
+    font-size: 18px;
+  }
+
+  .card_metas button {
+    width: 240px;
+    height: 52px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card_metas p {
+    font-size: 18px;
+  }
+
+  .meta_item span {
+    font-size: 16px;
+  }
+
+  .card_metas button {
+    width: 220px;
+    height: 48px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card_metas p {
+    font-size: 16px;
+  }
+
+  .meta_item span {
+    font-size: 14px;
+  }
+
+  .card_metas button {
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+  }
 }

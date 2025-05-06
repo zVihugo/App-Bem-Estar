@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './cardhumor.module.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const CardHumor = () => {
     const navigate = useNavigate();
     const handleClick = () => {
@@ -11,7 +11,7 @@ const CardHumor = () => {
             <p>📊 Seu humor nos últimos dias</p>
             <button onClick={handleClick}>Ver Relatórios</button>
             <span>Tendência: Você tem se sentido mais calmo 😊</span>
-        </div>
+      </div>
     );
 };
 
