@@ -4,14 +4,9 @@ import CardMetas from '../../components/Card-Metas/cardmetas'
 import CardAutoavaliacao from '../../components/Card-AutoAvaliacao/cardautoavaliacao'
 import CardHumor from '../../components/Card-Humor/cardhumor'
 import styles from './principal.module.css'
-import { useNavigate } from 'react-router-dom';
 
 const Principal = () => {
-  const navigate = useNavigate();
 
-    const handleClick_relatorio = () => {
-        navigate('/Relatorios');
-    }
   return (
     <div className='principal'>
       <div className={styles.card_welcome}>
@@ -22,6 +17,10 @@ const Principal = () => {
       <CardHumor />
       <CardAutoajuda />
       <CardMetas />
+      <div className={styles.card_ajuda}>
+        <p>💬 Precisa de ajuda agora?</p>
+        <button>Falar com um profissional</button>
+      </div>
     </div>
   )
 }
