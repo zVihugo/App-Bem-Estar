@@ -44,6 +44,9 @@ const CardFormRegistro = () => {
           className={styles.input}
           value={formData.nome}
           onChange={handleChange}
+          placeholder='Nome completo'
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um nome válido.')}
+          onInput={(e) => e.target.setCustomValidity('')}
           required
         />
 
@@ -53,19 +56,25 @@ const CardFormRegistro = () => {
           id='email'
           name='email'
           className={styles.input}
+           placeholder='E-mail'
           value={formData.email}
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um endereço de email válido.')} 
+          onInput={(e) => e.target.setCustomValidity('')}
           onChange={handleChange}
           required
         />
 
         <label htmlFor='date' className={styles.label}>Data de nascimento</label>
         <input 
-          type='date'
+          type='text'
           id='date'
           name='date'
+          placeholder='Data de nascimento'
           className={styles.input}
           value={formData.data}
           onChange={handleChange}
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira uma data válida.')}
+          onInput={(e) => e.target.setCustomValidity('')}
           required
         />
 
@@ -74,9 +83,12 @@ const CardFormRegistro = () => {
           type='text'
           id='faculdade'
           name='faculdade'
+          placeholder='Faculdade'
           className={styles.input}
           value={formData.faculdade}
           onChange={handleChange}
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um nome válido.')}
+          onInput={(e) => e.target.setCustomValidity('')}
           required
         />
 
@@ -85,9 +97,12 @@ const CardFormRegistro = () => {
           type='password'
           id='senha'
           name='senha'
+          placeholder='Senha'
           className={styles.input}
           value={formData.senha}
           onChange={handleChange}
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira uma senha válida.')}
+          onInput={(e) => e.target.setCustomValidity('')}
           required
         />
 
@@ -96,6 +111,7 @@ const CardFormRegistro = () => {
           type='password'
           id='confirmarSenha'
           name='confirmarSenha'
+          placeholder='Confirmar senha'
           className={styles.input}
           value={formData.confirmarSenha}
           onChange={handleChange}
@@ -107,7 +123,7 @@ const CardFormRegistro = () => {
         <button type='submit' className={styles.button}>Cadastrar</button>
 
         <p className={styles.registro}>
-                    Já possui conta? <a href='/Login'>Entrar</a>
+                    Já possui conta? <a href='/Auth'>Entrar</a>
         </p>
       </form>
     </div>
