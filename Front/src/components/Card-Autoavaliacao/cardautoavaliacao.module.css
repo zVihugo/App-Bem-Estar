@@ -1,39 +1,4 @@
-.card_welcome {
-    width: 1127px;
-    height: 160px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: var(--Cosmos-100, #FFDBDB);
-    text-align: left;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-.card_welcome h1{
-    color: var(--Black-950, #050505);
-    font-family: Montserrat;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin: 0;
-    padding-top: 24px;
-    padding-left: 32px;
-}
-
-.card_welcome h2{
-    color: var(--Black-950, #050505);
-    font-family: Montserrat;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: normal;
-    margin: 0;
-    padding-left: 32px;
-    padding-top: 8px;
-}
-
-
-.card_humor {
+.card_autoavaliacao {
     width: 552px;
     height: 255px;
     flex-shrink: 0;
@@ -41,25 +6,26 @@
     background: var(--Cosmos-100, #FFDBDB);
     display: flex;
     flex-direction: column;
+    align-items: left;
     justify-content: space-around;
     padding: 20px;
     box-sizing: border-box;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-.card_humor p {
-    color: #000;
+.card_autoavaliacao p {
+    color: var(--Black-950, #050505);
     font-family: Montserrat, sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 16px;
     text-align: left;
+    padding: 0;
     margin: 0;
 }
 
-.card_humor button {
+.card_autoavaliacao button {
     width: 250px;
     height: 60px;
     flex-shrink: 0;
@@ -75,16 +41,17 @@
     cursor: pointer;
 }
 
-.card_humor button:hover {
+.card_autoavaliacao button:hover {
     background: var(--Cosmos-400, #ff5e5e);
 }
 
-.card_humor span {
+
+
+.card_autoavaliacao span {
     color: var(--Black-950, #050505);
     font-family: Montserrat;
-    font-size: 20px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
-    text-align: left;
 }
