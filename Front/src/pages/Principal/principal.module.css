@@ -7,7 +7,8 @@
   }
 
 .card_welcome {
-    width: 1127px;
+    width: 100%;
+    max-width: 100%;
     height: 160px;
     flex-shrink: 0;
     border-radius: 20px;
@@ -41,7 +42,8 @@
 }
 
 .card_ajuda{
-    width: 1127px;
+    width: 100%;
+    max-width: 100%;
     height: 160px;
     flex-shrink: 0;
     border-radius: 20px;
@@ -76,3 +78,59 @@
     line-height: normal;
     margin-right: 32px;
 }
+
+@media (max-width: 768px) {
+    .card_welcome{
+        height: 120px;
+    }
+    .card_ajuda{
+        height: 120px;
+    }
+    .card_ajuda p {
+        font-size: 28px;
+        padding-left: 20px;
+    }
+    .card_ajuda button {
+        font-size: 22px;
+        padding: 10px 15px;
+    }
+    .card_welcome h1 {
+      font-size: 28px;
+      padding-left: 20px;
+      padding-top: 20px;
+    }
+  
+    .card_welcome h2 {
+      font-size: 22px;
+      padding-left: 20px;
+      padding-top: 6px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card_welcome{
+        height: 100px;
+    }
+    .card_ajuda{
+        height: 100px;
+    }
+    .card_ajuda p {
+      font-size: 24px;
+      padding-left: 16px;
+    }
+    .card_ajuda button {
+      font-size: 20px;
+      padding: 8px 12px;
+    }
+    .card_welcome h1 {
+      font-size: 24px;
+      padding-left: 16px;
+      padding-top: 16px;
+    }
+    .card_welcome h2 {
+      font-size: 22px;
+      padding-left: 16px;
+      padding-top: 4px;
+    }
+
+  }
