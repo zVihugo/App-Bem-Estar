@@ -9,7 +9,6 @@ import Suporte from './pages/Suporte/Suporte';
 import Principal from './pages/Principal/Principal';
 import Login from './pages/Login/Login';
 import Registro from './pages/Registro/Registro';
-import Perfil from './pages/Perfil/perfil';
 
 import './App.css';
 
@@ -24,17 +23,20 @@ function App() {
 function Content() {
   const location = useLocation();
 
+  const hideNavbarPaths = ['/Auth', '/Register'];
+
+
+  const shouldShowNavbar = !hideNavbarPaths.some(path => location.pathname.startsWith(path));
+
   return (
     <div style={{ paddingTop: '3px', flex: '1'}}>
-     
-      {location.pathname !== '/Auth' && location.pathname !== '/Register' && <Navbar />}
+      {shouldShowNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Principal />} />
         <Route path="/Autoavaliacao" element={<Autoavaliacao />} />
         <Route path="/Relatorios" element={<Relatorios />} />
         <Route path="/Autoajuda" element={<Autoajuda />} />
         <Route path="/Metas" element={<Metas />} />
-        <Route path="/Perfil" element={<Perfil />} />
         <Route path="/Suporte" element={<Suporte />} />
         <Route path="/Auth" element={<Login />} />
         <Route path="/Register" element={<Registro />} />
