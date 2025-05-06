@@ -1,0 +1,25 @@
+.card_imgregistro {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    display: flex;
+    margin-left: 8.75em;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .card_imgregistro img {
+    width: 100%;
+    height: auto;
+    height: 100%;
+    border-radius: 0.75em;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 767px) {
+    .card_imgregistro {
+      display: none;
+    }
+  }
+  
