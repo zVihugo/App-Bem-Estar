@@ -8,7 +8,6 @@ import {
 export type ReviewProps = {
   id: string;
   userId: string;
-  date: Date;
   sleepHours: number;
   difficultySleepFrequency: DifficultySleepFrequency;
   wakeUpRested: WakeUpRested;
