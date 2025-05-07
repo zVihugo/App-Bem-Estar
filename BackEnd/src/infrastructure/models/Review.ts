@@ -1,4 +1,5 @@
 import { ReviewProps } from '../../@types/ReviewProps';
+import { ReviewDTO } from '../../dtos/review/ReviewDTO';
 
 export class Review {
   constructor(private readonly props: ReviewProps) {}
@@ -13,10 +14,6 @@ export class Review {
 
   public get userId() {
     return this.props.userId;
-  }
-
-  public get date() {
-    return this.props.date;
   }
 
   public get sleepHours() {
@@ -41,5 +38,18 @@ export class Review {
 
   public get hasRoutineSleep() {
     return this.props.hasRoutineSleep;
+  }
+
+  public toJSON(): ReviewDTO {
+    return {
+      id: this.id,
+      userId: this.userId,
+      sleepHours: this.sleepHours,
+      difficultySleepFrequency: this.difficultySleepFrequency,
+      wakeUpRested: this.wakeUpRested,
+      daytimeDrowsiness: this.daytimeDrowsiness,
+      usageScreenBeforeSleep: this.usageScreenBeforeSleep,
+      hasRoutineSleep: this.hasRoutineSleep,
+    };
   }
 }
