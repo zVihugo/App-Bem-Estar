@@ -1,35 +1,63 @@
 import React, { useState } from 'react';
 import styles from './cardformregistro.module.css';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
+import api from '../../services/api';
 
 const CardFormRegistro = () => {
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    senha: '',
-    confirmarSenha: '',
-  });
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [nome, setNome] = useState('');
+  const [data, setData] = useState('');
+  const [faculdade, setFaculdade] = useState('');
+  const [curso, setCurso] = useState('');
+
+
+  const navigate = useNavigate();
 
   const [erro, setErro] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ 
-      ...formData, 
-      [e.target.name]: e.target.value 
-    });
-  };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErro(''); 
 
-    if (formData.senha !== formData.confirmarSenha) {
-      setErro('As senhas não coincidem');
+    if (senha !== confirmarSenha) {
+      setErro('As senhas não coincidem.');
       return;
     }
 
-    setErro('');
-    console.log('Dados cadastrados:', formData);
-    alert('Cadastro realizado com sucesso!');
-  };
+    try {
+      const response = await api.post('auth/register', {
+        name: nome,
+        email:
+        email,
+        dateOfBirth: data,
+        faculty: faculdade,
+        course: curso,
+        password: senha,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 201) {
+        console.log('Cadastro bem-sucedido:', response.data);
+        alert('Cadastro realizado com sucesso!');
+        navigate('/Auth'); 
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error('Erro ao cadastrar:', error.response.data);
+        setErro(error.response.data.error || 'Erro ao realizar o cadastro.');
+      } else {
+        setErro('Erro de rede. Tente novamente mais tarde.');
+      }
+    }
+  }
 
   return (
     <div className={styles.card_formlogin}>
@@ -42,8 +70,8 @@ const CardFormRegistro = () => {
           id='nome'
           name='nome'
           className={styles.input}
-          value={formData.nome}
-          onChange={handleChange}
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
           placeholder='Nome completo'
           onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um nome válido.')}
           onInput={(e) => e.target.setCustomValidity('')}
@@ -57,10 +85,11 @@ const CardFormRegistro = () => {
           name='email'
           className={styles.input}
            placeholder='E-mail'
-          value={formData.email}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um endereço de email válido.')} 
           onInput={(e) => e.target.setCustomValidity('')}
-          onChange={handleChange}
+         
           required
         />
 
@@ -71,8 +100,8 @@ const CardFormRegistro = () => {
           name='date'
           placeholder='Data de nascimento'
           className={styles.input}
-          value={formData.data}
-          onChange={handleChange}
+         value={data}
+          onChange={(e) => setData(e.target.value)}
           onInvalid={(e) => e.target.setCustomValidity('Por favor, insira uma data válida.')}
           onInput={(e) => e.target.setCustomValidity('')}
           required
@@ -85,8 +114,21 @@ const CardFormRegistro = () => {
           name='faculdade'
           placeholder='Faculdade'
           className={styles.input}
-          value={formData.faculdade}
-          onChange={handleChange}
+          value={faculdade}
+          onChange={(e) => setFaculdade(e.target.value)}
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um nome válido.')}
+          onInput={(e) => e.target.setCustomValidity('')}
+          required
+        />
+        <label htmlFor='curso' className={styles.label}>Curso</label>
+        <input 
+          type='text'
+          id='curso'
+          name='curso'
+          placeholder='Insira seu curso'
+          className={styles.input}
+          value={curso}
+          onChange={(e) => setCurso(e.target.value)}
           onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um nome válido.')}
           onInput={(e) => e.target.setCustomValidity('')}
           required
@@ -99,8 +141,8 @@ const CardFormRegistro = () => {
           name='senha'
           placeholder='Senha'
           className={styles.input}
-          value={formData.senha}
-          onChange={handleChange}
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
           onInvalid={(e) => e.target.setCustomValidity('Por favor, insira uma senha válida.')}
           onInput={(e) => e.target.setCustomValidity('')}
           required
@@ -113,8 +155,10 @@ const CardFormRegistro = () => {
           name='confirmarSenha'
           placeholder='Confirmar senha'
           className={styles.input}
-          value={formData.confirmarSenha}
-          onChange={handleChange}
+          value={confirmarSenha}
+          onChange={(e) => setConfirmarSenha(e.target.value)}
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira uma senha válida.')}
+          onInput={(e) => e.target.setCustomValidity('')}
           required
         />
 

@@ -8,6 +8,7 @@ const ModalSessao = ({confirmar, cancelar}) => {
             <h2>Deseja encerrar esta sessão?</h2>
             <p>
             Descanse um pouco, você merece. Volte quando estiver pronto — estaremos te esperando por aqui. 💖
+            
             </p>
             <div className={styles.modalActions}>
                     <button className={styles.botao} onClick={confirmar}>

@@ -18,8 +18,8 @@
   }
   
   @media (max-width: 767px) {
-    .card_imgregistro {
-      display: none;
-    }
+   .card_imgregistro{
+    display: none;
+   }
   }
   

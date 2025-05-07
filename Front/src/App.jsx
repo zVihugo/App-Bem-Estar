@@ -32,7 +32,8 @@ function Content() {
     <div style={{ paddingTop: '3px', flex: '1'}}>
       {shouldShowNavbar && <Navbar />}
       <Routes>
-        <Route path="/" element={<Principal />} />
+        <Route path="/" element={<Navigate to="/Auth"/>} />
+        <Route path="/Inicial" element={<Principal />} />
         <Route path="/Autoavaliacao" element={<Autoavaliacao />} />
         <Route path="/Relatorios" element={<Relatorios />} />
         <Route path="/Autoajuda" element={<Autoajuda />} />
