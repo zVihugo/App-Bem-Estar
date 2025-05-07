@@ -9,6 +9,7 @@ import Suporte from './pages/Suporte/Suporte';
 import Principal from './pages/Principal/Principal';
 import Login from './pages/Login/Login';
 import Registro from './pages/Registro/Registro';
+import Perfil from './pages/Perfil/Perfil';
 
 import './App.css';
 
@@ -40,6 +41,7 @@ function Content() {
         <Route path="/Metas" element={<Metas />} />
         <Route path="/Suporte" element={<Suporte />} />
         <Route path="/Auth" element={<Login />} />
+        <Route path="/Perfil" element={<Perfil />} />
         <Route path="/Register" element={<Registro />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
