@@ -9,9 +9,7 @@ const Metas = () => {
       <CardAddmetas />
 
     </div>
-    <div className='metas'>
-      
-    </div>
+ 
   )
 }
 
