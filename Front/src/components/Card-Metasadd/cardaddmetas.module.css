@@ -1,7 +1,7 @@
 .card_addmetas {
   width: 100%;
   max-width: 1127px;
-  background: #fff;
+  background-color: #FDF2FA;
 }
 
 .input_area {
@@ -28,7 +28,7 @@
 
 
 .input_area button {
-  background-color: white;
+  background-color: #FFDBDB;
   color: #FD6C6C;
   font-size: 40px;
   font-weight: 100;
