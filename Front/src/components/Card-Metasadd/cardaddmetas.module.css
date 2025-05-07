@@ -7,25 +7,35 @@
 .input_area {
   display: flex;
   justify-content: center; 
+  align-items: center;
+  padding: 16px;
   gap: 10px;
   margin-bottom: 20px;
-    color: #FD6C6C;
-  font-weight: bold;
+  max-width: 600px;
+  margin: 30px auto 10px;
+  transition: all 0.3s ease;
 }
 
 .input_area input {
   flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #f7f5f5;
-  background-color: #FFDBDB;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: 	#D7F0FF;
   color: #FD6C6C;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
 }
 
 .input_area input::placeholder {
-  color: #FD6C6C;
+  color: #d2aff5;
+  opacity: 0.8;
 }
 
+.input_area input:focus {
+  box-shadow: 0 0 0 2px #FD6C6C;
+}
 
 .input_area button {
   background-color: white;
@@ -45,12 +55,88 @@
   font-family: 'Arial', sans-serif;
 }
 
+.inputEdicao {
+  font-size: 24px;
+  padding: 6px 10px;
+  border: 1px solid #FD6C6C;
+  border-radius: 8px;
+  outline: none;
+  background-color: #fff;
+  color: #3a3a3a;
+}
+
+
 .lista {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+.item {
+  background-color: #ffdbdb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.statusIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.concluido {
+  background-color: #fd6c6c;
+  color: white;
+}
+
+.pendente {
+  background-color: #fca7a7;
+  color: #fff;
+  opacity: 0.6;
+}
+
+.metaTexto {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: left;
+}
+
+.texto {
+  color: #3a3a3a;
+  font-weight: 300;
+  font-size: 30px;
+  text-align: left;
+}
+
+.statusConcluido {
+  font-size: 12px;
+  color: #fd6c6c;
+}
+
+.statusPendente {
+  font-size: 12px;
+  color: #fd6c6c;
+}
+
+.botaoEditar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
 .lista li {
   background-color: #FFDBDB;
   border-radius: 10px;
@@ -58,7 +144,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
 

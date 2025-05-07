@@ -11,7 +11,7 @@
 .card_suasmetas h1{
     color: var(--Black-950, #050505);
     font-family: Montserrat;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: 400;
     margin: 0;
 }
@@ -19,7 +19,7 @@
 .card_suasmetas h2{
     color: var(--Black-950, #050505);
     font-family: Montserrat;
-    font-size: 30px;
+    font-size: 50px;
     font-weight: 200;
     margin-top: 8px;
 }
