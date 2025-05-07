@@ -24,7 +24,6 @@ model User {
 model Review {
   id                        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId                    String   @db.ObjectId
-  date                      DateTime
   sleepHours                Float
 
   difficultySleepFrequency  DifficultySleepFrequency
@@ -32,7 +31,7 @@ model Review {
   daytimeDrowsiness         DaytimeDrowsiness
   usageScreenBeforeSleep    UsageScreenBeforeSleep
   hasRoutineSleep           Boolean
-
+  createdAt DateTime @default(now())
   user                      User  @relation(fields: [userId], references: [id])
   @@map("reviews")
 }
