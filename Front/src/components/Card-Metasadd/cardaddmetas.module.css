@@ -9,14 +9,23 @@
   justify-content: center; 
   gap: 10px;
   margin-bottom: 20px;
+    color: #FD6C6C;
+  font-weight: bold;
 }
 
 .input_area input {
   flex: 1;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #f7f5f5;
+  background-color: #FFDBDB;
+  color: #FD6C6C;
 }
+
+.input_area input::placeholder {
+  color: #FD6C6C;
+}
+
 
 .input_area button {
   background-color: white;
@@ -43,7 +52,9 @@
 }
 
 .lista li {
-  background-color: purple;
+  background-color: #FFDBDB;
+  border-radius: 10px;
+  color: #5a5858;
   display: flex;
   justify-content: space-between;
   align-items: center;
