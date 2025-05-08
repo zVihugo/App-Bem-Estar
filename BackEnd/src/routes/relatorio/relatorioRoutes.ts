@@ -1,11 +1,11 @@
 import { Request, Response, Router } from 'express';
+import { RelatorioApplication } from '../../application/Relatorio/RelatorioApplication';
+import { RelatorioController } from '../../controllers/RelatorioController';
 import { prisma } from '../../infrastructure/bancoContext/prisma';
+import { RelatorioRepository } from '../../infrastructure/repositories/Relatorio/RelatorioRepository';
 import { authenticateToken } from '../../middleware/authenticateToken';
 import { validateRequest } from '../../middleware/validateRequest';
 import { relatorioSchemas } from '../../schemas/relatorioSchemas';
-import { RelatorioRepository } from '../../infrastructure/repositories/Relatorio/RelatorioRepository';
-import { RelatorioApplication } from '../../application/Relatorio/RelatorioApplication';
-import { RelatorioController } from '../../controllers/RelatorioController';
 
 const userRoutes = Router();
 
@@ -23,13 +23,13 @@ userRoutes.get(
 );
 
 userRoutes.get(
-    'todosRelatorio/:id',
-    authenticateToken,
-    validateRequest(relatorioSchemas),
-    (request: Request, response: Response) => {
-      controller.findByUserId(request, response);
-    }
-  );
+  'todosRelatorio/:id',
+  authenticateToken,
+  validateRequest(relatorioSchemas),
+  (request: Request, response: Response) => {
+    controller.findByUserId(request, response);
+  }
+);
 
 userRoutes.delete(
   '/:id',
