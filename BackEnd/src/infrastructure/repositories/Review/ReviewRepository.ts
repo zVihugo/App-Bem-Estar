@@ -14,7 +14,6 @@ export class ReviewRepository implements IReviewRepository {
     const review = await this.prisma.review.create({
       data: {
         userId: data.userId,
-        date: data.date,
         sleepHours: data.sleepHours,
         difficultySleepFrequency: data.difficultySleepFrequency,
         wakeUpRested: data.wakeUpRested,
@@ -27,7 +26,6 @@ export class ReviewRepository implements IReviewRepository {
     return Review.create({
       id: review.id,
       userId: review.userId,
-      date: review.date,
       sleepHours: review.sleepHours,
       difficultySleepFrequency: review.difficultySleepFrequency,
       wakeUpRested: review.wakeUpRested,
@@ -35,24 +33,6 @@ export class ReviewRepository implements IReviewRepository {
       usageScreenBeforeSleep: review.usageScreenBeforeSleep,
       hasRoutineSleep: review.hasRoutineSleep,
     });
-  }
-
-  public async findAll(): Promise<Review[]> {
-    const reviews = await this.prisma.review.findMany();
-
-    return reviews.map((review) =>
-      Review.create({
-        id: review.id,
-        userId: review.userId,
-        date: review.date,
-        sleepHours: review.sleepHours,
-        difficultySleepFrequency: review.difficultySleepFrequency,
-        wakeUpRested: review.wakeUpRested,
-        daytimeDrowsiness: review.daytimeDrowsiness,
-        usageScreenBeforeSleep: review.usageScreenBeforeSleep,
-        hasRoutineSleep: review.hasRoutineSleep,
-      })
-    );
   }
 
   public async findById(id: string): Promise<Review | null> {
@@ -65,7 +45,6 @@ export class ReviewRepository implements IReviewRepository {
     return Review.create({
       id: review.id,
       userId: review.userId,
-      date: review.date,
       sleepHours: review.sleepHours,
       difficultySleepFrequency: review.difficultySleepFrequency,
       wakeUpRested: review.wakeUpRested,
@@ -85,7 +64,6 @@ export class ReviewRepository implements IReviewRepository {
       Review.create({
         id: review.id,
         userId: review.userId,
-        date: review.date,
         sleepHours: review.sleepHours,
         difficultySleepFrequency: review.difficultySleepFrequency,
         wakeUpRested: review.wakeUpRested,
@@ -100,7 +78,6 @@ export class ReviewRepository implements IReviewRepository {
     const review = await this.prisma.review.update({
       where: { id },
       data: {
-        date: data.date,
         sleepHours: data.sleepHours,
         difficultySleepFrequency: data.difficultySleepFrequency,
         wakeUpRested: data.wakeUpRested,
@@ -113,7 +90,6 @@ export class ReviewRepository implements IReviewRepository {
     return Review.create({
       id: review.id,
       userId: review.userId,
-      date: review.date,
       sleepHours: review.sleepHours,
       difficultySleepFrequency: review.difficultySleepFrequency,
       wakeUpRested: review.wakeUpRested,
@@ -122,7 +98,8 @@ export class ReviewRepository implements IReviewRepository {
       hasRoutineSleep: review.hasRoutineSleep,
     });
   }
+
   public async delete(id: string): Promise<void> {
-    await this.prisma.user.delete({ where: { id } });
+    await this.prisma.review.delete({ where: { id } });
   }
 }
