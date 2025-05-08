@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './cardformlogin.module.css'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import api from '../../services/api';
+import { login } from '../../middleware/auth';
+
 
 const CardForm = () => {
     const navigate = useNavigate();
@@ -13,26 +13,22 @@ const CardForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-      
-        try {
-            const response = await api.post('/auth/login', {
-                email,
+        setErro('');
+
+        try{
+            const response = await login({
+                email: email,
                 password: senha,
-            });
+            })
 
-            if (response.status === 200) {
-                console.log('Login bem-sucedido:', response.data);
-                localStorage.setItem('token', response.data.user.token); 
-                localStorage.setItem('Id', JSON.stringify(response.data.user.user.id));
+            if(response){
+               
+                alert('Login realizado com sucesso!');
+                navigate('/Inicial')
+            }
+        }catch(error){
+            setErro(error);
 
-                navigate('/Inicial'); 
-            }
-        } catch (error) {
-            if (error.response) {
-                setErro(error.response.data.error || 'Erro ao realizar o login.');
-            } else {
-                setErro('Erro de rede. Tente novamente mais tarde.');
-            }
         }
     }
 

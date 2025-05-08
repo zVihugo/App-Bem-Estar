@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './cardformregistro.module.css';
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom'
-import api from '../../services/api';
+import { useNavigate } from 'react-router-dom'
+import { register } from '../../middleware/auth';
 
 const CardFormRegistro = () => {
   const [email, setEmail] = useState('');
@@ -12,17 +11,12 @@ const CardFormRegistro = () => {
   const [data, setData] = useState('');
   const [faculdade, setFaculdade] = useState('');
   const [curso, setCurso] = useState('');
-
-
-  const navigate = useNavigate();
-
   const [erro, setErro] = useState('');
-
-
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro(''); 
+    setErro('');
 
     if (senha !== confirmarSenha) {
       setErro('As senhas não coincidem.');
@@ -30,34 +24,24 @@ const CardFormRegistro = () => {
     }
 
     try {
-      const response = await api.post('auth/register', {
+      const response = await register({
         name: nome,
-        email:
-        email,
+        email: email,
         dateOfBirth: data,
         faculty: faculdade,
         course: curso,
         password: senha,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
 
-      if (response.status === 201) {
-        console.log('Cadastro bem-sucedido:', response.data);
+      if (response) {
+
         alert('Cadastro realizado com sucesso!');
-        navigate('/Auth'); 
+        navigate('/Auth');
       }
     } catch (error) {
-      if (error.response) {
-        console.error('Erro ao cadastrar:', error.response.data);
-        setErro(error.response.data.error || 'Erro ao realizar o cadastro.');
-      } else {
-        setErro('Erro de rede. Tente novamente mais tarde.');
-      }
+      setErro(error);
     }
-  }
+  };
 
   return (
     <div className={styles.card_formlogin}>
@@ -65,7 +49,7 @@ const CardFormRegistro = () => {
         <h2 className={styles.title}>Cadastro</h2>
 
         <label htmlFor='nome' className={styles.label}>Nome completo</label>
-        <input 
+        <input
           type='text'
           id='nome'
           name='nome'
@@ -79,28 +63,28 @@ const CardFormRegistro = () => {
         />
 
         <label htmlFor='email' className={styles.label}>E-mail</label>
-        <input 
+        <input
           type='email'
           id='email'
           name='email'
           className={styles.input}
-           placeholder='E-mail'
+          placeholder='E-mail'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um endereço de email válido.')} 
+          onInvalid={(e) => e.target.setCustomValidity('Por favor, insira um endereço de email válido.')}
           onInput={(e) => e.target.setCustomValidity('')}
-         
+
           required
         />
 
         <label htmlFor='date' className={styles.label}>Data de nascimento</label>
-        <input 
+        <input
           type='text'
           id='date'
           name='date'
           placeholder='Data de nascimento'
           className={styles.input}
-         value={data}
+          value={data}
           onChange={(e) => setData(e.target.value)}
           onInvalid={(e) => e.target.setCustomValidity('Por favor, insira uma data válida.')}
           onInput={(e) => e.target.setCustomValidity('')}
@@ -108,7 +92,7 @@ const CardFormRegistro = () => {
         />
 
         <label htmlFor='nome' className={styles.label}>Faculdade</label>
-        <input 
+        <input
           type='text'
           id='faculdade'
           name='faculdade'
@@ -121,7 +105,7 @@ const CardFormRegistro = () => {
           required
         />
         <label htmlFor='curso' className={styles.label}>Curso</label>
-        <input 
+        <input
           type='text'
           id='curso'
           name='curso'
@@ -167,7 +151,7 @@ const CardFormRegistro = () => {
         <button type='submit' className={styles.button}>Cadastrar</button>
 
         <p className={styles.registro}>
-                    Já possui conta? <a href='/Auth'>Entrar</a>
+          Já possui conta? <a href='/Auth'>Entrar</a>
         </p>
       </form>
     </div>

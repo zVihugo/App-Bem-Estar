@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
 import styles from './ModalPerfil.module.css';
 
-const ModalPerfil = ({ confirmar, cancelar }) => {
+import { updateUser } from '../../middleware/auth';
+
+const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
+    const [user, setUser] = useState(data);
     const [nome, setNome] = useState('');
-    const [email, setEmail] = useState('');
     const [dataNascimento, setDataNascimento] = useState('');
     const [faculdade, setFaculdade] = useState('');
     const [curso, setCurso] = useState('');
 
     const handleSave = async () => {
-        const data = {
-            nome,
-
-            dataNascimento,
-            faculdade,
-            curso,
+        const dados = {
+            name: nome || user.name,
+            dateOfBirth: dataNascimento || user.dateOfBirth, 
+            faculty: faculdade || user.faculty,
+            course: curso || user.course,
         };
-
-
-
-        console.log('Dados enviados:', data);
-        console.log(typeof data.dataNascimento);
+    
+        try {
+            const response = await updateUser(id, dados.name, dados.dateOfBirth, dados.faculty, dados.course);
+            
+            confirmar(); 
+        } catch (error) {
+          
+        }
     };
 
     return (
@@ -30,16 +34,16 @@ const ModalPerfil = ({ confirmar, cancelar }) => {
                 <input
                     type="text"
                     className={styles.input}
-                    placeholder="Digite seu nome"
+                    placeholder={user.name}
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
                 />
 
                 <label className={styles.label}>Data de Nascimento:</label>
                 <input
-                    type="date"
+                    type="string"
                     className={styles.input}
-                    placeholder='Digita sua data de nascimento (dd/mm/aaaa)'
+                    placeholder={user.dateOfBirth}
                     value={dataNascimento}
                     onChange={(e) => setDataNascimento(e.target.value)}
                 />
@@ -47,7 +51,7 @@ const ModalPerfil = ({ confirmar, cancelar }) => {
                 <input
                     type="text"
                     className={styles.input}
-                    placeholder="Digite sua faculdade"
+                    placeholder={user.faculty}
                     value={faculdade}
                     onChange={(e) => setFaculdade(e.target.value)}
                 />
@@ -55,7 +59,7 @@ const ModalPerfil = ({ confirmar, cancelar }) => {
                 <input
                     type="text"
                     className={styles.input}
-                    placeholder="Digite seu curso"
+                    placeholder={user.course}
                     value={curso}
                     onChange={(e) => setCurso(e.target.value)}
                 />
