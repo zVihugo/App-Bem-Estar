@@ -16,28 +16,15 @@ export class UserApplication implements IUserApplication {
   public async find(id: string): Promise<UserDTO> {
     const user = await this.repository.find(id);
     if (!user) throw new Error('Usuário não encontrado.');
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      dateOfBirth: user.dateOfBirth,
-      faculty: user.faculty,
-      course: user.course,
-    };
+
+    return user.toJSON();
   }
 
   public async findByEmail(email: string): Promise<UserDTO> {
     const user = await this.repository.findByEmail(email);
     if (!user) throw new Error('Usuário não encontrado.');
 
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      dateOfBirth: user.dateOfBirth,
-      faculty: user.faculty,
-      course: user.course,
-    };
+    return user.toJSON();
   }
 
   public async updatePassword(
@@ -63,14 +50,7 @@ export class UserApplication implements IUserApplication {
 
     const updated = await this.repository.updateProfile(id, data);
 
-    return {
-      id: updated.id,
-      name: updated.name,
-      email: updated.email,
-      dateOfBirth: updated.dateOfBirth,
-      faculty: updated.faculty,
-      course: updated.course,
-    };
+    return updated.toJSON();
   }
 
   public async delete(id: string): Promise<void> {
