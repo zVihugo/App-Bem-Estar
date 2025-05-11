@@ -11,14 +11,23 @@ Este repositório contém o código-fonte e a documentação do AppBemEstar, uma
 ## 🛠️ Tecnologias e Frameworks Utilizados
 
 ### Frontend
-- React
-- HTML/CSS
-- JavaScript
+- Linguagem principal: JavaScript moderno com suporte a módulos ES6.
+- Biblioteca principal: React.js (versão 19) 
+- Gerenciador de pacotes: npm.
+- Empacotador e servidor de desenvolvimento: Vite 
+- Roteamento: react-router-dom (v7)
+- Requisições HTTP: Axios
+- Gerenciamento de cookies: js-cookie, utilizado para armazenar dados no navegador.
+- Bibliotecas de ícones: @fortawesome/react-fontawesome e	@fortawesome/free-solid-svg-icons
 
 ### Backend
-- Node.js
-- Express.js
-
+- Ambiente: Node.Js 
+- Linguagem: Typescript 
+- Framework: Express 
+- ORM: Prisma ORM 
+- Autenticação: JWT e Bcrypt 
+- Validação de dados: Zod
+  
 ### Banco de Dados
 - MongoDB
 
