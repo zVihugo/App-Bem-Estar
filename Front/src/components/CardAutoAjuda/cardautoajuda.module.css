@@ -55,28 +55,10 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
-  }
-  
-  .autoajuda_action_button.video {
     background-color: #FF6B6B;
   }
   
-  .autoajuda_action_button.video:hover {
-    background-color: #FF5252;
+  .autoajuda_action_button:hover {
+    background-color: #FF4C4C;
   }
   
-  .autoajuda_action_button.audio {
-    background-color: #4ECDC4;
-  }
-  
-  .autoajuda_action_button.audio:hover {
-    background-color: #44BDB5;
-  }
-  
-  .autoajuda_action_button.article {
-    background-color: #FFD166;
-  }
-  
-  .autoajuda_action_button.article:hover {
-    background-color: #FFC44D;
-  }
