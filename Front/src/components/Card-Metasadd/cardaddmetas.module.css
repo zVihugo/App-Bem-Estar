@@ -1,0 +1,80 @@
+.card_addmetas {
+  width: 100%;
+  max-width: 1127px;
+  background-color: #FDF2FA;
+}
+
+.input_area {
+  display: flex;
+  justify-content: center; 
+  gap: 10px;
+  margin-bottom: 20px;
+    color: #FD6C6C;
+  font-weight: bold;
+}
+
+.input_area input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #f7f5f5;
+  background-color: #FFDBDB;
+  color: #FD6C6C;
+}
+
+.input_area input::placeholder {
+  color: #FD6C6C;
+}
+
+
+.input_area button {
+  background-color: #FFDBDB;
+  color: #FD6C6C;
+  font-size: 40px;
+  font-weight: 100;
+  border: 2px solid #FD6C6C;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista li {
+  background-color: #FFDBDB;
+  border-radius: 10px;
+  color: #5a5858;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.lista span {
+  flex: 1;
+}
+
+.lista button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.concluida span {
+  text-decoration: line-through;
+  color: gray;
+}

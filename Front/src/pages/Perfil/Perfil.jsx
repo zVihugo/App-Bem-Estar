@@ -1,62 +1,89 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Perfil.module.css';
+import { useNavigate } from 'react-router-dom'
 import InformacaoUsuario from '../../components/Card-usuarios/InformacaoUsuario';
 import ModalRedefinirSenha from '../../components/Modal-Senha/RedefinirSenha';
 import ModalExcluirConta from '../../components/Modal-Excluir/Excluir';
 import ModalSessao from '../../components/Model-Sessao/Sessao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { getUser, deleteUser, logout, updateUser, updatePassword } from '../../middleware/auth';
 import ModalPerfil from '../../components/Modal-Perfil/modalPerfil';
-
+import Cookies from 'js-cookie';
 
 const Perfil = () => {
+  const id = Cookies.get('Id');
+  const navigate = useNavigate();
+  const [user, setUser] = useState("");
+  const [erroSenha, setErroSenha] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [showModalExcluir, setShowModalExcluir] = useState(false);
   const [showModalSair, setShowModalSair] = useState(false);
   const [showModalPerfil, setShowModalPerfil] = useState(false);
-  const [novaSenha, setNovaSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
 
-  const handleRedefinirSenha = () => {
-    if (novaSenha !== confirmarSenha) {
-      alert('As senhas não coincidem!');
-      return;
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        console.log(id)
+        const response = await getUser(id)
+        console.log(response.user)
+        setUser(response.user)
+
+
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário:', error)
+      }
     }
 
-    console.log('Nova senha enviada:', novaSenha);
+    fetchUser()
+    console.log(user)
+  }, [id])
 
-    setShowModal(false);
-    setNovaSenha('');
-    setConfirmarSenha('');
+
+  const handleExcluirConta = async () => {
+    console.log("Conta excluída!");
+    navigate('/Auth')
+    await deleteUser(id)
   };
 
-  const handleExcluirConta = () => {
-    console.log('Conta excluída!');
-    setShowModalExcluir(false);
+  const handleRedefinirSenha = async ({ senhaAntiga, novaSenha }) => {
+    try {
+
+      await updatePassword(id, senhaAntiga, novaSenha);
+      alert('Senha redefinida com sucesso!');
+      setShowModal(false);
+      setErroSenha('');
+    } catch (error) {
+
+      setErroSenha(error.error);
+    }
   };
 
   const handleSair = () => {
-    console.log("Sessão encerrada!");
+
     setShowModalSair(false);
+    logout();
+    navigate('/Auth')
   }
 
   const handleModalPerfil = () => {
-    console.log("Dados atualizado!");
     setShowModalPerfil(false);
+    window.location.reload();
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.containerInformacao}>
         <h1 className={styles.titulo}>Minhas informações</h1>
-        <FontAwesomeIcon icon={faEdit} className={styles.icon} onClick={() => setShowModalPerfil(true)}/>
+        <FontAwesomeIcon icon={faEdit} className={styles.icon} onClick={() => setShowModalPerfil(true)} />
       </div>
-    
-      <InformacaoUsuario label="Nome" valor="Victor Moreira" />
-      <InformacaoUsuario label="Email" valor="victor@email.com" />
-      <InformacaoUsuario label="Data de Nascimento" valor="06/04/2004" />
-      <InformacaoUsuario label="Faculdade" valor="UTFPR" />
-      <InformacaoUsuario label="Curso" valor="Análise e Desenvolvimento de Sistemas" />
+
+      <InformacaoUsuario label="Nome" valor={user.name} />
+      <InformacaoUsuario label="Email" valor={user.email} />
+      <InformacaoUsuario label="Data de Nascimento" valor={user.dateOfBirth} />
+      <InformacaoUsuario label="Faculdade" valor={user.faculty} />
+      <InformacaoUsuario label="Curso" valor={user.course} />
 
       <h2 className={styles.subtitulo}>Configurações</h2>
 
@@ -74,10 +101,7 @@ const Perfil = () => {
 
       {showModal && (
         <ModalRedefinirSenha
-          novaSenha={novaSenha}
-          confirmarSenha={confirmarSenha}
-          setNovaSenha={setNovaSenha}
-          setConfirmarSenha={setConfirmarSenha}
+          erro={erroSenha}
           confirmar={handleRedefinirSenha}
           cancelar={() => setShowModal(false)}
         />
@@ -90,15 +114,17 @@ const Perfil = () => {
         />
       )}
       {showModalSair && (
-        <ModalSessao 
+        <ModalSessao
           confirmar={handleSair}
           cancelar={() => setShowModalSair(false)}
-          />
+        />
       )}
 
       {
         showModalPerfil && (
           <ModalPerfil
+            id={id}
+            data={user}
             confirmar={handleModalPerfil}
             cancelar={() => setShowModalPerfil(false)}
           />

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 const Navbar = () => {
     return (
         <nav className={styles.navbar}>
-            <NavLink to="/" className={styles.brand}>
+            <NavLink to="/Inicial" className={styles.brand}>
                <div className={styles.logo}>
                 <img src="/Sun.svg" alt="Logo" className={styles.tam} />
                     <h1 className={styles.title}>Bem Estar</h1>
@@ -13,7 +13,7 @@ const Navbar = () => {
             </NavLink>
             <ul className={styles.links_list}>
                 <li>
-                    <NavLink to="/" className={({ isActive }) => `${styles.noEffect} ${isActive ? styles.active : ""}`}>Inicio</NavLink>
+                    <NavLink to="/Inicial" className={({ isActive }) => `${styles.noEffect} ${isActive ? styles.active : ""}`}>Inicio</NavLink>
                 </li>
                 <li>
                     <NavLink to="/Autoavaliacao" className={({ isActive }) => `${styles.noEffect} ${isActive ? styles.active : ""}`}>Auto Avaliação</NavLink>
