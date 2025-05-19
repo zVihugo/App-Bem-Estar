@@ -23,7 +23,25 @@ userRoutes.get(
 );
 
 userRoutes.get(
-  'todosRelatorio/:id',
+  'ultimos7diasRelatorio/:userId',
+  authenticateToken,
+  validateRequest(relatorioSchemas),
+  (request: Request, response: Response) => {
+    controller.findLast7DaysRelatorio(request, response);
+  }
+);
+
+userRoutes.get(
+  'ultimos30diasRelatorio/:userId',
+  authenticateToken,
+  validateRequest(relatorioSchemas),
+  (request: Request, response: Response) => {
+    controller.findLast30DaysRelatorio(request, response);
+  }
+);
+
+userRoutes.get(
+  'todosRelatorio/:userId',
   authenticateToken,
   validateRequest(relatorioSchemas),
   (request: Request, response: Response) => {

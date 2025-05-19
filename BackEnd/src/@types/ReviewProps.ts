@@ -1,17 +1,17 @@
 import {
-  DifficultySleepFrequency,
-  WakeUpRested,
-  DaytimeDrowsiness,
-  UsageScreenBeforeSleep,
+  DificuldadeParaDormir,
+  AcordaDescansado,
+  SofreComSonoDuranteODia,
+  UsaTelaAntesDeDormir
 } from '@prisma/client';
 
 export type ReviewProps = {
   id: string;
   userId: string;
-  sleepHours: number;
-  difficultySleepFrequency: DifficultySleepFrequency;
-  wakeUpRested: WakeUpRested;
-  daytimeDrowsiness: DaytimeDrowsiness;
-  usageScreenBeforeSleep: UsageScreenBeforeSleep;
+  mediaSono: number;
+  DificuldadeParaDormir: DificuldadeParaDormir;
+  AcordaDescansado: AcordaDescansado;
+  SofreComSonoDuranteODia: SofreComSonoDuranteODia;
+  UsaTelaAntesDeDormir: UsaTelaAntesDeDormir;
   hasRoutineSleep: boolean;
 };

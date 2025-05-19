@@ -1,9 +1,12 @@
 export type RelatorioProps = {
     id: string;
     userId: string;
-    title: string;
-    description: string;
-    result: string;
-    feelingEmoticon: any;
+    mediaSono: string;
+    dificuldadeParaDormir: string;
+    cansacoAoAcordar: string;
+    sonolenciaDiurna: string;
+    regularidadeRotina: string;
+    usoDeTelasAntesDeDormir: string;
+    createdAt: Date;
   };
   

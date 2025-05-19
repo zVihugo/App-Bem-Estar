@@ -16,24 +16,24 @@ export class Review {
     return this.props.userId;
   }
 
-  public get sleepHours() {
-    return this.props.sleepHours;
+  public get acordaDescansado() {
+    return this.props.AcordaDescansado;
   }
 
-  public get difficultySleepFrequency() {
-    return this.props.difficultySleepFrequency;
+  public get mediaSono() {
+    return this.props.mediaSono;
   }
 
-  public get wakeUpRested() {
-    return this.props.wakeUpRested;
+  public get dificuldadeParaDormir() {
+    return this.props.DificuldadeParaDormir;
   }
 
-  public get daytimeDrowsiness() {
-    return this.props.daytimeDrowsiness;
+  public get sofreComSonoDuranteODia() {
+    return this.props.SofreComSonoDuranteODia;
   }
 
-  public get usageScreenBeforeSleep() {
-    return this.props.usageScreenBeforeSleep;
+  public get usaTelaAntesDeDormir() {
+    return this.props.UsaTelaAntesDeDormir;
   }
 
   public get hasRoutineSleep() {
@@ -44,11 +44,11 @@ export class Review {
     return {
       id: this.id,
       userId: this.userId,
-      sleepHours: this.sleepHours,
-      difficultySleepFrequency: this.difficultySleepFrequency,
-      wakeUpRested: this.wakeUpRested,
-      daytimeDrowsiness: this.daytimeDrowsiness,
-      usageScreenBeforeSleep: this.usageScreenBeforeSleep,
+      mediaSono: this.mediaSono,
+      dificuldadeParaDormir: this.dificuldadeParaDormir,
+      acordaDescansado: this.acordaDescansado,
+      usaTelaAntesDeDormir: this.usaTelaAntesDeDormir,
+      sofreComSonoDuranteODia: this.sofreComSonoDuranteODia,
       hasRoutineSleep: this.hasRoutineSleep,
     };
   }

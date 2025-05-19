@@ -12,21 +12,19 @@ export class RelatorioRepository implements IRelatorioRepository {
 
   public async save(data: Relatorio): Promise<Relatorio> {
     const relatorio = await this.prisma.relatorio.create({
-      data: {
-        description: data.description,
-        result: data.result,
-        title: data.title,
-        feelingEmoticon: data.feelingEmoticon
-      },
+      data
     });
 
     return Relatorio.create({
       id: relatorio.id,
       userId: relatorio.userId,
-      description: relatorio.description,
-      result: relatorio.result,
-      title: relatorio.title,
-      feelingEmoticon: relatorio.feelingEmoticon
+      cansacoAoAcordar: relatorio.cansacoAoAcordar,
+      dificuldadeParaDormir: relatorio.dificuldadeParaDormir,
+      mediaSono: relatorio.mediaSono,
+      regularidadeRotina: relatorio.regularidadeRotina,
+      createdAt: relatorio.createdAt,
+      sonolenciaDiurna: relatorio.sonolenciaDiurna,
+      usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir
     });
   }
 
@@ -38,12 +36,15 @@ export class RelatorioRepository implements IRelatorioRepository {
     if (!relatorio) return null;
 
     return Relatorio.create({
-        id: relatorio.id,
-        userId: relatorio.userId,
-        description: relatorio.description,
-        result: relatorio.result,
-        title: relatorio.title,
-        feelingEmoticon: relatorio.feelingEmoticon
+      id: relatorio.id,
+      userId: relatorio.userId,
+      cansacoAoAcordar: relatorio.cansacoAoAcordar,
+      dificuldadeParaDormir: relatorio.dificuldadeParaDormir,
+      mediaSono: relatorio.mediaSono,
+      regularidadeRotina: relatorio.regularidadeRotina,
+      createdAt: relatorio.createdAt,
+      sonolenciaDiurna: relatorio.sonolenciaDiurna,
+      usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir
     });
   }
 
@@ -57,10 +58,13 @@ export class RelatorioRepository implements IRelatorioRepository {
       Relatorio.create({
         id: relatorio.id,
         userId: relatorio.userId,
-        description: relatorio.description,
-        result: relatorio.result,
-        title: relatorio.title,
-        feelingEmoticon: relatorio.feelingEmoticon
+        cansacoAoAcordar: relatorio.cansacoAoAcordar,
+        dificuldadeParaDormir: relatorio.dificuldadeParaDormir,
+        mediaSono: relatorio.mediaSono,
+        regularidadeRotina: relatorio.regularidadeRotina,
+        createdAt: relatorio.createdAt,
+        sonolenciaDiurna: relatorio.sonolenciaDiurna,
+        usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir
       })
     );
   }

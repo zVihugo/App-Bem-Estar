@@ -36,6 +36,34 @@ export class RelatorioController {
     }
   }
 
+  public async findLast7DaysRelatorio(request: Request, response: Response) {
+    try {
+      const { userId } = request.params;
+
+      const relatorios = await this.relatorioApplication.findLast7DaysReviews(userId);
+
+      return response.status(200).json({ relatorios: relatorios });
+    } catch (error) {
+      if (error instanceof Error){
+
+      }
+    }
+  }
+
+  public async findLast30DaysRelatorio(request: Request, response: Response) {
+    try {
+      const { userId } = request.params;
+
+      const relatorios = await this.relatorioApplication.findLast30DaysReviews(userId);
+
+      return response.status(200).json({ relatorios: relatorios });
+    } catch (error) {
+      if (error instanceof Error){
+
+      }
+    }
+  }
+
   public async delete(request: Request, response: Response) {
     try {
       const { id } = request.params;
