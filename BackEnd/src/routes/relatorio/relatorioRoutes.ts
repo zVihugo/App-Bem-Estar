@@ -7,13 +7,13 @@ import { authenticateToken } from '../../middleware/authenticateToken';
 import { validateRequest } from '../../middleware/validateRequest';
 import { relatorioSchemas } from '../../schemas/relatorioSchemas';
 
-const userRoutes = Router();
+const relatorioRoutes = Router();
 
 const repository = RelatorioRepository.build(prisma);
 const application = RelatorioApplication.build(repository);
 const controller = new RelatorioController(application);
 
-userRoutes.get(
+relatorioRoutes.get(
   '/:id',
   authenticateToken,
   validateRequest(relatorioSchemas),
@@ -22,17 +22,18 @@ userRoutes.get(
   }
 );
 
-userRoutes.get(
-  'ultimos7diasRelatorio/:userId',
+relatorioRoutes.get(
+  '/ultimos7diasRelatorio/:userId',
   authenticateToken,
   validateRequest(relatorioSchemas),
   (request: Request, response: Response) => {
+    console.log("oi")
     controller.findLast7DaysRelatorio(request, response);
   }
 );
 
-userRoutes.get(
-  'ultimos30diasRelatorio/:userId',
+relatorioRoutes.get(
+  '/ultimos30diasRelatorio/:userId',
   authenticateToken,
   validateRequest(relatorioSchemas),
   (request: Request, response: Response) => {
@@ -40,8 +41,8 @@ userRoutes.get(
   }
 );
 
-userRoutes.get(
-  'todosRelatorio/:userId',
+relatorioRoutes.get(
+  '/todosRelatorio/:userId',
   authenticateToken,
   validateRequest(relatorioSchemas),
   (request: Request, response: Response) => {
@@ -49,7 +50,7 @@ userRoutes.get(
   }
 );
 
-userRoutes.delete(
+relatorioRoutes.delete(
   '/:id',
   authenticateToken,
   validateRequest(relatorioSchemas),
@@ -58,4 +59,4 @@ userRoutes.delete(
   }
 );
 
-export { userRoutes };
+export { relatorioRoutes };

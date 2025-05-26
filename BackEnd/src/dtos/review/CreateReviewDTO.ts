@@ -13,5 +13,5 @@ export interface CreateReviewDTO {
   AcordaDescansado: AcordaDescansado;
   SofreComSonoDuranteODia: SofreComSonoDuranteODia;
   UsaTelaAntesDeDormir: UsaTelaAntesDeDormir;
-  hasRoutineSleep: boolean;
+  TemRotinaDeSono: boolean;
 }

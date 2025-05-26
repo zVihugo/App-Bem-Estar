@@ -3,6 +3,7 @@ import { RelatorioDTO } from '../../dtos/relatorio/RelatorioDTO';
 import { passwordHash } from '../../helpers/passwordHash';
 import { IRelatorioRepository } from '../../infrastructure/repositories/Relatorio/IRelatorioRepository';
 import { IRelatorioApplication } from './IRelatorioApplication';
+import { read } from 'fs';
 
 export class RelatorioApplication implements IRelatorioApplication {
   private constructor(readonly repository: IRelatorioRepository) {}
@@ -39,11 +40,11 @@ export class RelatorioApplication implements IRelatorioApplication {
       }
     }
 
-  if (relatorioPorDia.size < 7) {
+  if (relatorioPorDia.size < 1) {
     throw new RangeError('Usuário possui menos de 7 dias distintos de avaliações.')
   }
 
-  return [...relatorioPorDia.values()].slice(0, 7).flat()
+  return [...relatorioPorDia.values()].slice(0, 1).flat()
   }
 
   public async findLast30DaysReviews(userId: string): Promise<RelatorioDTO[]> {

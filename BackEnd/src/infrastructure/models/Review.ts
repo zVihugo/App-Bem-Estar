@@ -36,8 +36,8 @@ export class Review {
     return this.props.UsaTelaAntesDeDormir;
   }
 
-  public get hasRoutineSleep() {
-    return this.props.hasRoutineSleep;
+  public get TemRotinaDeSono() {
+    return this.props.TemRotinaDeSono;
   }
 
   public toJSON(): ReviewDTO {
@@ -49,7 +49,7 @@ export class Review {
       acordaDescansado: this.acordaDescansado,
       usaTelaAntesDeDormir: this.usaTelaAntesDeDormir,
       sofreComSonoDuranteODia: this.sofreComSonoDuranteODia,
-      hasRoutineSleep: this.hasRoutineSleep,
+      TemRotinaDeSono: this.TemRotinaDeSono,
     };
   }
 }

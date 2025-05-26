@@ -14,24 +14,24 @@ export class ReviewRepository implements IReviewRepository {
     const review = await this.prisma.review.create({
       data: {
         userId: data.userId,
-        sleepHours: data.mediaSono,
+        mediaSono: data.mediaSono,
         DificuldadeParaDormir: data.dificuldadeParaDormir,
         AcordaDescansado: data.acordaDescansado,
         SofreComSonoDuranteODia: data.sofreComSonoDuranteODia,
         UsaTelaAntesDeDormir: data.usaTelaAntesDeDormir,
-        TemRotinaDeSono: data.hasRoutineSleep,
+        TemRotinaDeSono: data.TemRotinaDeSono,
       },
     });
 
     return Review.create({
       id: review.id,
       userId: review.userId,
-      mediaSono: review.sleepHours,
+      mediaSono: review.mediaSono,
       DificuldadeParaDormir: review.DificuldadeParaDormir,
       AcordaDescansado: review.AcordaDescansado,
       SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
       UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
-      hasRoutineSleep: review.TemRotinaDeSono,
+      TemRotinaDeSono: review.TemRotinaDeSono,
     });
   }
 
@@ -45,12 +45,12 @@ export class ReviewRepository implements IReviewRepository {
     return Review.create({
       id: review.id,
       userId: review.userId,
-      mediaSono: review.sleepHours,
+      mediaSono: review.mediaSono,
       DificuldadeParaDormir: review.DificuldadeParaDormir,
       AcordaDescansado: review.AcordaDescansado,
       SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
       UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
-      hasRoutineSleep: review.TemRotinaDeSono,
+      TemRotinaDeSono: review.TemRotinaDeSono,
     });
   }
 
@@ -64,12 +64,12 @@ export class ReviewRepository implements IReviewRepository {
       Review.create({
         id: review.id,
         userId: review.userId,
-        mediaSono: review.sleepHours,
+        mediaSono: review.mediaSono,
         DificuldadeParaDormir: review.DificuldadeParaDormir,
         AcordaDescansado: review.AcordaDescansado,
         SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
         UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
-        hasRoutineSleep: review.TemRotinaDeSono,
+        TemRotinaDeSono: review.TemRotinaDeSono,
     })
     );
   }
@@ -78,24 +78,24 @@ export class ReviewRepository implements IReviewRepository {
     const review = await this.prisma.review.update({
       where: { id },
       data: {
-        sleepHours: data.mediaSono,
+        mediaSono: data.mediaSono,
         DificuldadeParaDormir: data.DificuldadeParaDormir,
         AcordaDescansado: data.AcordaDescansado,
         SofreComSonoDuranteODia: data.SofreComSonoDuranteODia,
         UsaTelaAntesDeDormir: data.UsaTelaAntesDeDormir,
-        TemRotinaDeSono: data.hasRoutineSleep,
+        TemRotinaDeSono: data.TemRotinaDeSono,
       },
     });
 
     return Review.create({
       id: review.id,
       userId: review.userId,
-      mediaSono: review.sleepHours,
+      mediaSono: review.mediaSono,
       DificuldadeParaDormir: review.DificuldadeParaDormir,
       AcordaDescansado: review.AcordaDescansado,
       UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
       SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
-      hasRoutineSleep: review.TemRotinaDeSono,
+      TemRotinaDeSono: review.TemRotinaDeSono,
     });
   }
 

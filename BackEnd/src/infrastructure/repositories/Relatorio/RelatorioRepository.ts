@@ -54,6 +54,9 @@ export class RelatorioRepository implements IRelatorioRepository {
         userId,
       },
     });
+
+    console.log(relatorios)
+
     return relatorios.map((relatorio) =>
       Relatorio.create({
         id: relatorio.id,
