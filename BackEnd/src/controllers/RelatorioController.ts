@@ -40,12 +40,12 @@ export class RelatorioController {
     try {
       const { userId } = request.params;
 
-      const relatorios = await this.relatorioApplication.findLast7DaysReviews(userId);
+      const relatorios = await this.relatorioApplication.findLastDaysReviews(userId, true);
 
       return response.status(200).json({ relatorios: relatorios });
     } catch (error) {
       if (error instanceof Error){
-
+        return response.status(404).json({ message: error.stack });
       }
     }
   }
@@ -54,7 +54,7 @@ export class RelatorioController {
     try {
       const { userId } = request.params;
 
-      const relatorios = await this.relatorioApplication.findLast30DaysReviews(userId);
+      const relatorios = await this.relatorioApplication.findLastDaysReviews(userId, false);
 
       return response.status(200).json({ relatorios: relatorios });
     } catch (error) {

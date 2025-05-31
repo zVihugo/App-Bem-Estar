@@ -14,4 +14,5 @@ export interface CreateReviewDTO {
   SofreComSonoDuranteODia: SofreComSonoDuranteODia;
   UsaTelaAntesDeDormir: UsaTelaAntesDeDormir;
   TemRotinaDeSono: boolean;
+  createdAt: Date,
 }

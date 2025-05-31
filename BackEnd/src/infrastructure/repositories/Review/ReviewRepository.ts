@@ -20,6 +20,7 @@ export class ReviewRepository implements IReviewRepository {
         SofreComSonoDuranteODia: data.sofreComSonoDuranteODia,
         UsaTelaAntesDeDormir: data.usaTelaAntesDeDormir,
         TemRotinaDeSono: data.TemRotinaDeSono,
+        createdAt: data.createdAt,
       },
     });
 
@@ -32,6 +33,7 @@ export class ReviewRepository implements IReviewRepository {
       SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
       UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
       TemRotinaDeSono: review.TemRotinaDeSono,
+      createdAt: review.createdAt,
     });
   }
 
@@ -51,6 +53,7 @@ export class ReviewRepository implements IReviewRepository {
       SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
       UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
       TemRotinaDeSono: review.TemRotinaDeSono,
+      createdAt: review.createdAt,
     });
   }
 
@@ -70,6 +73,7 @@ export class ReviewRepository implements IReviewRepository {
         SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
         UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
         TemRotinaDeSono: review.TemRotinaDeSono,
+        createdAt: review.createdAt,
     })
     );
   }
@@ -84,6 +88,7 @@ export class ReviewRepository implements IReviewRepository {
         SofreComSonoDuranteODia: data.SofreComSonoDuranteODia,
         UsaTelaAntesDeDormir: data.UsaTelaAntesDeDormir,
         TemRotinaDeSono: data.TemRotinaDeSono,
+        createdAt: data.createdAt,
       },
     });
 
@@ -96,6 +101,7 @@ export class ReviewRepository implements IReviewRepository {
       UsaTelaAntesDeDormir: review.UsaTelaAntesDeDormir,
       SofreComSonoDuranteODia: review.SofreComSonoDuranteODia,
       TemRotinaDeSono: review.TemRotinaDeSono,
+      createdAt: review.createdAt,
     });
   }
 

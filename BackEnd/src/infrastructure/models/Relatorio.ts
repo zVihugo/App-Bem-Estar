@@ -7,15 +7,7 @@ export class Relatorio {
     return new Relatorio(props);
   }
 
-  public get id() {
-    return this.props.id;
-  }
-
-  public get createdAt() {
-    return this.props.createdAt;
-  }
-
-   public get userId() {
+  public get userId(){
     return this.props.userId;
   }
   

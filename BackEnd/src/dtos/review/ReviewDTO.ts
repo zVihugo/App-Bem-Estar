@@ -14,4 +14,5 @@ export interface ReviewDTO {
   sofreComSonoDuranteODia: SofreComSonoDuranteODia;
   usaTelaAntesDeDormir: UsaTelaAntesDeDormir;
   TemRotinaDeSono: boolean;
+  createdAt: Date;
 }

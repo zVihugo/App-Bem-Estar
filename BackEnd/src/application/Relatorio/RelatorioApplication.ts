@@ -1,15 +1,48 @@
-import bcrypt from 'bcrypt';
 import { RelatorioDTO } from '../../dtos/relatorio/RelatorioDTO';
-import { passwordHash } from '../../helpers/passwordHash';
 import { IRelatorioRepository } from '../../infrastructure/repositories/Relatorio/IRelatorioRepository';
 import { IRelatorioApplication } from './IRelatorioApplication';
-import { read } from 'fs';
+import { IReviewRepository } from '../../infrastructure/repositories/Review/IReviewRepository';
+import { ReviewDTO } from '../../dtos/review/ReviewDTO';
+import {
+  dificuldadeMap,
+  acordaDescansadoMap,
+  sofreSonoDiaMap,
+  usaTelaAntesMap,
+  dificuldadeMapInvertido,
+  acordaDescansadoInvertido,
+  sofreSonoDiaInvertido,
+  usaTelaAntesInvertido,
+} from '../Helpers/EnumsMapper';
+import { Relatorio } from '../../infrastructure/models/Relatorio';
+import { prisma } from '../../infrastructure/bancoContext/prisma';
 
 export class RelatorioApplication implements IRelatorioApplication {
-  private constructor(readonly repository: IRelatorioRepository) {}
+  private constructor(
+    readonly repository: IRelatorioRepository,
+    readonly repositoryReview: IReviewRepository
+  ) {}
 
-  public static build(repository: IRelatorioRepository) {
-    return new RelatorioApplication(repository);
+  public static build(
+    repository: IRelatorioRepository,
+    repositoryReview: IReviewRepository
+  ) {
+    return new RelatorioApplication(repository, repositoryReview);
+  }
+
+  public async save(data: RelatorioDTO): Promise<RelatorioDTO>{
+    const relatorioSave = await prisma.relatorio.create({
+      data: {     
+        userId: data.userId,                    
+        mediaSono: data.mediaSono,                     
+        dificuldadeParaDormir: data.dificuldadeParaDormir, 
+        cansacoAoAcordar: data.cansacoAoAcordar,
+        sonolenciaDiurna: data.sonolenciaDiurna,
+        usoDeTelasAntesDeDormir: data.usoDeTelasAntesDeDormir,
+        regularidadeRotina: data.regularidadeRotina,                         
+      },
+    });
+
+    return relatorioSave;
   }
 
   public async find(id: string): Promise<RelatorioDTO> {
@@ -18,53 +51,74 @@ export class RelatorioApplication implements IRelatorioApplication {
     return relatorio;
   }
 
-  public async findAllByUserId(userId: string): Promise<RelatorioDTO[]> {
+  public async findAllByUserId(userId: string): Promise<ReviewDTO[]> {
+    const reviews = await this.repositoryReview.findAllByUserId(userId);
 
-    const relatorios = await this.repository.findAllByUserId(userId);
+    if (!reviews) throw new Error('Usuário não encontrado.');
 
-    if (!relatorios) throw new Error('Usuário não encontrado.');
-
-    return relatorios;
+    return reviews;
   }
 
-  public async findLast7DaysReviews(userId: string): Promise<RelatorioDTO[]> {
+  public async findLastDaysReviews(
+    userId: string,
+    seteDias: boolean
+  ): Promise<RelatorioDTO> {
+    const reviews = await this.findAllByUserId(userId);
 
-    const relatorios = await this.findAllByUserId(userId);
+    const hoje = new Date();
+    const seteDiasAtras = new Date();
+    if (seteDias) seteDiasAtras.setDate(hoje.getDate() - 6);
+    else seteDiasAtras.setDate(hoje.getDate() - 29);
 
-    const relatorioPorDia = new Map<string, RelatorioDTO[]>()
+    const reviewsFiltrados = reviews.filter((r) => {
+      const dt = new Date(r.createdAt);
+      return dt >= seteDiasAtras && dt <= hoje;
+    });
 
-    for (const relatorio of relatorios) {
-      const dayKey = new Date(relatorio.createdAt).toISOString().split('T')[0]
-      if (!relatorioPorDia.has(dayKey)) {
-        relatorioPorDia.set(dayKey, [relatorio])
-      }
+    if (reviewsFiltrados.length === 0) {
+      throw new RangeError('Usuário não possui avaliações nos últimos 7 dias.');
     }
 
-  if (relatorioPorDia.size < 1) {
-    throw new RangeError('Usuário possui menos de 7 dias distintos de avaliações.')
-  }
+    let somaSono = 0;
+    let somaDificuldade = 0;
+    let somaAcorda = 0;
+    let somaSofreDia = 0;
+    let somaUsaTela = 0;
+    let countTemRotina = 0;
 
-  return [...relatorioPorDia.values()].slice(0, 1).flat()
-  }
-
-  public async findLast30DaysReviews(userId: string): Promise<RelatorioDTO[]> {
-
-    const relatorios = await this.findAllByUserId(userId);
-
-    const relatorioPorDia = new Map<string, RelatorioDTO[]>()
-
-    for (const relatorio of relatorios) {
-      const dayKey = new Date(relatorio.createdAt).toISOString().split('T')[0]
-      if (!relatorioPorDia.has(dayKey)) {
-        relatorioPorDia.set(dayKey, [relatorio])
-      }
+    for (const r of reviewsFiltrados) {
+      somaSono += r.mediaSono;
+      somaDificuldade += dificuldadeMap[r.dificuldadeParaDormir];
+      somaAcorda += acordaDescansadoMap[r.acordaDescansado];
+      somaSofreDia += sofreSonoDiaMap[r.sofreComSonoDuranteODia];
+      somaUsaTela += usaTelaAntesMap[r.usaTelaAntesDeDormir];
+      if (r.TemRotinaDeSono) countTemRotina++;
     }
 
-  if (relatorioPorDia.size < 30) {
-    throw new RangeError('Usuário possui menos de 30 dias distintos de avaliações.')
-  }
+    const total = reviewsFiltrados.length;
 
-  return [...relatorioPorDia.values()].slice(0, 30).flat()
+    const mediaSono = parseFloat((somaSono / total).toFixed(2));
+    const mediaDiffNum = Math.round(somaDificuldade / total);
+    const mediaAcordaNum = Math.round(somaAcorda / total);
+    const mediaSofreNum = Math.round(somaSofreDia / total);
+    const mediaUsaTelaNum = Math.round(somaUsaTela / total);
+    const percentualTemRotina =
+      Math.round((countTemRotina / total) * 100) + '%';
+
+    const mediaDificuldadeParaDormir = dificuldadeMapInvertido[mediaDiffNum] ?? 'nunca';
+    const mediaAcordaDescansado = acordaDescansadoInvertido[mediaAcordaNum] ?? 'nunca';
+    const mediaSofreSonoDia = sofreSonoDiaInvertido[mediaSofreNum] ?? 'nunca';
+    const mediaUsaTelaAntes = usaTelaAntesInvertido[mediaUsaTelaNum] ?? 'nunca';
+
+    return this.save({
+      userId: userId,
+      mediaSono: mediaSono.toString(),
+      dificuldadeParaDormir: mediaDificuldadeParaDormir.toString(),
+      cansacoAoAcordar: mediaAcordaDescansado.toString(),
+      sonolenciaDiurna: mediaSofreSonoDia.toString(),
+      usoDeTelasAntesDeDormir: mediaUsaTelaAntes.toString(),
+      regularidadeRotina: percentualTemRotina,
+    });
   }
 
   public async delete(id: string): Promise<void> {

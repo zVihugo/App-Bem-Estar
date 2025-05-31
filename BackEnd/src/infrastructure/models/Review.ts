@@ -40,6 +40,10 @@ export class Review {
     return this.props.TemRotinaDeSono;
   }
 
+  public get createdAt(){
+    return this.props.createdAt;
+  }
+
   public toJSON(): ReviewDTO {
     return {
       id: this.id,
@@ -50,6 +54,7 @@ export class Review {
       usaTelaAntesDeDormir: this.usaTelaAntesDeDormir,
       sofreComSonoDuranteODia: this.sofreComSonoDuranteODia,
       TemRotinaDeSono: this.TemRotinaDeSono,
+      createdAt: this.createdAt,
     };
   }
 }

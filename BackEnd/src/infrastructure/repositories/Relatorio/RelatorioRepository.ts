@@ -49,13 +49,15 @@ export class RelatorioRepository implements IRelatorioRepository {
   }
 
   public async findAllByUserId(userId: string): Promise<Relatorio[]> {
+    console.log("userid: " + userId)
+    console.log("userid leng" + userId.length)
     const relatorios = await this.prisma.relatorio.findMany({
       where: {
         userId,
       },
     });
 
-    console.log(relatorios)
+    console.log("relatorios aqui rep: " + relatorios)
 
     return relatorios.map((relatorio) =>
       Relatorio.create({

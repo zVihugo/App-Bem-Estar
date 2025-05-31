@@ -14,4 +14,5 @@ export type ReviewProps = {
   SofreComSonoDuranteODia: SofreComSonoDuranteODia;
   UsaTelaAntesDeDormir: UsaTelaAntesDeDormir;
   TemRotinaDeSono: boolean;
+  createdAt: Date,
 };

@@ -1,5 +1,4 @@
 export type RelatorioProps = {
-    id: string;
     userId: string;
     mediaSono: string;
     dificuldadeParaDormir: string;
@@ -7,6 +6,5 @@ export type RelatorioProps = {
     sonolenciaDiurna: string;
     regularidadeRotina: string;
     usoDeTelasAntesDeDormir: string;
-    createdAt: Date;
   };
   
