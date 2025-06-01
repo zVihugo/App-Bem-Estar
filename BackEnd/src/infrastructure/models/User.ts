@@ -1,4 +1,5 @@
 import { UserProps } from '../../@types/UserProps';
+import { UserDTO } from '../../dtos/user/UserDTO';
 
 export class User {
   constructor(private readonly props: UserProps) {}
@@ -33,5 +34,16 @@ export class User {
 
   public get course(): string {
     return this.props.course;
+  }
+
+  public toJSON(): UserDTO {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      dateOfBirth: this.dateOfBirth,
+      faculty: this.faculty,
+      course: this.course,
+    };
   }
 }
