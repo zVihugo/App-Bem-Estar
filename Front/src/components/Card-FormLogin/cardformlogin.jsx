@@ -18,11 +18,13 @@ const CardForm = () => {
         try{
             const response = await login({
                 email: email,
-                password: senha,
+               password: senha,
             })
+            
+            
 
             if(response){
-               
+                
                 alert('Login realizado com sucesso!');
                 navigate('/Inicial')
             }

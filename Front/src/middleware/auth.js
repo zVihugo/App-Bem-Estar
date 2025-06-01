@@ -15,8 +15,8 @@ export const login = async (email, password) => {
     try {
         const response = await api.post('/auth/login', email, password);
        
-        Cookies.set('token', response.data.user.token, { expires: 7 });
-        Cookies.set('Id', response.data.user.user.id, { expires: 7 });
+        Cookies.set('token', response.data.token, { expires: 7 });
+        Cookies.set('Id', response.data.user.id, { expires: 7 });
 
         return response.data;
     } catch (erro) {
