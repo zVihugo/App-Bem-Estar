@@ -36,15 +36,9 @@ export class AuthApplication implements IAuthApplication {
 
     const newUser = await this.repository.save(user);
 
-    return {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      dateOfBirth: newUser.dateOfBirth,
-      faculty: newUser.faculty,
-      course: newUser.course,
-    };
+    return newUser.toJSON();
   }
+
   public async login(data: LoginDTO): Promise<AuthResponseDTO> {
     const user = await this.repository.findByEmail(data.email);
 

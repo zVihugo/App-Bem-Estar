@@ -1,4 +1,5 @@
 import { ReviewProps } from '../../@types/ReviewProps';
+import { ReviewDTO } from '../../dtos/review/ReviewDTO';
 
 export class Review {
   constructor(private readonly props: ReviewProps) {}
@@ -15,31 +16,45 @@ export class Review {
     return this.props.userId;
   }
 
-  public get date() {
-    return this.props.date;
+  public get acordaDescansado() {
+    return this.props.AcordaDescansado;
   }
 
-  public get sleepHours() {
-    return this.props.sleepHours;
+  public get mediaSono() {
+    return this.props.mediaSono;
   }
 
-  public get difficultySleepFrequency() {
-    return this.props.difficultySleepFrequency;
+  public get dificuldadeParaDormir() {
+    return this.props.DificuldadeParaDormir;
   }
 
-  public get wakeUpRested() {
-    return this.props.wakeUpRested;
+  public get sofreComSonoDuranteODia() {
+    return this.props.SofreComSonoDuranteODia;
   }
 
-  public get daytimeDrowsiness() {
-    return this.props.daytimeDrowsiness;
+  public get usaTelaAntesDeDormir() {
+    return this.props.UsaTelaAntesDeDormir;
   }
 
-  public get usageScreenBeforeSleep() {
-    return this.props.usageScreenBeforeSleep;
+  public get TemRotinaDeSono() {
+    return this.props.TemRotinaDeSono;
   }
 
-  public get hasRoutineSleep() {
-    return this.props.hasRoutineSleep;
+  public get createdAt(){
+    return this.props.createdAt;
+  }
+
+  public toJSON(): ReviewDTO {
+    return {
+      id: this.id,
+      userId: this.userId,
+      mediaSono: this.mediaSono,
+      dificuldadeParaDormir: this.dificuldadeParaDormir,
+      acordaDescansado: this.acordaDescansado,
+      usaTelaAntesDeDormir: this.usaTelaAntesDeDormir,
+      sofreComSonoDuranteODia: this.sofreComSonoDuranteODia,
+      TemRotinaDeSono: this.TemRotinaDeSono,
+      createdAt: this.createdAt,
+    };
   }
 }

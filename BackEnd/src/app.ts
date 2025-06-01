@@ -2,8 +2,10 @@ import cors from 'cors';
 import express from 'express';
 import { connectToDatabase } from './infrastructure/bancoContext/prisma';
 import { requestError } from './middleware/requestError';
+import { reviewRoutes } from './routes/review/reviewRoutes';
 import { authRoutes } from './routes/user/authRoutes';
 import { userRoutes } from './routes/user/userRoutes';
+import { relatorioRoutes } from './routes/relatorio/relatorioRoutes';
 
 const app = express();
 
@@ -14,6 +16,8 @@ connectToDatabase();
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
+app.use('/reviews', reviewRoutes);
+app.use('/relatorio', relatorioRoutes);
 app.use(requestError);
 
 export { app };

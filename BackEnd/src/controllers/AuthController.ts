@@ -27,7 +27,7 @@ export class AuthController {
       const data: LoginDTO = request.body;
       const user = await this.authApplication.login(data);
 
-      return response.status(200).json({ user });
+      return response.status(200).json(user);
     } catch (error) {
       if (error instanceof Error)
         return response.status(400).json({ error: error.message });

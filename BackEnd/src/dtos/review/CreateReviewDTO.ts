@@ -2,12 +2,12 @@ import {
   DificuldadeParaDormir,
   AcordaDescansado,
   SofreComSonoDuranteODia,
-  UsaTelaAntesDeDormir
+  UsaTelaAntesDeDormir,
 } from '@prisma/client';
 
-export type ReviewProps = {
-  id: string;
+export interface CreateReviewDTO {
   userId: string;
+  date: Date;
   mediaSono: number;
   DificuldadeParaDormir: DificuldadeParaDormir;
   AcordaDescansado: AcordaDescansado;
@@ -15,4 +15,4 @@ export type ReviewProps = {
   UsaTelaAntesDeDormir: UsaTelaAntesDeDormir;
   TemRotinaDeSono: boolean;
   createdAt: Date,
-};
+}

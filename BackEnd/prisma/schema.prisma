@@ -17,52 +17,68 @@ model User {
   faculty        String
   course         String
 
-  reviews Review[]
+  reviews    Review[]
+  relatorios Relatorio[]
   @@map("users")
 }
 
 model Review {
   id                        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId                    String   @db.ObjectId
-  date                      DateTime
-  sleepHours                Float
+  mediaSono                 Float
 
-  difficultySleepFrequency  DifficultySleepFrequency
-  wakeUpRested              WakeUpRested
-  daytimeDrowsiness         DaytimeDrowsiness
-  usageScreenBeforeSleep    UsageScreenBeforeSleep
-  hasRoutineSleep           Boolean
-
+  DificuldadeParaDormir     DificuldadeParaDormir
+  AcordaDescansado          AcordaDescansado
+  SofreComSonoDuranteODia   SofreComSonoDuranteODia
+  UsaTelaAntesDeDormir      UsaTelaAntesDeDormir
+  TemRotinaDeSono           Boolean
+  createdAt DateTime @default(now())
   user                      User  @relation(fields: [userId], references: [id])
   @@map("reviews")
 }
 
-enum DifficultySleepFrequency {
-  never
-  rarely
-  sometimes
-  often
-  almost_always
+model Relatorio{
+    id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+    userId                    String   @db.ObjectId
+
+    mediaSono                 String
+    dificuldadeParaDormir     String
+    cansacoAoAcordar          String
+    sonolenciaDiurna          String
+    usoDeTelasAntesDeDormir   String
+    regularidadeRotina        String
+    createdAt                 DateTime @default(now())
+
+    user                      User  @relation(fields: [userId], references: [id])
+    @@map("relatorio")
 }
 
-enum WakeUpRested {
-  always
-  sometimes
-  rarely
-  never
+enum DificuldadeParaDormir {
+  nunca
+  raramente
+  algumas_Vezes
+  frequentemente
+  quase_Sempre
 }
 
-enum DaytimeDrowsiness {
-  never
-  rarely
-  often
-  always
+enum AcordaDescansado {
+  sempre
+  algumas_Vezes
+  raramente
+  nunca
 }
 
-enum UsageScreenBeforeSleep {
-  never
-  rarely
-  sometimes
-  almost_always
-  always
+enum SofreComSonoDuranteODia {
+  nunca
+  raramente
+  frequentemente
+  sempre
+}
+
+enum UsaTelaAntesDeDormir {
+  nunca
+  raramente
+  algumas_Vezes
+  quase_Sempre
+  sempre
 }
