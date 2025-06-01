@@ -1,0 +1,67 @@
+.carRelRelatorio {
+    font-family: 'Montserrat';
+    padding: 20px;
+    width: 80vw;
+    min-height: 55vh;
+    font-weight: 300;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardRel {
+    border: black solid 1px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px 30px;
+    margin-bottom: 20px;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cardGraficoUm {
+    width: 50%;
+    height: 400px;
+}
+
+.cardGraficoDois {
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cardGraficoDois h2 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+
+.card h1 {
+    font-size: 28px;
+    color: #050505;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.cardRelDescricao{
+    font-size: 16px;
+    color: #050505;
+    font-weight: 300;
+    margin-bottom: 15px;
+    font-family: 'Montserrat';
+    text-align: center;
+}
+
+.cardRelDescricao h1{
+    font-weight: 500;
+}
