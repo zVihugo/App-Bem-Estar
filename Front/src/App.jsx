@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 
 import Navbar from './components/Navbar/Navbar';
 import Autoajuda from './pages/Autoajuda/Autoajuda';
-import Autoavaliacao from './pages/Autoavalicao/Atuavaliacao';
+import Autoavaliacao from './pages/Autoavalicao/Autoavaliacao';
 import Relatorios from './pages/Relatorio/Relatorios';
 import Metas from './pages/Metas/Metas';
 import Suporte from './pages/Suporte/Suporte';

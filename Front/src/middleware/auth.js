@@ -92,6 +92,24 @@ export const updatePassword = async (id, senhaAntiga, novaSenha) => {
     }
 }
 
+export const reviewCreate = async(id, data) => {
+    console.log(id, data);
+    try{
+        const response = await api.post(
+            `reviews/create`,
+            { userId: id, ...data },
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                }
+            }
+        )
+        return response.data;
+    }catch(error){
+        throw error.response?.data;
+    }
+}
+
 export const logout = () => {
     Cookies.remove('token');
     Cookies.remove('Id');
