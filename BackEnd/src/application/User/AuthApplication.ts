@@ -32,6 +32,7 @@ export class AuthApplication implements IAuthApplication {
       dateOfBirth: data.dateOfBirth,
       faculty: data.faculty,
       course: data.course,
+      role: 'USER',
     });
 
     const newUser = await this.repository.save(user);
@@ -53,6 +54,7 @@ export class AuthApplication implements IAuthApplication {
     const payload = {
       id: user.id,
       email: user.email,
+      role: user.role,
     };
     const token = jwt.sign(payload, config.JWT_SECRET, {
       expiresIn: '1h',
@@ -67,6 +69,7 @@ export class AuthApplication implements IAuthApplication {
         dateOfBirth: user.dateOfBirth,
         faculty: user.faculty,
         course: user.course,
+        role: user.role,
       },
     };
   }
