@@ -1,7 +1,9 @@
-import { DificuldadeParaDormir } from "@prisma/client";
-import { AcordaDescansado } from "@prisma/client";
-import { SofreComSonoDuranteODia } from "@prisma/client";
-import { UsaTelaAntesDeDormir } from "@prisma/client";
+import {
+  DificuldadeParaDormir,
+  AcordaDescansado,
+  SofreComSonoDuranteODia,
+  UsaTelaAntesDeDormir,
+} from '@prisma/client';
 
 export const dificuldadeMap: Record<DificuldadeParaDormir, number> = {
   nunca: 1,
@@ -34,31 +36,31 @@ export const usaTelaAntesMap: Record<UsaTelaAntesDeDormir, number> = {
 };
 
 export const dificuldadeMapInvertido: Record<number, DificuldadeParaDormir> = {
-  1: "nunca",
-  2: "raramente",
-  3: "algumas_Vezes",
-  4: "frequentemente",
-  5: "quase_Sempre",
+  1: 'nunca',
+  2: 'raramente',
+  3: 'algumas_Vezes',
+  4: 'frequentemente',
+  5: 'quase_Sempre',
 };
 
 export const acordaDescansadoInvertido: Record<number, AcordaDescansado> = {
-  1: "nunca",
-  2: "raramente",
-  3: "algumas_Vezes",
-  4: "sempre",
+  1: 'nunca',
+  2: 'raramente',
+  3: 'algumas_Vezes',
+  4: 'sempre',
 };
 
 export const sofreSonoDiaInvertido: Record<number, SofreComSonoDuranteODia> = {
-  1: "nunca",
-  2: "raramente",
-  3: "frequentemente",
-  4: "sempre",
+  1: 'nunca',
+  2: 'raramente',
+  3: 'frequentemente',
+  4: 'sempre',
 };
 
 export const usaTelaAntesInvertido: Record<number, UsaTelaAntesDeDormir> = {
-  1: "nunca",
-  2: "raramente",
-  3: "algumas_Vezes",
-  4: "quase_Sempre",
-  5: "sempre",
+  1: 'nunca',
+  2: 'raramente',
+  3: 'algumas_Vezes',
+  4: 'quase_Sempre',
+  5: 'sempre',
 };

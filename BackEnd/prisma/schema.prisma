@@ -17,8 +17,11 @@ model User {
   faculty        String
   course         String
 
-  reviews    Review[]
-  relatorios Relatorio[]
+  role           Role @default(USER)
+
+  reviews        Review[]
+  relatorios     Relatorio[]
+  dicas          Dica[]
   @@map("users")
 }
 
@@ -32,7 +35,7 @@ model Review {
   SofreComSonoDuranteODia   SofreComSonoDuranteODia
   UsaTelaAntesDeDormir      UsaTelaAntesDeDormir
   TemRotinaDeSono           Boolean
-  createdAt DateTime @default(now())
+  createdAt                 DateTime @default(now())
   user                      User  @relation(fields: [userId], references: [id])
   @@map("reviews")
 }
@@ -51,6 +54,29 @@ model Relatorio{
 
     user                      User  @relation(fields: [userId], references: [id])
     @@map("relatorio")
+}
+
+model Dica {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @db.ObjectId 
+  title               String
+  imageUrl            String 
+  type                Type 
+  
+  createdAt           DateTime @default(now())
+  user                User  @relation(fields: [userId], references: [id])
+  @@map("dicas")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Type {
+  assistir
+  ouvir
+  ler
 }
 
 enum DificuldadeParaDormir {

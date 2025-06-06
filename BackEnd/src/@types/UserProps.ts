@@ -1,3 +1,5 @@
+import { Role } from '@prisma/client';
+
 export type UserProps = {
   id: string;
   name: string;
@@ -6,9 +8,11 @@ export type UserProps = {
   dateOfBirth: string;
   faculty: string;
   course: string;
+  role: Role;
 };
 
 export type JwtUserPayload = {
   id: string;
   email: string;
+  role: Role;
 };
