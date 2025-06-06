@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './autoavalicao.module.css';
 import { reviewCreate } from '../../middleware/auth';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const Autoavaliacao = () => {
   const [respostas, setRespostas] = useState({});
+  const [sucesso, setSucesso] = useState(false);
+  const navigate = useNavigate();
   const id = Cookies.get('Id');
+
+  useEffect(() => {
+    if (sucesso) {
+      const timer = setTimeout(() => {
+        navigate('/Autoavaliacao');
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [sucesso, navigate]);
+
   const perguntas = [
     {
       id: 'sonoHoras',
@@ -18,64 +31,109 @@ const Autoavaliacao = () => {
       ],
     },
     {
+
+
       id: 'DificuldadeParaDormir',
       texto: 'Com que frequência você tem dificuldade para pegar no sono?',
-      opcoes: ['nunca', 'raramente', 'algumas_Vezes', 'frequentemente', 'quase_Sempre'],
+      opcoes: [
+        { label: 'Nunca', value: 'nunca' },
+        { label: 'Raramente', value: 'raramente' },
+        { label: 'Algumas vezes', value: 'algumas_Vezes' },
+        { label: 'Frequentemente', value: 'frequentemente' },
+        { label: 'Quase sempre', value: 'quase_Sempre' },
+      ]
     },
     {
+
+
       id: 'AcordaDescansado',
       texto: 'Você sente que acorda descansado(a) pela manhã?',
-      opcoes: ['sempre', 'algumas_Vezes', 'raramento', 'nunca'],
+      opcoes: [
+        { label: 'Sempre', value: 'sempre' },
+        { label: 'Algumas vezes', value: 'algumas_Vezes' },
+        { label: 'Raramente', value: 'raramente' },
+        { label: 'Nunca', value: 'nunca' },
+      ]
+
     },
     {
+
       id: 'SofreComSonoDuranteODia',
       texto: 'Durante o dia, você sente muito sono ou dificuldade de concentração?',
-      opcoes: ['nunca', 'raramento', 'frequentemente', 'sempre'],
+      opcoes: [
+        { label: 'Nunca', value: 'nunca' },
+        { label: 'Raramente', value: 'raramente' },
+        { label: 'Frequentemente', value: 'frequentemente' },
+        { label: 'Sempre', value: 'sempre' },
+      ]
+
     },
     {
       id: 'UsaTelaAntesDeDormir',
       texto: 'Você costuma usar celular ou computador na cama antes de dormir?',
-      opcoes: ['nunca', 'raramente', 'algumas_Vezes', 'frequentemente', 'quase_Sempre'],
+      opcoes: [
+        { label: 'Nunca', value: 'nunca' },
+        { label: 'Raramente', value: 'raramente' },
+        { label: 'Algumas vezes', value: 'algumas_Vezes' },
+        { label: 'Frequentemente', value: 'frequentemente' },
+        { label: 'Quase sempre', value: 'quase_Sempre' },
+      ]
     },
     {
       id: 'TemRotinaDeSono',
       texto: 'Você tem uma rotina de horários regulares para dormir e acordar?',
       opcoes: [{
-        label: 'Sim', value: true
+        label: 'Sim', value: "true"
       }, {
-        label: 'Não', value: false
+        label: 'Não', value: "false"
 
       }],
     },
   ];
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRespostas((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "sonoHoras"
+        ? Number(value)
+        : name === "TemRotinaDeSono"
+          ? value
+          : value,
     }));
   };
 
-  const handleSubmit = async (e, { }) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.keys(respostas).length !== 6) {
       alert('Por favor, responda todas as perguntas antes de enviar.');
       return;
     }
-    console.log('Respostas enviadas:', { ...respostas, data: new Date().toISOString().split('T')[0] });
+
+    const payload = {
+      userId: id,
+      mediaSono: respostas.sonoHoras,
+      DificuldadeParaDormir: respostas.DificuldadeParaDormir,
+      AcordaDescansado: respostas.AcordaDescansado,
+      SofreComSonoDuranteODia: respostas.SofreComSonoDuranteODia,
+      UsaTelaAntesDeDormir: respostas.UsaTelaAntesDeDormir,
+      TemRotinaDeSono: respostas.TemRotinaDeSono === "true" ? true : false,
+      data: new Date().toISOString().split('T')[0]
+    };
 
     try {
-      const response = await reviewCreate({ id, ...respostas });
+      const response = await reviewCreate(payload);
+      console.log('Resposta do servidor:', response);
       if (response) {
-        alert('Autoavaliação enviada com sucesso!');
+        setSucesso(true); 
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       } else {
-        alert('Erro ao enviar a autoavaliação. Tente novamente mais tarde.');
+        alert('Ocorreu um erro ao enviar a autoavaliação.');
       }
-
     } catch (error) {
       console.error('Erro ao enviar a autoavaliação:', error);
-      alert('Ocorreu um erro ao enviar a autoavaliação. Por favor, tente novamente mais tarde.');
+      alert('Ocorreu um erro ao enviar a autoavaliação. ');
     }
 
     setRespostas({});
@@ -84,22 +142,34 @@ const Autoavaliacao = () => {
   return (
     <div className={styles.autoavaliacaoContainer}>
       <form onSubmit={handleSubmit}>
+
         {perguntas.map((pergunta) => (
           <div key={pergunta.id} className={styles.card}>
             <h1>{pergunta.texto}</h1>
-            {pergunta.opcoes.map((opcao) => (
-              <label key={opcao.value || opcao}>
-                <input
-                  type="radio"
-                  name={pergunta.id}
-                  value={opcao.value || opcao}
-                  onChange={handleChange}
-                />
-                {opcao.label || opcao}
-              </label>
-            ))}
+            {pergunta.opcoes.map((opcao) => {
+              const value = typeof opcao === 'object' ? opcao.value : opcao;
+              const label = typeof opcao === 'object' ? opcao.label : opcao;
+              return (
+                <label key={value}>
+                  <input
+                    type="radio"
+                    name={pergunta.id}
+                    value={value}
+                    onChange={handleChange}
+                    checked={respostas[pergunta.id] === value}
+                  />
+                  {label}
+                </label>
+              );
+            })}
           </div>
         ))}
+        {sucesso && (
+          <div className={styles.sucesso}>
+            Avaliação registrada com sucesso!<br />
+            
+          </div>
+        )}
         <button type="submit" className={styles.submitButton}>Enviar</button>
       </form>
     </div>

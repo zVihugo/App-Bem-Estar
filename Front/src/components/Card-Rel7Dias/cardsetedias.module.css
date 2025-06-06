@@ -65,3 +65,27 @@
 .cardRelDescricao h1{
     font-weight: 500;
 }
+
+.cardRelSemRelatorio {
+  background: #fff6f6;
+  border: 2px dashed #ff4e42;
+  border-radius: 16px;
+  padding: 40px 24px;
+  margin: 32px auto;
+  max-width: 480px;
+  text-align: center;
+  color: #b71c1c;
+  box-shadow: 0 2px 16px rgba(255, 78, 66, 0.07);
+  font-size: 1.15rem;
+}
+
+.cardRelSemRelatorio h1 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  color: #ff4e42;
+}
+
+.cardRelSemRelatorio p {
+  margin: 8px 0;
+  color: #b71c1c;
+}

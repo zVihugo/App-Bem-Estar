@@ -92,12 +92,27 @@ export const updatePassword = async (id, senhaAntiga, novaSenha) => {
     }
 }
 
-export const reviewCreate = async(id, data) => {
-    console.log(id, data);
-    try{
+export const reviewCreate = async (data) => {
+    try {
         const response = await api.post(
             `reviews/create`,
-            { userId: id, ...data },
+            data,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                }
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+}
+
+export const sevenReport = async(id) => {
+    try{
+        const response = await api.get(
+            `relatorio/ultimos7diasRelatorio/${id}`,
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -109,6 +124,23 @@ export const reviewCreate = async(id, data) => {
         throw error.response?.data;
     }
 }
+
+export const thirtyReport = async(id) => {
+    try{
+        const response = await api.get(
+            `relatorio/ultimos30diasRelatorio/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                }
+            }
+        )
+        return response.data;
+    }catch(error){
+        throw error.response?.data;
+    }
+}
+
 
 export const logout = () => {
     Cookies.remove('token');

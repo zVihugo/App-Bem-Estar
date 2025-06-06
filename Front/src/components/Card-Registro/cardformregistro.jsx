@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './cardformregistro.module.css';
 import { useNavigate } from 'react-router-dom'
 import { register } from '../../middleware/auth';
@@ -12,7 +12,17 @@ const CardFormRegistro = () => {
   const [faculdade, setFaculdade] = useState('');
   const [curso, setCurso] = useState('');
   const [erro, setErro] = useState('');
+  const [sucesso, setSucesso] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (sucesso) {
+      const timer = setTimeout(() => {
+        navigate('/Auth');
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [sucesso, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,8 +45,14 @@ const CardFormRegistro = () => {
 
       if (response) {
 
-        alert('Cadastro realizado com sucesso!');
-        navigate('/Auth');
+        setSucesso(true);
+        setEmail('');
+        setSenha('');
+        setConfirmarSenha('');
+        setNome('');
+        setData('');
+        setFaculdade('');
+        setCurso('');
       }
     } catch (error) {
       setErro(error);
@@ -147,7 +163,12 @@ const CardFormRegistro = () => {
         />
 
         {erro && <p className={styles.erro}>{erro}</p>}
-
+        {sucesso && (
+          <div className={styles.sucesso}>
+            Registro realizado com sucesso!<br />
+            Redirecionando...
+          </div>
+        )}
         <button type='submit' className={styles.button}>Cadastrar</button>
 
         <p className={styles.registro}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './cardformlogin.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -10,6 +10,16 @@ const CardForm = () => {
     const [email, setEmail] = useState('');
     const [senha,setSenha] = useState('');
     const [erro, setErro] = useState('');
+    const [sucesso, setSucesso] = useState(false);
+
+     useEffect(() => {
+        if (sucesso) {
+            const timer = setTimeout(() => {
+                navigate('/Inicial');
+            }, 1000); 
+            return () => clearTimeout(timer);
+        }
+    }, [sucesso, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,9 +34,9 @@ const CardForm = () => {
             
 
             if(response){
-                
-                alert('Login realizado com sucesso!');
-                navigate('/Inicial')
+                setSucesso(true);
+                setEmail('');
+                setSenha('');
             }
         }catch(error){
             setErro(error);
@@ -66,6 +76,12 @@ const CardForm = () => {
 
                 <button type='submit' onClick={handleSubmit} className={styles.button}>Entrar</button>
                   {erro && <p className={styles.erro}>{erro}</p>}
+                  {sucesso && (
+                    <div className={styles.sucesso}>
+                        Login realizado com sucesso!<br />
+                        Redirecionando...
+                    </div>
+                )}
                 <p className={styles.registro}>
                     Não possui conta? <a href='/Register'>Criar</a>
                 </p>
