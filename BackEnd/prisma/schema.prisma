@@ -58,7 +58,7 @@ model Relatorio{
 
 model Dica {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId              String   @db.ObjectId
+  userId              String   @db.ObjectId 
   title               String
   imageUrl            String 
   type                Type 
