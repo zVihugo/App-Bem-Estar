@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client';
 import { UserProps } from '../../@types/UserProps';
 import { UserDTO } from '../../dtos/user/UserDTO';
 
@@ -36,6 +37,10 @@ export class User {
     return this.props.course;
   }
 
+  public get role(): Role {
+    return this.props.role;
+  }
+
   public toJSON(): UserDTO {
     return {
       id: this.id,
@@ -44,6 +49,7 @@ export class User {
       dateOfBirth: this.dateOfBirth,
       faculty: this.faculty,
       course: this.course,
+      role: this.role,
     };
   }
 }

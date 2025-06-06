@@ -18,6 +18,7 @@ export class UserRepository implements IUserRepository {
         dateOfBirth: data.dateOfBirth,
         faculty: data.faculty,
         course: data.course,
+        role: data.role,
       },
     });
 
@@ -29,6 +30,7 @@ export class UserRepository implements IUserRepository {
       dateOfBirth: user.dateOfBirth,
       faculty: user.faculty,
       course: user.course,
+      role: user.role,
     });
   }
 
@@ -47,6 +49,7 @@ export class UserRepository implements IUserRepository {
       dateOfBirth: user.dateOfBirth,
       faculty: user.faculty,
       course: user.course,
+      role: user.role,
     });
   }
 
@@ -65,6 +68,7 @@ export class UserRepository implements IUserRepository {
       dateOfBirth: user.dateOfBirth,
       faculty: user.faculty,
       course: user.course,
+      role: user.role,
     });
   }
 
@@ -97,6 +101,7 @@ export class UserRepository implements IUserRepository {
       dateOfBirth: user.dateOfBirth,
       faculty: user.faculty,
       course: user.course,
+      role: user.role,
     });
   }
 
