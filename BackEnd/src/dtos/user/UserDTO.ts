@@ -1,3 +1,5 @@
+import { Role } from '@prisma/client';
+
 export interface UserDTO {
   id: string;
   name: string;
@@ -5,4 +7,5 @@ export interface UserDTO {
   dateOfBirth: string;
   faculty: string;
   course: string;
+  role: Role;
 }
