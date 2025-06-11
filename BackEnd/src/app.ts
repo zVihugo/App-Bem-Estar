@@ -7,6 +7,7 @@ import { relatorioRoutes } from './routes/relatorio/relatorioRoutes';
 import { reviewRoutes } from './routes/review/reviewRoutes';
 import { authRoutes } from './routes/user/authRoutes';
 import { userRoutes } from './routes/user/userRoutes';
+import { metaRoutes } from './routes/metas/metasRoutes';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/users', userRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/relatorio', relatorioRoutes);
 app.use('/dicas', dicaRoutes);
+app.use('/metas', metaRoutes);
 app.use(requestError);
 
 export { app };

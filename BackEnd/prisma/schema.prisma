@@ -22,6 +22,7 @@ model User {
   reviews        Review[]
   relatorios     Relatorio[]
   dicas          Dica[]
+  metas          Metas[]
   @@map("users")
 }
 
@@ -66,6 +67,17 @@ model Dica {
   createdAt           DateTime @default(now())
   user                User  @relation(fields: [userId], references: [id])
   @@map("dicas")
+}
+
+model Metas {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @db.ObjectId 
+  descricao           String
+  isCompleted         Boolean 
+  
+  createdAt           DateTime @default(now())
+  user                User  @relation(fields: [userId], references: [id])
+  @@map("metas")
 }
 
 enum Role {
