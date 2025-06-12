@@ -5,10 +5,7 @@ export const authRegisterSchema = {
     name: z
       .string()
       .min(1, 'Nome é obrigatório')
-      .max(30, 'O nome deve ter 30 caracteres ou menos')
-      .regex(/^[a-zA-Z ]+$/, {
-        message: 'O nome deve conter apenas letras e espaços',
-      }),
+      .max(30, 'O nome deve ter 30 caracteres ou menos'),
     email: z.string().email('E-mail inválido'),
     senha: z.string().min(8, 'A senha deve ter pelo menos 8 caracteres'),
     dataDeNascimento: z
