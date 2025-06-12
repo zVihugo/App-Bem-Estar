@@ -37,10 +37,10 @@ const CardFormRegistro = () => {
       const response = await register({
         name: nome,
         email: email,
-        dateOfBirth: data,
-        faculty: faculdade,
-        course: curso,
-        password: senha,
+        dataDeNascimento: data,
+        faculdade: faculdade,
+        curso: curso,
+        senha: senha,
       });
 
       if (response) {

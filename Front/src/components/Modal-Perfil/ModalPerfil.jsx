@@ -13,13 +13,13 @@ const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
     const handleSave = async () => {
         const dados = {
             name: nome || user.name,
-            dateOfBirth: dataNascimento || user.dateOfBirth, 
-            faculty: faculdade || user.faculty,
-            course: curso || user.course,
+            dataDeNascimento: dataNascimento || user.dataDeNascimento, 
+            faculdade: faculdade || user.faculdade,
+            curso: curso || user.curso,
         };
     
         try {
-            const response = await updateUser(id, dados.name, dados.dateOfBirth, dados.faculty, dados.course);
+            const response = await updateUser(id, dados.name, dados.dataDeNascimento, dados.faculdade, dados.curso);
             
             confirmar(); 
         } catch (error) {

@@ -81,9 +81,9 @@ const Perfil = () => {
 
       <InformacaoUsuario label="Nome" valor={user.name} />
       <InformacaoUsuario label="Email" valor={user.email} />
-      <InformacaoUsuario label="Data de Nascimento" valor={user.dateOfBirth} />
-      <InformacaoUsuario label="Faculdade" valor={user.faculty} />
-      <InformacaoUsuario label="Curso" valor={user.course} />
+      <InformacaoUsuario label="Data de Nascimento" valor={user.dataDeNascimento} />
+      <InformacaoUsuario label="Faculdade" valor={user.faculdade} />
+      <InformacaoUsuario label="Curso" valor={user.curso} />
 
       <h2 className={styles.subtitulo}>Configurações</h2>
 

@@ -38,9 +38,9 @@ const Autoavaliacao = () => {
       opcoes: [
         { label: 'Nunca', value: 'nunca' },
         { label: 'Raramente', value: 'raramente' },
-        { label: 'Algumas vezes', value: 'algumas_Vezes' },
+        { label: 'Algumas vezes', value: 'algumas_vezes' },
         { label: 'Frequentemente', value: 'frequentemente' },
-        { label: 'Quase sempre', value: 'quase_Sempre' },
+        { label: 'Quase sempre', value: 'quase_sempre' },
       ]
     },
     {
@@ -50,7 +50,7 @@ const Autoavaliacao = () => {
       texto: 'Você sente que acorda descansado(a) pela manhã?',
       opcoes: [
         { label: 'Sempre', value: 'sempre' },
-        { label: 'Algumas vezes', value: 'algumas_Vezes' },
+        { label: 'Algumas vezes', value: 'algumas_vezes' },
         { label: 'Raramente', value: 'raramente' },
         { label: 'Nunca', value: 'nunca' },
       ]
@@ -74,9 +74,9 @@ const Autoavaliacao = () => {
       opcoes: [
         { label: 'Nunca', value: 'nunca' },
         { label: 'Raramente', value: 'raramente' },
-        { label: 'Algumas vezes', value: 'algumas_Vezes' },
+        { label: 'Algumas vezes', value: 'algumas_vezes' },
         { label: 'Frequentemente', value: 'frequentemente' },
-        { label: 'Quase sempre', value: 'quase_Sempre' },
+        { label: 'Quase sempre', value: 'quase_sempre' },
       ]
     },
     {
@@ -112,11 +112,11 @@ const Autoavaliacao = () => {
     const payload = {
       userId: id,
       mediaSono: respostas.sonoHoras,
-      DificuldadeParaDormir: respostas.DificuldadeParaDormir,
-      AcordaDescansado: respostas.AcordaDescansado,
-      SofreComSonoDuranteODia: respostas.SofreComSonoDuranteODia,
-      UsaTelaAntesDeDormir: respostas.UsaTelaAntesDeDormir,
-      TemRotinaDeSono: respostas.TemRotinaDeSono === "true" ? true : false,
+      dificuldadeParaDormir: respostas.DificuldadeParaDormir,
+      acordaDescansado: respostas.AcordaDescansado,
+      sofreComSonoDuranteODia: respostas.SofreComSonoDuranteODia,
+      usaTelaAntesDeDormir: respostas.UsaTelaAntesDeDormir,
+      temRotinaDeSono: respostas.TemRotinaDeSono === "true" ? true : false,
       data: new Date().toISOString().split('T')[0]
     };
 
