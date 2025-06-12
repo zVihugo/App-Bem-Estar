@@ -26,7 +26,14 @@
      npm install
      ```
 
-3. **Criar um arquivo .env**
+3. **Gerar schema do Prisma**
+
+   - Acesse a pasta do projeto e execute o comando para gerar o schema do Prisma
+     ```sh
+     npx prisma generate
+     ```
+
+4. **Criar um arquivo .env**
 
    - Crie um arquivo chamado `.env` na raiz do projeto comforme o arquivo `.env.example`
 
@@ -37,7 +44,7 @@
      npm run dev
      ```
 
-4. **Criando o Usuário Administrador (Seed)**
+5. **Criando o Usuário Administrador (Seed)**
 
    - No terminal, ainda na pasta do projeto, execute o comando para criar o usuário administrador:
 

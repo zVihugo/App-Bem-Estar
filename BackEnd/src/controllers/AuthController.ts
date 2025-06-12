@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { IAuthApplication } from '../application/User/IAuthApplication';
-import { LoginDTO } from '../dtos/user/LoginDTO';
-import { RegisterDTO } from '../dtos/user/RegisterDTO';
+import { IAuthApplication } from '../application/Usuario/IAuthApplication';
+import { LoginDTO } from '../dtos/usuario/LoginDTO';
+import { RegisterDTO } from '../dtos/usuario/RegistroDTO';
 
 export class AuthController {
   constructor(private readonly authApplication: IAuthApplication) {}

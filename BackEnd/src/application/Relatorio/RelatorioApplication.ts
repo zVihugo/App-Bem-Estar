@@ -1,8 +1,8 @@
 import { RelatorioDTO } from '../../dtos/relatorio/RelatorioDTO';
 import { IRelatorioRepository } from '../../infrastructure/repositories/Relatorio/IRelatorioRepository';
 import { IRelatorioApplication } from './IRelatorioApplication';
-import { IReviewRepository } from '../../infrastructure/repositories/Review/IReviewRepository';
-import { ReviewDTO } from '../../dtos/review/ReviewDTO';
+import { IReviewRepository } from '../../infrastructure/repositories/Avaliacao/IAvaliacaoRepository';
+import { ReviewDTO } from '../../dtos/avaliacao/AvaliacaoDTO';
 import {
   dificuldadeMap,
   acordaDescansadoMap,
@@ -29,16 +29,16 @@ export class RelatorioApplication implements IRelatorioApplication {
     return new RelatorioApplication(repository, repositoryReview);
   }
 
-  public async save(data: RelatorioDTO): Promise<RelatorioDTO>{
+  public async save(data: RelatorioDTO): Promise<RelatorioDTO> {
     const relatorioSave = await prisma.relatorio.create({
-      data: {     
-        userId: data.userId,                    
-        mediaSono: data.mediaSono,                     
-        dificuldadeParaDormir: data.dificuldadeParaDormir, 
+      data: {
+        userId: data.userId,
+        mediaSono: data.mediaSono,
+        dificuldadeParaDormir: data.dificuldadeParaDormir,
         cansacoAoAcordar: data.cansacoAoAcordar,
         sonolenciaDiurna: data.sonolenciaDiurna,
         usoDeTelasAntesDeDormir: data.usoDeTelasAntesDeDormir,
-        regularidadeRotina: data.regularidadeRotina,                         
+        regularidadeRotina: data.regularidadeRotina,
       },
     });
 
@@ -105,8 +105,10 @@ export class RelatorioApplication implements IRelatorioApplication {
     const percentualTemRotina =
       Math.round((countTemRotina / total) * 100) + '%';
 
-    const mediaDificuldadeParaDormir = dificuldadeMapInvertido[mediaDiffNum] ?? 'nunca';
-    const mediaAcordaDescansado = acordaDescansadoInvertido[mediaAcordaNum] ?? 'nunca';
+    const mediaDificuldadeParaDormir =
+      dificuldadeMapInvertido[mediaDiffNum] ?? 'nunca';
+    const mediaAcordaDescansado =
+      acordaDescansadoInvertido[mediaAcordaNum] ?? 'nunca';
     const mediaSofreSonoDia = sofreSonoDiaInvertido[mediaSofreNum] ?? 'nunca';
     const mediaUsaTelaAntes = usaTelaAntesInvertido[mediaUsaTelaNum] ?? 'nunca';
 

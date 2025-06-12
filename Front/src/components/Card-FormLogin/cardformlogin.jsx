@@ -28,7 +28,7 @@ const CardForm = () => {
         try{
             const response = await login({
                 email: email,
-               password: senha,
+                senha: senha,
             })
             
             
