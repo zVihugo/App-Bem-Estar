@@ -7,21 +7,21 @@ class Seed {
   constructor(private readonly prisma: PrismaClient) {}
 
   async run() {
-    const hashedPassword = passwordHash(config.ADMIN_PASSWORD);
+    const senhaEncriptada = passwordHash(config.ADMIN_PASSWORD);
 
-    const adminExists = await this.prisma.user.findFirst({
+    const adminExists = await this.prisma.usuario.findFirst({
       where: { email: 'admin@admin.com' },
     });
 
     if (!adminExists) {
-      await this.prisma.user.create({
+      await this.prisma.usuario.create({
         data: {
           name: 'Administrador',
           email: 'admin@admin.com',
-          password: hashedPassword,
-          dateOfBirth: '01/01/2025',
-          faculty: 'UTFPR',
-          course: 'ADMINSTRADOR',
+          senha: senhaEncriptada,
+          dataDeNascimento: '01/01/2025',
+          faculdade: 'UTFPR',
+          curso: 'ADMINSTRADOR',
           role: 'ADMIN',
         },
       });

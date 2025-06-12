@@ -19,24 +19,24 @@ export const reviewCreateSchema = {
       .number()
       .min(0, 'A quantidade mínima de horas de sono é 0')
       .max(24, 'A quantidade máxima de horas de sono é 24'),
-    DificuldadeParaDormir: z.nativeEnum(DificuldadeParaDormir, {
+    dificuldadeParaDormir: z.nativeEnum(DificuldadeParaDormir, {
       errorMap: () => ({
         message: 'Frequência inválida para dificuldade para dormir.',
       }),
     }),
-    AcordaDescansado: z.nativeEnum(AcordaDescansado, {
+    acordaDescansado: z.nativeEnum(AcordaDescansado, {
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
-    SofreComSonoDuranteODia: z.nativeEnum(SofreComSonoDuranteODia, {
+    sofreComSonoDuranteODia: z.nativeEnum(SofreComSonoDuranteODia, {
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
-    UsaTelaAntesDeDormir: z.nativeEnum(UsaTelaAntesDeDormir, {
+    usaTelaAntesDeDormir: z.nativeEnum(UsaTelaAntesDeDormir, {
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
-    TemRotinaDeSono: z.boolean({
+    temRotinaDeSono: z.boolean({
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
@@ -49,24 +49,24 @@ export const reviewUpdateSchema = {
       .number()
       .min(0, 'A quantidade mínima de horas de sono é 0')
       .max(24, 'A quantidade máxima de horas de sono é 24'),
-    DificuldadeParaDormir: z.nativeEnum(DificuldadeParaDormir, {
+    dificuldadeParaDormir: z.nativeEnum(DificuldadeParaDormir, {
       errorMap: () => ({
         message: 'Frequência inválida para dificuldade para dormir.',
       }),
     }),
-    AcordaDescansado: z.nativeEnum(AcordaDescansado, {
+    acordaDescansado: z.nativeEnum(AcordaDescansado, {
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
-    SofreComSonoDuranteODia: z.nativeEnum(SofreComSonoDuranteODia, {
+    sofreComSonoDuranteODia: z.nativeEnum(SofreComSonoDuranteODia, {
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
-    UsaTelaAntesDeDormir: z.nativeEnum(UsaTelaAntesDeDormir, {
+    usaTelaAntesDeDormir: z.nativeEnum(UsaTelaAntesDeDormir, {
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),
-    TemRotinaDeSono: z.boolean({
+    temRotinaDeSono: z.boolean({
       required_error: 'Campo obrigatório',
       invalid_type_error: 'Insira uma das opções válidas',
     }),

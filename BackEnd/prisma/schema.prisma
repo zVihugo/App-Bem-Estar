@@ -7,41 +7,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  email          String @unique
-  name           String 
-  password       String
+model Usuario {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  email                String @unique
+  name                 String 
+  senha                String
+  dataDeNascimento     String
+  faculdade            String
+  curso                String
 
-  dateOfBirth    String
-  faculty        String
-  course         String
+  role                 Role @default(USUARIO)
 
-  role           Role @default(USER)
+  reviews              Avaliacao[]
+  relatorios           Relatorio[]
+  dicas                Dica[]
+  metas                Metas[]
 
-  reviews        Review[]
-  relatorios     Relatorio[]
-  dicas          Dica[]
-  metas          Metas[]
-  @@map("users")
+  @@map("usuarios")
 }
 
-model Review {
+model Avaliacao {
   id                        String   @id @default(auto()) @map("_id") @db.ObjectId
   userId                    String   @db.ObjectId
   mediaSono                 Float
 
-  DificuldadeParaDormir     DificuldadeParaDormir
-  AcordaDescansado          AcordaDescansado
-  SofreComSonoDuranteODia   SofreComSonoDuranteODia
-  UsaTelaAntesDeDormir      UsaTelaAntesDeDormir
-  TemRotinaDeSono           Boolean
+  dificuldadeParaDormir     DificuldadeParaDormir
+  acordaDescansado          AcordaDescansado
+  sofreComSonoDuranteODia   SofreComSonoDuranteODia
+  usaTelaAntesDeDormir      UsaTelaAntesDeDormir
+  temRotinaDeSono           Boolean
   createdAt                 DateTime @default(now())
-  user                      User  @relation(fields: [userId], references: [id])
-  @@map("reviews")
+  user                      Usuario  @relation(fields: [userId], references: [id])
+  @@map("avaliacoes")
 }
 
-model Relatorio{
+model Relatorio {
     id                        String   @id @default(auto()) @map("_id") @db.ObjectId
     userId                    String   @db.ObjectId
 
@@ -53,7 +53,7 @@ model Relatorio{
     regularidadeRotina        String
     createdAt                 DateTime @default(now())
 
-    user                      User  @relation(fields: [userId], references: [id])
+    user                      Usuario  @relation(fields: [userId], references: [id])
     @@map("relatorio")
 }
 
@@ -65,7 +65,7 @@ model Dica {
   type                Type 
   
   createdAt           DateTime @default(now())
-  user                User  @relation(fields: [userId], references: [id])
+  user                Usuario  @relation(fields: [userId], references: [id])
   @@map("dicas")
 }
 
@@ -76,13 +76,13 @@ model Metas {
   isCompleted         Boolean 
   
   createdAt           DateTime @default(now())
-  user                User  @relation(fields: [userId], references: [id])
+  user                Usuario  @relation(fields: [userId], references: [id])
   @@map("metas")
 }
 
 enum Role {
   ADMIN
-  USER
+  USUARIO
 }
 
 enum Type {
@@ -94,14 +94,14 @@ enum Type {
 enum DificuldadeParaDormir {
   nunca
   raramente
-  algumas_Vezes
+  algumas_vezes
   frequentemente
-  quase_Sempre
+  quase_sempre
 }
 
 enum AcordaDescansado {
   sempre
-  algumas_Vezes
+  algumas_vezes
   raramente
   nunca
 }
@@ -116,7 +116,7 @@ enum SofreComSonoDuranteODia {
 enum UsaTelaAntesDeDormir {
   nunca
   raramente
-  algumas_Vezes
-  quase_Sempre
+  algumas_vezes
+  quase_sempre
   sempre
 }

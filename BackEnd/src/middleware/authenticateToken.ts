@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { JwtUserPayload } from '../@types/UserProps';
+import { JwtUsuarioPayload } from '../@types/UsuarioProps';
 import { config } from '../config/config';
 
 export interface CustomRequest extends Request {
-  user?: JwtUserPayload;
+  user?: JwtUsuarioPayload;
 }
 
 export const authenticateToken = (
@@ -20,7 +20,7 @@ export const authenticateToken = (
 
   try {
     const decoded = jwt.verify(token, config.JWT_SECRET);
-    request.user = decoded as JwtUserPayload;
+    request.user = decoded as JwtUsuarioPayload;
     next();
   } catch (error) {
     if (error instanceof Error) {
