@@ -12,7 +12,7 @@
 }
 
 .modalContent {
-  background: white;
+  background: #FDF2FA;
   padding: 2rem;
   border-radius: 8px;
   width: 90%;
@@ -28,9 +28,14 @@
 }
 
 .formGroup {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
 }
-
+.modalContent form{
+  display: flex;
+  flex-direction: column;
+}
 .formGroup label {
   display: block;
   margin-bottom: 0.5rem;
@@ -39,10 +44,11 @@
 
 .formGroup input,
 .formGroup select {
-  width: 100%;
+  color: #333;
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: white;
   font-size: 1rem;
 }
 
