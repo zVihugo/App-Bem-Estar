@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import CardAutoAjuda from '../../components/CardAutoAjuda/cardautoajuda'
-import { PlusCircle } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import styles from './autoajuda.module.css';
 import AddContentModal from '../../components/addDicasModal/addDicasModal';
 import { v4 as uuidv4 } from 'uuid';
@@ -72,8 +72,8 @@ const Autoajuda = () => {
         </div>
         
         <div className={styles.autoajuda_add_button_container}>
-          <button className={styles.autoajuda_add_button}>
-            <PlusCircle size={100} />
+          <button className={styles.autoajuda_add_button} onClick={() => setIsModalOpen(true)}> 
+            <Plus size={25}/>
           </button>
         </div>
       </div>
