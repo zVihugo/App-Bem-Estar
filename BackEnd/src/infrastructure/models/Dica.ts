@@ -16,25 +16,30 @@ export class Dica {
     return this.props.userId;
   }
 
-  public get title() {
-    return this.props.title;
+  public get titulo() {
+    return this.props.titulo;
   }
 
-  public get imageUrl() {
-    return this.props.imageUrl;
+  public get thumbnailUrl() {
+    return this.props.thumbnailUrl;
   }
 
-  public get type() {
-    return this.props.type;
+  public get link() {
+    return this.props.link;
+  }
+
+  public get tipo() {
+    return this.props.tipo;
   }
 
   public toJSON(): DicaDTO {
     return {
       id: this.id,
       userId: this.userId,
-      title: this.title,
-      imageUrl: this.imageUrl,
-      type: this.type,
+      titulo: this.titulo,
+      thumbnailUrl: this.thumbnailUrl,
+      link: this.props.link,
+      tipo: this.tipo,
     };
   }
 }

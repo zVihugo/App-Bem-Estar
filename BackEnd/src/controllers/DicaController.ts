@@ -19,12 +19,15 @@ export class DicaController {
         return response.status(401).json({ error: 'Usuário não autenticado.' });
       }
 
-      const { title, imageUrl, type } = request.body as CreateDicaDTO;
+      const { titulo, thumbnailUrl, link, tipo } =
+        request.body as CreateDicaDTO;
+
       const dica = await this.dicaApplication.save({
         userId: adminId,
-        title,
-        imageUrl,
-        type,
+        titulo,
+        thumbnailUrl,
+        link,
+        tipo,
       });
 
       return response.status(201).json(dica);
