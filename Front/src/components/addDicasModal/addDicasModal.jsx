@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './AddContentModal.module.css'; 
+import styles from './addDicasModal.module.css'; 
 
 const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
   const [title, setTitle] = useState('');
