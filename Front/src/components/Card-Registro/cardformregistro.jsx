@@ -37,10 +37,10 @@ const CardFormRegistro = () => {
       const response = await register({
         name: nome,
         email: email,
-        dataDeNascimento: data,
-        faculdade: faculdade,
-        curso: curso,
-        senha: senha,
+        dateOfBirth: data,
+        faculty: faculdade,
+        course: curso,
+        password: senha,
       });
 
       if (response) {
@@ -54,8 +54,9 @@ const CardFormRegistro = () => {
         setFaculdade('');
         setCurso('');
       }
-    } catch (error) {
-      setErro(error);
+    } catch (response) {
+      console.log(response[0].message);
+      setErro(response[0].message || 'Ocorreu um erro ao registrar. Por favor, tente novamente.');
     }
   };
 

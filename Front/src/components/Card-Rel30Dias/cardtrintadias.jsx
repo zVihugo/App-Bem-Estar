@@ -1,10 +1,9 @@
-
 import React, { useState, PureComponent, useEffect } from 'react';
 import styles from './cardtrintadias.module.css';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend } from 'recharts';
 import Cookies from 'js-cookie';
-import { thirtyReport } from '../../middleware/auth';
+import { thirtyReport, allReport } from '../../middleware/auth';
 
 const RADIAN = Math.PI / 180;
 const data = [
@@ -114,6 +113,8 @@ const Cardtrintadias = () => {
             try {
                 const id = Cookies.get('Id');
                 const response = await thirtyReport(id);
+                const allResponse = await allReport(id);
+                const reponses = allResponse.relatorios;
                 const relatorio = response.relatorios;
                 const dificuldade = getPercentual(relatorio.dificuldadeParaDormir);
                 const cansaço = getPercentual(relatorio.cansacoAoAcordar, true);
@@ -154,8 +155,13 @@ const Cardtrintadias = () => {
                         fullMark: 100,
                     }
                 ];
-                setTemRelatorio(true);
-                setRadarData(novosDados);
+
+                 if (response && response.relatorios && Array.isArray(reponses) && reponses.length >= 30) {
+                    setTemRelatorio(true);
+                } else {
+                    setTemRelatorio(false);
+                }
+                setRadarData(relatorio);
                 setPieValue(parseInt(relatorio.regularidadeRotina.replace('%', '')));
             } catch (error) {
                 console.error('Erro ao buscar dados do relatório:', error);

@@ -1,19 +1,19 @@
 import api from "../services/api";
 import Cookies from "js-cookie";
 
-export const register = async (name, email, dataDeNascimento, faculdade, curso, senha) => {
+export const register = async (name, email, dataOfBirth, faculty, course, password) => {
     try {
-        const response = await api.post('/auth/registro', name, email, dataDeNascimento, faculdade, curso, senha);
+        const response = await api.post('/auth/register', name, email, dataOfBirth, faculty, course, password);
         return response.data;
     } catch (error) {
-        console.error('Erro ao registrar usuário:', error.response?.data?.error);
-        throw error.response?.data?.error
+        console.error('Erro ao registrar usuário:', error.response?.data?.details);
+        throw error.response?.data?.details
     }
 }
 
-export const login = async (email, senha) => {
+export const login = async (email, password) => {
     try {
-        const response = await api.post('/auth/login', email, senha);
+        const response = await api.post('/auth/login', email, password);
        
         Cookies.set('token', response.data.token, { expires: 7 });
         Cookies.set('Id', response.data.user.id, { expires: 7 });
@@ -27,7 +27,7 @@ export const login = async (email, senha) => {
 
 export const getUser = async (id) => {
     try{
-        const response = await api.get(`/usuarios/${id}`, {
+        const response = await api.get(`/users/${id}`, {
             headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
             },
@@ -41,7 +41,7 @@ export const getUser = async (id) => {
 
 export const deleteUser = async (id) => {
     try{
-        const response = await api.delete(`/usuarios/${id}`,{
+        const response = await api.delete(`/users/${id}`,{
             headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
             },
@@ -54,12 +54,12 @@ export const deleteUser = async (id) => {
     }
 }
 
-export const updateUser = async (id, name, dataDeNascimento, faculdade, curso) => {
+export const updateUser = async (id, name, dateOfBirth, faculty, course) => {
     try {
      
         const response = await api.put(
-            `/usuarios/${id}/perfil`,
-            { name, dataDeNascimento, faculdade, curso }, 
+            `/users/${id}/profile`,
+            { name, dateOfBirth, faculty, course }, 
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -77,8 +77,8 @@ export const updateUser = async (id, name, dataDeNascimento, faculdade, curso) =
 export const updatePassword = async (id, senhaAntiga, novaSenha) => {
     try{
         const response = await api.put(
-            `/usuarios/${id}/senha`,
-            { senhaAntiga: senhaAntiga, novaSenha: novaSenha },
+            `/users/${id}/password`,
+            { oldPassword: senhaAntiga, newPassword: novaSenha },
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -95,7 +95,7 @@ export const updatePassword = async (id, senhaAntiga, novaSenha) => {
 export const reviewCreate = async (data) => {
     try {
         const response = await api.post(
-            `avaliacoes/registrar`,
+            `reviews/create`,
             data,
             {
                 headers: {
@@ -105,6 +105,22 @@ export const reviewCreate = async (data) => {
         );
         return response.data;
     } catch (error) {
+        throw error.response?.data;
+    }
+}
+
+export const allReport = async(id)=> {
+    try {
+        const response = await api.get(
+            `relatorio/todosRelatorio/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                }
+            }
+        )
+        return response.data;
+    }catch(error){
         throw error.response?.data;
     }
 }
