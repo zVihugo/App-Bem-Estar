@@ -14,18 +14,20 @@ export class DicaRepository implements IDicaRepository {
     const dica = await this.prisma.dica.create({
       data: {
         userId: data.userId,
-        title: data.title,
-        imageUrl: data.imageUrl,
-        type: data.type,
+        titulo: data.titulo,
+        thumbnailUrl: data.thumbnailUrl,
+        link: data.link,
+        tipo: data.tipo,
       },
     });
 
     return Dica.create({
       id: dica.id,
       userId: dica.userId,
-      title: dica.title,
-      imageUrl: dica.imageUrl,
-      type: dica.type,
+      titulo: dica.titulo,
+      thumbnailUrl: dica.thumbnailUrl,
+      link: dica.link,
+      tipo: dica.tipo,
     });
   }
 
@@ -39,9 +41,10 @@ export class DicaRepository implements IDicaRepository {
     return Dica.create({
       id: dica.id,
       userId: dica.userId,
-      title: dica.title,
-      imageUrl: dica.imageUrl,
-      type: dica.type,
+      titulo: dica.titulo,
+      thumbnailUrl: dica.thumbnailUrl,
+      link: dica.link,
+      tipo: dica.tipo,
     });
   }
 
@@ -53,9 +56,10 @@ export class DicaRepository implements IDicaRepository {
     return Dica.create({
       id: dica.id,
       userId: dica.userId,
-      title: dica.title,
-      imageUrl: dica.imageUrl,
-      type: dica.type,
+      titulo: dica.titulo,
+      thumbnailUrl: dica.thumbnailUrl,
+      link: dica.link,
+      tipo: dica.tipo,
     });
   }
 
@@ -66,9 +70,10 @@ export class DicaRepository implements IDicaRepository {
       Dica.create({
         id: dica.id,
         userId: dica.userId,
-        title: dica.title,
-        imageUrl: dica.imageUrl,
-        type: dica.type,
+        titulo: dica.titulo,
+        thumbnailUrl: dica.thumbnailUrl,
+        link: dica.link,
+        tipo: dica.tipo,
       })
     );
   }
@@ -82,9 +87,10 @@ export class DicaRepository implements IDicaRepository {
     return Dica.create({
       id: dica.id,
       userId: dica.userId,
-      title: dica.title,
-      imageUrl: dica.imageUrl,
-      type: dica.type,
+      titulo: dica.titulo,
+      thumbnailUrl: dica.thumbnailUrl,
+      link: dica.link,
+      tipo: dica.tipo,
     });
   }
 

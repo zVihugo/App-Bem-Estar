@@ -1,9 +1,10 @@
-import { Type } from '@prisma/client';
+import { Tipo } from '@prisma/client';
 
 export interface DicaDTO {
   id: string;
   userId: string;
-  title: string;
-  imageUrl: string;
-  type: Type;
+  titulo: string;
+  thumbnailUrl: string;
+  link: string;
+  tipo: Tipo;
 }

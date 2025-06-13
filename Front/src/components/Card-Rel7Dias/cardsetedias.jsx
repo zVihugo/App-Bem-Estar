@@ -1,10 +1,9 @@
-
 import React, { useState, PureComponent, useEffect } from 'react';
 import styles from './cardsetedias.module.css';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend } from 'recharts';
 import Cookies from 'js-cookie';
-import { sevenReport } from '../../middleware/auth';
+import { sevenReport, allReport } from '../../middleware/auth';
 
 const RADIAN = Math.PI / 180;
 
@@ -117,7 +116,8 @@ const Cardsetedias = () => {
             try {
                 const id = Cookies.get('Id');
                 const response = await sevenReport(id);
-
+                const allResponse = await allReport(id);
+                const reponses = allResponse.relatorios;
                 const relatorio = response.relatorios;
                 const dificuldade = getPercentual(relatorio.dificuldadeParaDormir);
                 const cansaço = getPercentual(relatorio.cansacoAoAcordar, true);
@@ -158,8 +158,13 @@ const Cardsetedias = () => {
                         fullMark: 100,
                     }
                 ];
-                setTemRelatorio(true);
+                if (response && response.relatorios && Array.isArray(reponses) && reponses.length >= 7) {
+                    setTemRelatorio(true);
+                } else {
+                    setTemRelatorio(false);
+                }
                 setRadarData(novosDados);
+
                 setPieValue(parseInt(relatorio.regularidadeRotina.replace('%', '')));
             } catch (error) {
                 console.error('Erro ao buscar dados do relatório:', error);
