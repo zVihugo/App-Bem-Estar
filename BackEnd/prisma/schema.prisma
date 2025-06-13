@@ -60,9 +60,10 @@ model Relatorio {
 model Dica {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
   userId              String   @db.ObjectId 
-  title               String
-  imageUrl            String 
-  type                Type 
+  titulo              String
+  thumbnailUrl        String 
+  link                String
+  tipo                Tipo 
   
   createdAt           DateTime @default(now())
   user                Usuario  @relation(fields: [userId], references: [id])
@@ -85,10 +86,10 @@ enum Role {
   USUARIO
 }
 
-enum Type {
-  assistir
-  ouvir
-  ler
+enum Tipo {
+  video
+  artigo
+  audio
 }
 
 enum DificuldadeParaDormir {
