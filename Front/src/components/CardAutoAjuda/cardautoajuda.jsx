@@ -29,10 +29,13 @@ const AutoajudaCard = ({ content }) => {
     }
   };
 
-  const handleAction = () => {
-    console.log(`${content.title}: ${getActionLabel(content.type)}`);
+ const handleAction = () => {
+    if (content.link) {
+      window.open(content.link, '_blank', 'noopener,noreferrer');
+    } else {
+      console.log(`Nenhum link disponível para: ${content.title}`);
+    }
   };
-
   return (
     <div className={styles.autoajuda_card}>
       {content.thumbnailUrl && (
@@ -44,7 +47,8 @@ const AutoajudaCard = ({ content }) => {
         <h3 className={styles.autoajuda_card_title}>{content.title}</h3>
         <button 
           onClick={handleAction}
-          className={`${styles.autoajuda_action_button} ${content.type}`}
+          className={`${styles.autoajuda_action_button} ${content.type}`} 
+          disabled={!content.link}
         >
           {getActionIcon(content.type)}
           <span>{getActionLabel(content.type)}</span>

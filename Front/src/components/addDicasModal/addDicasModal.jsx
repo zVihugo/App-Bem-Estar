@@ -5,13 +5,15 @@ const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
   const [title, setTitle] = useState('');
   const [type, setType] = useState('video');
   const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [link, setLink] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddContent({ title, type, thumbnailUrl });
+    onAddContent({ title, type, thumbnailUrl, link  });
     setTitle('');
     setType('video');
     setThumbnailUrl('');
+    setLink('');
     onClose();
   };
 
@@ -53,6 +55,17 @@ const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
               id="thumbnailUrl"
               value={thumbnailUrl}
               onChange={(e) => setThumbnailUrl(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="link">Link do Conteúdo</label>
+            <input
+              type="url"
+              id="link"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder="https://exemplo.com"
               required
             />
           </div>
