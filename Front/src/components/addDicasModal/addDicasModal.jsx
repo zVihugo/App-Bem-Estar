@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import styles from './addDicasModal.module.css'; 
+import styles from './addDicasModal.module.css';
 
 const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
-  const [title, setTitle] = useState('');
-  const [type, setType] = useState('video');
+  const [titulo, setTitulo] = useState('');
+  const [tipo, setTipo] = useState('video');
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [link, setLink] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddContent({ title, type, thumbnailUrl, link  });
-    setTitle('');
-    setType('video');
+    onAddContent({ titulo, tipo, thumbnailUrl, link });
+    setTitulo('');
+    setTipo('video');
     setThumbnailUrl('');
     setLink('');
     onClose();
@@ -27,21 +27,21 @@ const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
         <h2>Adicionar Novo Conteúdo</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="title">Título</label>
+            <label htmlFor="titulo">Título</label>
             <input
               type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              id="titulo"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
               required
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="type">Tipo</label>
+            <label htmlFor="tipo">Tipo</label>
             <select
-              id="type"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
+              id="tipo"
+              value={tipo}
+              onChange={(e) => setTipo(e.target.value)}
             >
               <option value="video">Vídeo</option>
               <option value="audio">Áudio</option>

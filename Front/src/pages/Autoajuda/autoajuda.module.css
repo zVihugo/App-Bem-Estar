@@ -1,15 +1,16 @@
 .autoajuda_container {
-    max-width: 1200px;
+    width: 100%;;
     margin: 0 auto;
-    padding: 0 20px;
     margin-top: 50px;
   }
   
   .autoajuda_header {
+    margin: 0;
     margin-bottom: 8px;
   }
   
   .autoajuda_header h1 {
+    margin: 0;
     color: #000;
     font-family: Montserrat;
     font-size: 40px;
@@ -27,17 +28,22 @@
     font-weight: 200;
     line-height: normal;
     text-align: left;
+    margin: 0;
   }
-  
+  .autoajuda_subtitle p{
+    margin: 0;
+  }
   .autoajuda_secao_title {
+    margin: 0;
+    margin-top: 32px;
     text-align: left;
     color: #000;
     font-family: Montserrat;
-    font-size: 32px;
+    font-size: 24px;
     font-style: normal;
-    font-weight: 200;
+    font-weight: 300;
     line-height: normal;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   
   .autoajuda_grid {
