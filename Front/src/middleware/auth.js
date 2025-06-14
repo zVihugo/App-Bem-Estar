@@ -157,6 +157,66 @@ export const thirtyReport = async(id) => {
     }
 }
 
+export const getDicas = async () => {
+    try {
+        const response = await api.get(`dicas/`);
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar dicas:", error);
+        throw error.response?.data;
+    }
+};
+
+export const createDicas = async (dicaData, userId) => {
+    try {
+        const response = await api.post(
+            `dicas/create`,
+            { titulo: dicaData.titulo, tipo: dicaData.tipo, thumbnailUrl: dicaData.thumbnailUrl, link: dicaData.link}, // Adiciona o userId ao corpo da requisição
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao criar dica:", error);
+        throw error.response?.data;
+    }
+};
+
+export const deleteDicas = async (id) => {
+    try {
+        const response = await api.delete(
+            `dicas/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+}
+
+export const updateDicas = async (id, titulo, tipo, thumbnailUrl, link) => {
+    try {
+        const response = await api.put(
+            `dicas/${id}`,
+            { titulo, tipo, thumbnailUrl, link },
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+}
 
 export const logout = () => {
     Cookies.remove('token');
