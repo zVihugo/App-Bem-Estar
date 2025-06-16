@@ -1,0 +1,96 @@
+.card_formlogin {
+  background-color: #FDF2FA;
+    padding: 2rem;
+    font-family: 'Montserrat';
+    width: 80%;
+    max-width: 500px;
+   
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    color: black;
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.label{
+    color: rgba(90, 88, 88, 0.863);
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.input{
+    padding: 10px;
+    width: 400px;
+    background-color: #FFDBDB;
+    border-radius: 20px;
+    color: black;
+    border: 1px solid #B0B0B0;
+}
+
+.button{
+    background-color: #FD6C6C;
+    color: white;
+    border: 1px solid #B0B0B0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 30px;
+}
+
+.button:hover {
+    background-color: #e25555;
+}
+
+.registro {
+    color: rgba(0, 0, 0, 0.863);
+    font-size: 18px;
+}
+
+.registro a {
+    color: black;
+    font-weight: bold;
+}
+
+.registro a:hover {
+    text-decoration: underline;
+}
+
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+
+  @media (max-width: 767px) {
+    .card_formlogin {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .input {
+      width: 100%;
+    }
+  
+    .title {
+      font-size: 32px;
+    }
+  
+    .label {
+      font-size: 16px;
+    }
+  
+    .button {
+      font-size: 16px;
+      width: 100%;
+    }
+  }
+  

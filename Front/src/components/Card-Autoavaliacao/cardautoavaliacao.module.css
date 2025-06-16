@@ -1,0 +1,108 @@
+.card_autoavaliacao {
+    width: 100%;
+    max-width: 552px;
+    height: 255px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--Cosmos-100, #FFDBDB);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-around;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card_autoavaliacao p {
+    color: var(--Black-950, #050505);
+    font-family: Montserrat, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.card_autoavaliacao button {
+    width: 250px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--Cosmos-400, #FD6C6C);
+    color: #FFF;
+    font-family: Montserrat, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none;
+    cursor: pointer;
+}
+
+.card_autoavaliacao button:hover {
+    background: var(--Cosmos-400, #ff5e5e);
+}
+
+
+
+.card_autoavaliacao span {
+    color: var(--Black-950, #050505);
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+
+@media (max-width: 1024px) {
+    .card_autoavaliacao p {
+      font-size: 20px;
+    }
+  
+    .card_autoavaliacao span {
+      font-size: 20px;
+    }
+  
+    .card_autoavaliacao button {
+      width: 220px;
+      height: 52px;
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card_autoavaliacao p {
+      font-size: 18px;
+    }
+  
+    .card_autoavaliacao span {
+      font-size: 18px;
+    }
+  
+    .card_autoavaliacao button {
+      width: 200px;
+      height: 48px;
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card_autoavaliacao p {
+      font-size: 16px;
+    }
+  
+    .card_autoavaliacao span {
+      font-size: 16px;
+    }
+  
+    .card_autoavaliacao button {
+      width: 100%;
+      height: 45px;
+      font-size: 16px;
+    }
+  }
+  

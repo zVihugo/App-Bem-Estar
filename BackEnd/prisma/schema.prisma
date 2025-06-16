@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  email                String @unique
+  name                 String 
+  senha                String
+  dataDeNascimento     String
+  faculdade            String
+  curso                String
+
+  role                 Role @default(USUARIO)
+
+  reviews              Avaliacao[]
+  relatorios           Relatorio[]
+  dicas                Dica[]
+  metas                Metas[]
+
+  @@map("usuarios")
+}
+
+model Avaliacao {
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId                    String   @db.ObjectId
+  mediaSono                 Float
+
+  dificuldadeParaDormir     DificuldadeParaDormir
+  acordaDescansado          AcordaDescansado
+  sofreComSonoDuranteODia   SofreComSonoDuranteODia
+  usaTelaAntesDeDormir      UsaTelaAntesDeDormir
+  temRotinaDeSono           Boolean
+  createdAt                 DateTime @default(now())
+  user                      Usuario  @relation(fields: [userId], references: [id])
+  @@map("avaliacoes")
+}
+
+model Relatorio {
+    id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+    userId                    String   @db.ObjectId
+
+    mediaSono                 String
+    dificuldadeParaDormir     String
+    cansacoAoAcordar          String
+    sonolenciaDiurna          String
+    usoDeTelasAntesDeDormir   String
+    regularidadeRotina        String
+    createdAt                 DateTime @default(now())
+
+    user                      Usuario  @relation(fields: [userId], references: [id])
+    @@map("relatorio")
+}
+
+model Dica {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @db.ObjectId 
+  titulo              String
+  thumbnailUrl        String 
+  link                String
+  tipo                Tipo 
+  
+  createdAt           DateTime @default(now())
+  user                Usuario  @relation(fields: [userId], references: [id])
+  @@map("dicas")
+}
+
+model Metas {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @db.ObjectId 
+  descricao           String
+  isCompleted         Boolean 
+  
+  createdAt           DateTime @default(now())
+  user                Usuario  @relation(fields: [userId], references: [id])
+  @@map("metas")
+}
+
+enum Role {
+  ADMIN
+  USUARIO
+}
+
+enum Tipo {
+  video
+  artigo
+  audio
+}
+
+enum DificuldadeParaDormir {
+  nunca
+  raramente
+  algumas_vezes
+  frequentemente
+  quase_sempre
+}
+
+enum AcordaDescansado {
+  sempre
+  algumas_vezes
+  raramente
+  nunca
+}
+
+enum SofreComSonoDuranteODia {
+  nunca
+  raramente
+  frequentemente
+  sempre
+}
+
+enum UsaTelaAntesDeDormir {
+  nunca
+  raramente
+  algumas_vezes
+  quase_sempre
+  sempre
+}

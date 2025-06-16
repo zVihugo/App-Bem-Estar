@@ -3,17 +3,17 @@ import styles from './cardaddmetas.module.css'
 import { Pencil } from 'lucide-react';
 
 const CardAddmetas = () => {
-    const [metas, setMetas] = useState([]) 
-    const [novaMeta, setNovaMeta] = useState('') 
+    const [metas, setMetas] = useState([])
+    const [novaMeta, setNovaMeta] = useState('')
     const [mostrarInput, setMostrarInput] = useState(false)
     const [editandoId, setEditandoId] = useState(null)
     const [textoEditado, setTextoEditado] = useState('')
 
     const adicionarMeta = () => {
-        if (novaMeta.trim() === '') return 
-        setMetas([...metas, { id: Date.now(), texto: novaMeta, concluida: false }]) 
-        setNovaMeta('') 
-        setMostrarInput(false) 
+        if (novaMeta.trim() === '') return
+        setMetas([...metas, { id: Date.now(), texto: novaMeta, concluida: false }])
+        setNovaMeta('')
+        setMostrarInput(false)
     }
 
     const concluirMeta = (id) => {
@@ -47,6 +47,10 @@ const CardAddmetas = () => {
         if (e.key === 'Enter') {
             adicionarMeta();
         }
+    }
+    
+    const excluirMeta = (id) => {
+        setMetas(metas.filter(meta => meta.id !== id))
     }
 
     return (
@@ -92,6 +96,7 @@ const CardAddmetas = () => {
             </ul>
 
             <div className={styles.input_area}>
+
                 {mostrarInput && (
                     <input
                         type='text'
@@ -104,6 +109,19 @@ const CardAddmetas = () => {
 
                 {!mostrarInput && (
                     <button onClick={() => setMostrarInput(true)}>+</button>
+                )}
+
+                {mostrarInput && (
+                    <>
+                        <input
+                            type='text'
+                            placeholder='Digite uma meta'
+                            value={novaMeta}
+                            onChange={(e) => setNovaMeta(e.target.value)}
+                        />
+                        <button onClick={adicionarMeta}>✔</button>
+                        <button onClick={() => setMostrarInput(false)}>✖</button> 
+                    </>
                 )}
             </div>
         </div>

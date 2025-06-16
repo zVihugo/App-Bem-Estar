@@ -11,14 +11,23 @@ Este repositório contém o código-fonte e a documentação do AppBemEstar, uma
 ## 🛠️ Tecnologias e Frameworks Utilizados
 
 ### Frontend
-- React
-- HTML/CSS
-- JavaScript
+- Linguagem principal: JavaScript moderno com suporte a módulos ES6.
+- Biblioteca principal: React.js (versão 19) 
+- Gerenciador de pacotes: npm.
+- Empacotador e servidor de desenvolvimento: Vite 
+- Roteamento: react-router-dom (v7)
+- Requisições HTTP: Axios
+- Gerenciamento de cookies: js-cookie, utilizado para armazenar dados no navegador.
+- Bibliotecas de ícones: @fortawesome/react-fontawesome e	@fortawesome/free-solid-svg-icons
 
 ### Backend
-- Node.js
-- Express.js
-
+- Ambiente: Node.Js 
+- Linguagem: Typescript 
+- Framework: Express 
+- ORM: Prisma ORM 
+- Autenticação: JWT e Bcrypt 
+- Validação de dados: Zod
+  
 ### Banco de Dados
 - MongoDB
 
@@ -60,15 +69,15 @@ Abaixo está o fluxograma representando as principais telas e caminhos do AppBem
 
 ## 🗓️ Cronograma de Desenvolvimento
 
-| Semana | Período               | Atividades                                                                 |
-|--------|------------------------|----------------------------------------------------------------------------|
-| 1      | 22 a 27 de abril       |  levantamento de requisitos com a psicologa da NUAPE                      | 
-| 2      | 28 de abril a 4 de maio| Estruturação do repositório, setup inicial do backend e frontend          |
-| 3      | 5 a 11 de maio         | Desenvolvimento do backend: rotas e modelos iniciais no MongoDB           |
-| 4      | 12 a 18 de maio        | Início do desenvolvimento do frontend: layout base e navegação            |
-| 5      | 19 a 25 de maio        | Integração frontend-backend, ajustes de layout, início dos testes         |
-| 6      | 26 de maio a 1º de junho| Refino das funcionalidades, testes e melhorias com base em feedback      |
-| 7      | 2 a 8 de junho         | Ajustes finais, testes completos e entrega do projeto                     |
+| Semana | Período                  | Atividades                                                          |
+| ------ | ------------------------ | ------------------------------------------------------------------- |
+| 1      | 15 a 20 de abril         | Levantamento de requisitos com a psicóloga da NUAPE                 |
+| 2      | 21 a 27 de abril         | Estruturação do repositório, setup inicial do backend e frontend    |
+| 3      | 28 de abril a 4 de maio  | Desenvolvimento do backend: rotas e modelos iniciais no MongoDB     |
+| 4      | 5 a 11 de maio           | Início do desenvolvimento do frontend: layout base e navegação      |
+| 5      | 12 a 18 de maio          | Integração frontend-backend, ajustes de layout, início dos testes   |
+| 6      | 19 a 25 de maio          | Refino das funcionalidades, testes e melhorias com base em feedback |
+| 7      | 26 de maio a 23º de junho | Ajustes finais, testes completos e entrega do projeto               |
 
 
 

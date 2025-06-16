@@ -9,6 +9,7 @@ const Metas = () => {
       <CardAddmetas />
 
     </div>
+ 
   )
 }
 
