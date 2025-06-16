@@ -8,7 +8,7 @@ import ModalSessao from '../../components/Model-Sessao/Sessao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { getUser, deleteUser, logout, updateUser, updatePassword } from '../../middleware/auth';
-import ModalPerfil from '../../components/Modal-Perfil/modalPerfil';
+import ModalPerfil from '../../components/Modal-Perfil/ModalPerfil';
 import Cookies from 'js-cookie';
 
 const Perfil = () => {
@@ -27,7 +27,7 @@ const Perfil = () => {
       try {
         console.log(id)
         const response = await getUser(id)
-        console.log(response.user)
+        console.log(response)
         setUser(response.user)
 
 
@@ -42,7 +42,7 @@ const Perfil = () => {
 
 
   const handleExcluirConta = async () => {
-    console.log("Conta excluída!");
+  
     navigate('/Auth')
     await deleteUser(id)
   };

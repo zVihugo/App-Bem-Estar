@@ -25,40 +25,45 @@ const CardFormRegistro = () => {
   }, [sucesso, navigate]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErro('');
+  e.preventDefault();
+  setErro('');
 
-    if (senha !== confirmarSenha) {
-      setErro('As senhas não coincidem.');
-      return;
+  if (senha !== confirmarSenha) {
+    setErro('As senhas não coincidem.');
+    return;
+  }
+
+  try {
+    const response = await register({
+      name: nome,
+      email: email,
+      senha: senha, 
+      dataDeNascimento: data,
+      faculdade: faculdade,   
+      curso: curso,    
+    });
+
+    if (response) {
+      setSucesso(true);
+      setEmail('');
+      setSenha('');
+      setConfirmarSenha('');
+      setNome('');
+      setData('');
+      setFaculdade('');
+      setCurso('');
     }
-
-    try {
-      const response = await register({
-        name: nome,
-        email: email,
-        dateOfBirth: data,
-        faculty: faculdade,
-        course: curso,
-        password: senha,
-      });
-
-      if (response) {
-
-        setSucesso(true);
-        setEmail('');
-        setSenha('');
-        setConfirmarSenha('');
-        setNome('');
-        setData('');
-        setFaculdade('');
-        setCurso('');
-      }
-    } catch (response) {
-      console.log(response[0].message);
-      setErro(response[0].message || 'Ocorreu um erro ao registrar. Por favor, tente novamente.');
+  } catch (response) {
+    if (Array.isArray(response) && response[0]?.message) {
+      setErro(response[0].message);
+    } else if (response?.message) {
+      setErro(response.message);
+    } else {
+      setErro('Ocorreu um erro ao registrar. Por favor, tente novamente.');
     }
-  };
+    console.log(response);
+  }
+};
 
   return (
     <div className={styles.card_formlogin}>
