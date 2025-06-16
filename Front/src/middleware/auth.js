@@ -171,11 +171,11 @@ export const getDicas = async () => {
     }
 };
 
-export const createDicas = async (dicaData, userId) => {
+export const createDicas = async (dicaData) => {
     try {
         const response = await api.post(
             `dicas/create`,
-            { titulo: dicaData.titulo, tipo: dicaData.tipo, thumbnailUrl: dicaData.thumbnailUrl, link: dicaData.link}, // Adiciona o userId ao corpo da requisição
+            { titulo: dicaData.titulo, tipo: dicaData.tipo, thumbnailUrl: dicaData.thumbnailUrl, link: dicaData.link},
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -184,7 +184,6 @@ export const createDicas = async (dicaData, userId) => {
         );
         return response.data;
     } catch (error) {
-        console.error("Erro ao criar dica:", error);
         throw error.response?.data;
     }
 };
@@ -207,9 +206,7 @@ export const deleteDicas = async (id) => {
 
 export const updateDicas = async (contentData) => {
   try {
-    const { id } = contentData.id;
-
-    const payload = {
+     const payload = {
       titulo: contentData.titulo,     
       tipo: contentData.tipo,           
       thumbnailUrl: contentData.thumbnailUrl,
@@ -227,8 +224,6 @@ export const updateDicas = async (contentData) => {
     );
     return response.data;
   } catch (error) {
-    // É uma boa prática logar o que deu errado
-    console.error("Erro na requisição de updateDicas:", error.response?.data);
     throw error.response?.data;
   }
 };

@@ -3,7 +3,8 @@ import CardAutoAjuda from '../../components/CardAutoAjuda/cardautoajuda';
 import { Plus } from 'lucide-react';
 import styles from './autoajuda.module.css';
 import AddContentModal from '../../components/addDicasModal/addDicasModal';
-import { getDicas, createDicas, deleteDicas, updateDicas } from '../../middleware/auth';
+import { getDicas, createDicas, deleteDicas, updateDicas, getUser } from '../../middleware/auth';
+import Cookies  from 'js-cookie';
 
 const Autoajuda = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,9 +25,26 @@ const Autoajuda = () => {
         }
     };
 
+        const id = Cookies.get('Id');
+        const [user, setUser] = useState({});
+        
+    
+        
+
     useEffect(() => {
+        const user = async () => {
+            try {
+                const response = await getUser(id);
+                setUser(response.user);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        user();
         fetchContent();
     }, []);
+
+    const isAdmin = user.role === 'ADMIN' ? true : false;
 
     const handleSaveContent = async (formData) => {
         console.log("Dados recebidos do modal:", formData);
@@ -111,11 +129,15 @@ const Autoajuda = () => {
                     )}
                 </div>
 
-                <div className={styles.autoajuda_add_button_container}>
-                    <button className={styles.autoajuda_add_button} onClick={handleOpenCreateModal}>
-                        <Plus size={25} />
-                    </button>
-                </div>
+                {isAdmin && (
+                    <>
+                        <div className={styles.autoajuda_add_button_container}>
+                            <button className={styles.autoajuda_add_button} onClick={handleOpenCreateModal}>
+                            <Plus size={40} />
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
 
             <AddContentModal
