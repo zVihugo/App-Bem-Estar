@@ -201,22 +201,33 @@ export const deleteDicas = async (id) => {
     }
 }
 
-export const updateDicas = async (id, titulo, tipo, thumbnailUrl, link) => {
-    try {
-        const response = await api.put(
-            `dicas/${id}`,
-            { titulo, tipo, thumbnailUrl, link },
-            {
-                headers: {
-                    Authorization: `Bearer ${Cookies.get('token')}`,
-                },
-            }
-        );
-        return response.data;
-    } catch (error) {
-        throw error.response?.data;
-    }
-}
+export const updateDicas = async (contentData) => {
+  try {
+    const { id } = contentData.id;
+
+    const payload = {
+      titulo: contentData.titulo,     
+      tipo: contentData.tipo,           
+      thumbnailUrl: contentData.thumbnailUrl,
+      link: contentData.link
+    };
+
+    const response = await api.put(
+      `dicas/${contentData.id}`, 
+      payload, 
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    // É uma boa prática logar o que deu errado
+    console.error("Erro na requisição de updateDicas:", error.response?.data);
+    throw error.response?.data;
+  }
+};
 
 export const logout = () => {
     Cookies.remove('token');

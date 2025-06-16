@@ -3,15 +3,13 @@ import CardAutoAjuda from '../../components/CardAutoAjuda/cardautoajuda';
 import { Plus } from 'lucide-react';
 import styles from './autoajuda.module.css';
 import AddContentModal from '../../components/addDicasModal/addDicasModal';
-import { getDicas, createDicas, deleteDicas } from '../../middleware/auth';
-import { jwtDecode } from 'jwt-decode';
-import Cookies from 'js-cookie';
-
+import { getDicas, createDicas, deleteDicas, updateDicas } from '../../middleware/auth';
 
 const Autoajuda = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [conteudo, setConteudo] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [editingContent, setEditingContent] = useState(null);
 
     const fetchContent = async () => {
         try {
@@ -30,17 +28,32 @@ const Autoajuda = () => {
         fetchContent();
     }, []);
 
-    const handleAddContent = async (newContentData) => {
+    const handleSaveContent = async (formData) => {
+        console.log("Dados recebidos do modal:", formData);
         try {
-            await createDicas(newContentData);
+            if (editingContent) {
+                const { titulo, tipo, thumbnailUrl, link } = formData
+                const id = editingContent.id;
+                await updateDicas(
+                    id,
+                    titulo,      
+                    tipo,         
+                    thumbnailUrl,
+                    link
+                );
+                alert('Dica atualizada com sucesso!');
+            } else {
+                await createDicas(formData);
+                alert('Dica adicionada com sucesso!');
+            }
 
+            setEditingContent(null);
             setIsModalOpen(false);
-
             await fetchContent();
 
         } catch (error) {
-            console.error('Erro ao adicionar novo conteúdo:', error);
-            alert('Não foi possível adicionar a dica. Tente novamente.');
+            console.error('Erro ao salvar dica:', error);
+            alert('Não foi possível salvar a dica. Tente novamente.');
         }
     };
 
@@ -56,19 +69,29 @@ const Autoajuda = () => {
         }
     };
 
+    const handleOpenEditModal = (contentToEdit) => {
+        setEditingContent(contentToEdit); 
+        setIsModalOpen(true); 
+    };
+
+    const handleOpenCreateModal = () => {
+        setEditingContent(null);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setEditingContent(null);
+        setIsModalOpen(false);
+    }
 
     return (
         <>
             <div className={styles.autoajuda_container}>
-                <div className={styles.autoajuda_header}>
-                    <h1>Dicas & Autoajuda</h1>
-                </div>
-                <p className={styles.autoajuda_subtitle}>
-                    Conteúdos para te ajudar a viver melhor 🌿
-                </p>
-
+              <div className={styles.autoajuda_header}>
+                <h1>Dicas & Autoajuda</h1>
+              </div>
+                <p className={styles.autoajuda_subtitle}> Conteúdos para te ajudar a viver melhor 🌿</p>
                 <h2 className={styles.autoajuda_secao_title}>Ultimas dicas lançadas</h2>
-
                 <div className={styles.autoajuda_grid}>
                     {loading ? (
                         <p>Carregando dicas...</p>
@@ -78,6 +101,7 @@ const Autoajuda = () => {
                                 <CardAutoAjuda
                                     key={content.id}
                                     content={content}
+                                    onEdit={() => handleOpenEditModal(content)}
                                     onDelete={() => handleDeleteContent(content.id)}
                                 />
                             ))
@@ -88,7 +112,7 @@ const Autoajuda = () => {
                 </div>
 
                 <div className={styles.autoajuda_add_button_container}>
-                    <button className={styles.autoajuda_add_button} onClick={() => setIsModalOpen(true)}>
+                    <button className={styles.autoajuda_add_button} onClick={handleOpenCreateModal}>
                         <Plus size={25} />
                     </button>
                 </div>
@@ -96,8 +120,9 @@ const Autoajuda = () => {
 
             <AddContentModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                onAddContent={handleAddContent}
+                onClose={handleCloseModal}
+                onSave={handleSaveContent}
+                editingContent={editingContent}
             />
         </>
     );

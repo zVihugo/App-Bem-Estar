@@ -7,7 +7,7 @@ const CardAutoAjuda = ({ content, onEdit, onDelete }) => {
         switch (tipo) {
             case 'video': return <Play size={16} />;
             case 'audio': return <Headphones size={16} />;
-            case 'article': return <FileText size={16} />;
+            case 'artigo': return <FileText size={16} />;
             default: return <Play size={16} />;
         }
     };
@@ -16,7 +16,7 @@ const CardAutoAjuda = ({ content, onEdit, onDelete }) => {
         switch (tipo) {
             case 'video': return 'Assistir';
             case 'audio': return 'Ouvir';
-            case 'article': return 'Ler artigo';
+            case 'artigo': return 'Ler artigo';
             default: return 'Ver mais';
         }
     };
