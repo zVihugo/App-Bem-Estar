@@ -56,8 +56,9 @@ const CardAutoAjuda = ({ content, onEdit, onDelete }) => {
                 </div>
             )}
             <div className={styles.autoajuda_card_content}>
-                <h3 className={styles.autoajuda_card_titulo}>{content.titulo}</h3>
-                <button
+                <h3 className={styles.autoajuda_card_title}>{content.titulo}</h3>
+                <div className={styles.cards_container}>
+                    <button
                     onClick={handleAction}
                     className={`${styles.autoajuda_action_button} ${styles[content.tipo]}`}
                     disabled={!content.link}
@@ -65,17 +66,18 @@ const CardAutoAjuda = ({ content, onEdit, onDelete }) => {
                     {getActionIcon(content.tipo)}
                     <span>{getActionLabel(content.tipo)}</span>
                 </button>
-                <div className={styles.card_actions}>
-                    {isAdmin && (
-                        <>
-                            <button onClick={onEdit} className={styles.action_icon_button}>
-                                <Pencil size={18} />
-                            </button>
-                            <button onClick={onDelete} className={styles.action_icon_button}>
-                                <Trash2 size={18} />
-                            </button>
-                        </>
-                    )}
+                    <div className={styles.card_actions}>
+                        {isAdmin && (
+                            <>
+                                <button onClick={onEdit} className={styles.action_icon_button}>
+                                    <Pencil size={18} />
+                                </button>
+                                <button onClick={onDelete} className={styles.action_icon_button}>
+                                    <Trash2 size={18} />
+                                </button>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

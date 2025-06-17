@@ -1,3 +1,15 @@
+.action_icon_button{
+  background-color: #FF6B6B;
+  transition: background-color 0.4s ease;
+}
+.action_icon_button:hover{
+  background-color: #FF4C4C;
+}
+
+.card_actions{
+  display: flex;
+  gap: 8px;
+}
 .autoajuda_card {
     background: white;
     border-radius: 12px;
@@ -22,6 +34,13 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+  }
+
+  .cards_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
   }
   
   .autoajuda_card:hover .autoajuda_card_image img {
