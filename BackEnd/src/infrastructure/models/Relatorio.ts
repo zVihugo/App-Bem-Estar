@@ -7,10 +7,14 @@ export class Relatorio {
     return new Relatorio(props);
   }
 
-  public get userId(){
+  public get id() {
+    return this.props.id;
+  }
+
+  public get userId() {
     return this.props.userId;
   }
-  
+
   public get usoDeTelasAntesDeDormir() {
     return this.props.usoDeTelasAntesDeDormir;
   }

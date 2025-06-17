@@ -7,4 +7,5 @@ export interface IMetaRepository {
   findById(id: string): Promise<Metas | null>;
   update(id: string, data: Partial<MetasProps>): Promise<Metas>;
   delete(id: string): Promise<void>;
+  deleteByUserId(userId: string): Promise<void>;
 }

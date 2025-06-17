@@ -7,4 +7,5 @@ export interface IAvaliacaoRepository {
   findAllByUserId(userId: string): Promise<Avaliacao[]>;
   update(id: string, data: Partial<AvaliacaoProps>): Promise<Avaliacao>;
   delete(id: string): Promise<void>;
+  deleteByUserId(userId: string): Promise<void>;
 }
