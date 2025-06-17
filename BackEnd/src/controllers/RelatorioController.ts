@@ -16,8 +16,8 @@ export class RelatorioController {
 
       return response.status(200).json({ relatorio: relatorio });
     } catch (error) {
-      if (error instanceof Error){
-
+      if (error instanceof Error) {
+        return response.status(404).json({ error: error.message });
       }
     }
   }
@@ -26,12 +26,13 @@ export class RelatorioController {
     try {
       const { userId } = request.params;
 
-      const relatorios = await this.relatorioApplication.findAllByUserId(userId);
+      const relatorios =
+        await this.relatorioApplication.findAllByUserId(userId);
 
       return response.status(200).json({ relatorios: relatorios });
     } catch (error) {
-      if (error instanceof Error){
-
+      if (error instanceof Error) {
+        return response.status(404).json({ error: error.message });
       }
     }
   }
@@ -40,11 +41,14 @@ export class RelatorioController {
     try {
       const { userId } = request.params;
 
-      const relatorios = await this.relatorioApplication.findLastDaysReviews(userId, true);
+      const relatorios = await this.relatorioApplication.findLastDaysReviews(
+        userId,
+        true
+      );
 
       return response.status(200).json({ relatorios: relatorios });
     } catch (error) {
-      if (error instanceof Error){
+      if (error instanceof Error) {
         return response.status(404).json({ message: error.stack });
       }
     }
@@ -54,12 +58,15 @@ export class RelatorioController {
     try {
       const { userId } = request.params;
 
-      const relatorios = await this.relatorioApplication.findLastDaysReviews(userId, false);
+      const relatorios = await this.relatorioApplication.findLastDaysReviews(
+        userId,
+        false
+      );
 
       return response.status(200).json({ relatorios: relatorios });
     } catch (error) {
-      if (error instanceof Error){
-
+      if (error instanceof Error) {
+        return response.status(404).json({ error: error.message });
       }
     }
   }
@@ -74,10 +81,9 @@ export class RelatorioController {
         .status(200)
         .json({ message: 'Relatório deletado com sucesso.' });
     } catch (error) {
-      if (error instanceof Error){
-        
+      if (error instanceof Error) {
+        return response.status(400).json({ error: error.message });
       }
-        
     }
   }
 }
