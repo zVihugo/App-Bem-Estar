@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './autoavalicao.module.css';
 import { reviewCreate } from '../../middleware/auth';
 import { useNavigate } from 'react-router-dom';
@@ -75,8 +75,8 @@ const Autoavaliacao = () => {
         { label: 'Nunca', value: 'nunca' },
         { label: 'Raramente', value: 'raramente' },
         { label: 'Algumas vezes', value: 'algumas_vezes' },
-        { label: 'Frequentemente', value: 'frequentemente' },
         { label: 'Quase sempre', value: 'quase_sempre' },
+        { label: 'Sempre', value: 'sempre' },
       ]
     },
     {
