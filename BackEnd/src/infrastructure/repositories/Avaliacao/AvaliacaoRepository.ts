@@ -112,4 +112,8 @@ export class AvaliacaoRepository implements IAvaliacaoRepository {
   public async delete(id: string): Promise<void> {
     await this.prisma.avaliacao.delete({ where: { id } });
   }
+
+  public async deleteByUserId(userId: string): Promise<void> {
+    await this.prisma.avaliacao.deleteMany({ where: { userId } });
+  }
 }
