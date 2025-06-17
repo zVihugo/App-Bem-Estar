@@ -36,13 +36,13 @@ export class MetaRepository implements IMetaRepository {
     if (!metas) return null;
 
     return metas.map((metas) =>
-          Metas.create({
-            id: metas.id,
-            userId: metas.userId,
-            isCompleted: metas.isCompleted,
-            descricao: metas.descricao,
-        })
-      );
+      Metas.create({
+        id: metas.id,
+        userId: metas.userId,
+        isCompleted: metas.isCompleted,
+        descricao: metas.descricao,
+      })
+    );
   }
 
   public async findById(id: string): Promise<Metas | null> {
@@ -74,5 +74,9 @@ export class MetaRepository implements IMetaRepository {
 
   public async delete(id: string): Promise<void> {
     await this.prisma.metas.delete({ where: { id } });
+  }
+
+  public async deleteByUserId(userId: string): Promise<void> {
+    await this.prisma.metas.deleteMany({ where: { userId } });
   }
 }
