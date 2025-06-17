@@ -46,14 +46,14 @@ export class RelatorioApplication implements IRelatorioApplication {
 
   public async find(id: string): Promise<RelatorioDTO> {
     const relatorio = await this.repository.findById(id);
-    if (!relatorio) throw new Error('Usuário não encontrado.');
+    if (!relatorio) throw new Error('Relatório não encontrado.');
     return relatorio;
   }
 
   public async findAllByUserId(userId: string): Promise<AvaliacaoDTO[]> {
     const reviews = await this.repositoryReview.findAllByUserId(userId);
 
-    if (!reviews) throw new Error('Usuário não encontrado.');
+    if (!reviews) throw new Error('Relatório não encontrado.');
 
     return reviews;
   }
@@ -124,7 +124,7 @@ export class RelatorioApplication implements IRelatorioApplication {
 
   public async delete(id: string): Promise<void> {
     const relatorio = await this.repository.findById(id);
-    if (!relatorio) throw new Error('Usuário não encontrado.');
+    if (!relatorio) throw new Error('Relatório não encontrado.');
 
     await this.repository.delete(id);
   }
