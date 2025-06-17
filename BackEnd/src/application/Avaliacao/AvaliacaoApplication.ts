@@ -26,7 +26,7 @@ export class AvaliacaoApplication implements IAvaliacaoApplication {
   public async findById(id: string): Promise<AvaliacaoDTO> {
     const review = await this.repository.findById(id);
 
-    if (!review) throw new Error('Usuário não encontrado.');
+    if (!review) throw new Error('Avaliação não encontrada.');
 
     return review.toJSON();
   }
@@ -44,14 +44,14 @@ export class AvaliacaoApplication implements IAvaliacaoApplication {
     data: AtualizarAvaliacaoDTO
   ): Promise<AvaliacaoDTO> {
     const review = await this.repository.findById(id);
-    if (!review) throw new Error('Usuário não encontrado.');
+    if (!review) throw new Error('Avaliação não encontrada.');
     const updated = await this.repository.update(id, data);
 
     return updated.toJSON();
   }
   public async delete(id: string): Promise<void> {
     const review = await this.repository.findById(id);
-    if (!review) throw new Error('Usuário não encontrado.');
+    if (!review) throw new Error('Avaliação não encontrada.');
 
     await this.repository.delete(id);
   }
