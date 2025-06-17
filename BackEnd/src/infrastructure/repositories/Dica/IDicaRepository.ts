@@ -8,4 +8,5 @@ export interface IDicaRepository {
   findAll(): Promise<Dica[]>;
   update(id: string, data: Partial<DicaProps>): Promise<Dica>;
   delete(id: string): Promise<void>;
+  deleteByUserId(userId: string): Promise<void>;
 }

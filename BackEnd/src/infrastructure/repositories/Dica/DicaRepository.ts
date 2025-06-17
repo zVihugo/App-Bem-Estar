@@ -97,4 +97,8 @@ export class DicaRepository implements IDicaRepository {
   public async delete(id: string): Promise<void> {
     await this.prisma.dica.delete({ where: { id } });
   }
+
+  public async deleteByUserId(userId: string): Promise<void> {
+    await this.prisma.dica.deleteMany({ where: { userId } });
+  }
 }
