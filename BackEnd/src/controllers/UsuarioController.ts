@@ -61,7 +61,9 @@ export class UsuarioController {
       await this.userApplication.delete(id);
       return response
         .status(200)
-        .json({ message: 'Usuário deletado com sucesso.' });
+        .json({
+          message: 'Todos os dados do usuário foram deletados com sucesso.',
+        });
     } catch (error) {
       if (error instanceof Error)
         return response.status(404).json({ error: error.message });
