@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './addDicasModal.module.css';
 
-const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
+const AddContentModal = ({ isOpen, onClose, onSave, editingContent }) => {
   const [titulo, setTitulo] = useState('');
   const [tipo, setTipo] = useState('video');
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const [link, setLink] = useState('');
 
+  useEffect(() => {
+    if (editingContent && isOpen) {
+      setTitulo(editingContent.titulo || '');
+      setTipo(editingContent.tipo || 'video');
+      setThumbnailUrl(editingContent.thumbnailUrl || '');
+      setLink(editingContent.link || '');
+    } else {
+      setTitulo('');
+      setTipo('video');
+      setThumbnailUrl('');
+      setLink('');
+    }
+  }, [editingContent, isOpen]); 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddContent({ titulo, tipo, thumbnailUrl, link });
-    setTitulo('');
-    setTipo('video');
-    setThumbnailUrl('');
-    setLink('');
-    onClose();
+    onSave({ titulo, tipo, thumbnailUrl, link });
   };
 
   if (!isOpen) {
@@ -24,57 +33,34 @@ const AddContentModal = ({ isOpen, onClose, onAddContent }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h2>Adicionar Novo Conteúdo</h2>
+        <h2>{editingContent ? 'Editar Conteúdo' : 'Adicionar Novo Conteúdo'}</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <label htmlFor="titulo">Título</label>
-            <input
-              type="text"
-              id="titulo"
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
-              required
-            />
+            <input type="text" id="titulo" value={titulo} onChange={(e) => setTitulo(e.target.value)} required />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="tipo">Tipo</label>
-            <select
-              id="tipo"
-              value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-            >
+            <select id="tipo" value={tipo} onChange={(e) => setTipo(e.target.value)}>
               <option value="video">Vídeo</option>
+              <option value="artigo">Artigo</option>
               <option value="audio">Áudio</option>
-              <option value="article">Artigo</option>
             </select>
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="thumbnailUrl">URL da Thumbnail</label>
-            <input
-              type="text"
-              id="thumbnailUrl"
-              value={thumbnailUrl}
-              onChange={(e) => setThumbnailUrl(e.target.value)}
-              required
-            />
+            <input type="text" id="thumbnailUrl" value={thumbnailUrl} onChange={(e) => setThumbnailUrl(e.target.value)} required />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="link">Link do Conteúdo</label>
-            <input
-              type="url"
-              id="link"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-              placeholder="https://exemplo.com"
-              required
-            />
+            <input type="url" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://exemplo.com" required />
           </div>
           <div className={styles.formActions}>
             <button type="button" onClick={onClose} className={styles.cancelButton}>
               Cancelar
             </button>
             <button type="submit" className={styles.addButton}>
-              Adicionar
+              {editingContent ? 'Salvar Alterações' : 'Adicionar'}
             </button>
           </div>
         </form>

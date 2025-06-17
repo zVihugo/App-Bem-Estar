@@ -19,6 +19,7 @@ const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
         };
     
         try {
+            console.log('Dados a serem atualizados:', dados);
             const response = await updateUser(id, dados.name, dados.dataDeNascimento, dados.faculdade, dados.curso);
             
             confirmar(); 
@@ -43,7 +44,7 @@ const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
                 <input
                     type="string"
                     className={styles.input}
-                    placeholder={user.dateOfBirth}
+                    placeholder={user.dataDeNascimento}
                     value={dataNascimento}
                     onChange={(e) => setDataNascimento(e.target.value)}
                 />
@@ -51,7 +52,7 @@ const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
                 <input
                     type="text"
                     className={styles.input}
-                    placeholder={user.faculty}
+                    placeholder={user.faculdade}
                     value={faculdade}
                     onChange={(e) => setFaculdade(e.target.value)}
                 />
@@ -59,7 +60,7 @@ const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
                 <input
                     type="text"
                     className={styles.input}
-                    placeholder={user.course}
+                    placeholder={user.curso}
                     value={curso}
                     onChange={(e) => setCurso(e.target.value)}
                 />

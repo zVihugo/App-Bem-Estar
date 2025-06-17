@@ -65,6 +65,8 @@
     border: none;
     border-radius: 8px;
     display: flex;
+    padding: 10px 10px;
+    border-radius: 50%;
     align-items: center;
     justify-content: center;
     cursor: pointer;

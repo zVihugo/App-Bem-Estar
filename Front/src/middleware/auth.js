@@ -3,7 +3,9 @@ import Cookies from "js-cookie";
 
 export const register = async (name, email, dataOfBirth, faculty, course, password) => {
     try {
-        const response = await api.post('/auth/register', name, email, dataOfBirth, faculty, course, password);
+        console.log(name, email, dataOfBirth, faculty, course, password);
+        const response = await api.post('/auth/registro', name, email, dataOfBirth, faculty, course, password);
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error('Erro ao registrar usuário:', error.response?.data?.details);
@@ -13,6 +15,7 @@ export const register = async (name, email, dataOfBirth, faculty, course, passwo
 
 export const login = async (email, password) => {
     try {
+        
         const response = await api.post('/auth/login', email, password);
        
         Cookies.set('token', response.data.token, { expires: 7 });
@@ -27,7 +30,7 @@ export const login = async (email, password) => {
 
 export const getUser = async (id) => {
     try{
-        const response = await api.get(`/users/${id}`, {
+        const response = await api.get(`/usuarios/${id}`, {
             headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
             },
@@ -41,7 +44,7 @@ export const getUser = async (id) => {
 
 export const deleteUser = async (id) => {
     try{
-        const response = await api.delete(`/users/${id}`,{
+        const response = await api.delete(`/usuarios/${id}`,{
             headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
             },
@@ -54,12 +57,13 @@ export const deleteUser = async (id) => {
     }
 }
 
-export const updateUser = async (id, name, dateOfBirth, faculty, course) => {
+export const updateUser = async (id, name, dataDeNascimento, faculdade, curso) => {
     try {
-     
+        console.log('Atualizando usuário:', { id, name, dataDeNascimento, faculdade, curso });
         const response = await api.put(
-            `/users/${id}/profile`,
-            { name, dateOfBirth, faculty, course }, 
+            `/usuarios/${id}/perfil`,
+            
+            { name, dataDeNascimento, faculdade, curso }, 
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -77,8 +81,8 @@ export const updateUser = async (id, name, dateOfBirth, faculty, course) => {
 export const updatePassword = async (id, senhaAntiga, novaSenha) => {
     try{
         const response = await api.put(
-            `/users/${id}/password`,
-            { oldPassword: senhaAntiga, newPassword: novaSenha },
+            `/usuarios/${id}/senha`,
+            {senhaAntiga, novaSenha },
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -95,7 +99,7 @@ export const updatePassword = async (id, senhaAntiga, novaSenha) => {
 export const reviewCreate = async (data) => {
     try {
         const response = await api.post(
-            `reviews/create`,
+            `avaliacoes/registrar`,
             data,
             {
                 headers: {
@@ -167,11 +171,11 @@ export const getDicas = async () => {
     }
 };
 
-export const createDicas = async (dicaData, userId) => {
+export const createDicas = async (dicaData) => {
     try {
         const response = await api.post(
             `dicas/create`,
-            { titulo: dicaData.titulo, tipo: dicaData.tipo, thumbnailUrl: dicaData.thumbnailUrl, link: dicaData.link}, // Adiciona o userId ao corpo da requisição
+            { titulo: dicaData.titulo, tipo: dicaData.tipo, thumbnailUrl: dicaData.thumbnailUrl, link: dicaData.link},
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -180,7 +184,6 @@ export const createDicas = async (dicaData, userId) => {
         );
         return response.data;
     } catch (error) {
-        console.error("Erro ao criar dica:", error);
         throw error.response?.data;
     }
 };
@@ -201,11 +204,35 @@ export const deleteDicas = async (id) => {
     }
 }
 
-export const updateDicas = async (id, titulo, tipo, thumbnailUrl, link) => {
+export const updateDicas = async (contentData) => {
+  try {
+     const payload = {
+      titulo: contentData.titulo,     
+      tipo: contentData.tipo,           
+      thumbnailUrl: contentData.thumbnailUrl,
+      link: contentData.link
+    };
+
+    const response = await api.put(
+      `dicas/${contentData.id}`, 
+      payload, 
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error.response?.data;
+  }
+};
+
+export const createMeta = async (metaData) => {
     try {
-        const response = await api.put(
-            `dicas/${id}`,
-            { titulo, tipo, thumbnailUrl, link },
+        const response = await api.post(
+            '/metas/create',
+            metaData,
             {
                 headers: {
                     Authorization: `Bearer ${Cookies.get('token')}`,
@@ -216,7 +243,76 @@ export const updateDicas = async (id, titulo, tipo, thumbnailUrl, link) => {
     } catch (error) {
         throw error.response?.data;
     }
-}
+};
+
+
+export const getMetaById = async (id) => {
+    try {
+        const response = await api.get(
+            `/metas/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+};
+
+
+export const getAllMetasByUserId = async (userId) => {
+    try {
+        const response = await api.get(
+            `/metas/todosDoUsuario/${userId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+};
+
+
+export const updateMeta = async (id, metaData) => {
+    try {
+        const response = await api.put(
+            `/metas/${id}`,
+            metaData,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+};
+
+export const deleteMeta = async (id) => {
+    try {
+        const response = await api.delete(
+            `/metas/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('token')}`,
+                },
+            }
+        );
+        return response.data;
+    } catch (error) {
+        throw error.response?.data;
+    }
+};
+
 
 export const logout = () => {
     Cookies.remove('token');
