@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { RelatorioProps } from '../../../@types/RelatorioProps';
 import { Relatorio } from '../../models/Relatorio';
 import { IRelatorioRepository } from './IRelatorioRepository';
 
@@ -12,7 +11,7 @@ export class RelatorioRepository implements IRelatorioRepository {
 
   public async save(data: Relatorio): Promise<Relatorio> {
     const relatorio = await this.prisma.relatorio.create({
-      data
+      data,
     });
 
     return Relatorio.create({
@@ -22,9 +21,8 @@ export class RelatorioRepository implements IRelatorioRepository {
       dificuldadeParaDormir: relatorio.dificuldadeParaDormir,
       mediaSono: relatorio.mediaSono,
       regularidadeRotina: relatorio.regularidadeRotina,
-      createdAt: relatorio.createdAt,
       sonolenciaDiurna: relatorio.sonolenciaDiurna,
-      usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir
+      usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir,
     });
   }
 
@@ -42,22 +40,17 @@ export class RelatorioRepository implements IRelatorioRepository {
       dificuldadeParaDormir: relatorio.dificuldadeParaDormir,
       mediaSono: relatorio.mediaSono,
       regularidadeRotina: relatorio.regularidadeRotina,
-      createdAt: relatorio.createdAt,
       sonolenciaDiurna: relatorio.sonolenciaDiurna,
-      usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir
+      usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir,
     });
   }
 
   public async findAllByUserId(userId: string): Promise<Relatorio[]> {
-    console.log("userid: " + userId)
-    console.log("userid leng" + userId.length)
     const relatorios = await this.prisma.relatorio.findMany({
       where: {
         userId,
       },
     });
-
-    console.log("relatorios aqui rep: " + relatorios)
 
     return relatorios.map((relatorio) =>
       Relatorio.create({
@@ -67,14 +60,17 @@ export class RelatorioRepository implements IRelatorioRepository {
         dificuldadeParaDormir: relatorio.dificuldadeParaDormir,
         mediaSono: relatorio.mediaSono,
         regularidadeRotina: relatorio.regularidadeRotina,
-        createdAt: relatorio.createdAt,
         sonolenciaDiurna: relatorio.sonolenciaDiurna,
-        usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir
+        usoDeTelasAntesDeDormir: relatorio.usoDeTelasAntesDeDormir,
       })
     );
   }
 
   public async delete(id: string): Promise<void> {
     await this.prisma.relatorio.delete({ where: { id } });
+  }
+
+  public async deleteByUserId(userId: string): Promise<void> {
+    await this.prisma.relatorio.deleteMany({ where: { userId } });
   }
 }
