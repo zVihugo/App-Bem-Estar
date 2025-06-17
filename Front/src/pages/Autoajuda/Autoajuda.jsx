@@ -11,6 +11,8 @@ const Autoajuda = () => {
     const [conteudo, setConteudo] = useState([]);
     const [loading, setLoading] = useState(true);
     const [editingContent, setEditingContent] = useState(null);
+    const [user, setUser] = useState({});
+    const id = Cookies.get('Id');
 
     const fetchContent = async () => {
         try {
@@ -24,13 +26,7 @@ const Autoajuda = () => {
             setLoading(false);
         }
     };
-
-        const id = Cookies.get('Id');
-        const [user, setUser] = useState({});
         
-    
-        
-
     useEffect(() => {
         const user = async () => {
             try {
@@ -47,11 +43,11 @@ const Autoajuda = () => {
     const isAdmin = user.role === 'ADMIN' ? true : false;
 
     const handleSaveContent = async (formData) => {
-        console.log("Dados recebidos do modal:", formData);
         try {
             if (editingContent) {
                 const { titulo, tipo, thumbnailUrl, link } = formData
                 const id = editingContent.id;
+
                 await updateDicas(
                     id,
                     titulo,      

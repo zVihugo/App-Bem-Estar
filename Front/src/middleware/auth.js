@@ -204,17 +204,17 @@ export const deleteDicas = async (id) => {
     }
 }
 
-export const updateDicas = async (contentData) => {
+export const updateDicas = async (id, titulo, tipo, thumbnailUrl, link) => {
   try {
      const payload = {
-      titulo: contentData.titulo,     
-      tipo: contentData.tipo,           
-      thumbnailUrl: contentData.thumbnailUrl,
-      link: contentData.link
+      titulo,    
+      tipo,          
+      thumbnailUrl,
+      link,
     };
 
     const response = await api.put(
-      `dicas/${contentData.id}`, 
+      `dicas/${id}`, 
       payload, 
       {
         headers: {
