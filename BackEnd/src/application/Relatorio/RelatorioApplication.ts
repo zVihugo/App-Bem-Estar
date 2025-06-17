@@ -1,8 +1,8 @@
+import { AvaliacaoDTO } from '../../dtos/avaliacao/AvaliacaoDTO';
 import { RelatorioDTO } from '../../dtos/relatorio/RelatorioDTO';
+import { prisma } from '../../infrastructure/bancoContext/prisma';
+import { IAvaliacaoRepository } from '../../infrastructure/repositories/Avaliacao/IAvaliacaoRepository';
 import { IRelatorioRepository } from '../../infrastructure/repositories/Relatorio/IRelatorioRepository';
-import { IRelatorioApplication } from './IRelatorioApplication';
-import { IReviewRepository } from '../../infrastructure/repositories/Avaliacao/IAvaliacaoRepository';
-import { ReviewDTO } from '../../dtos/avaliacao/AvaliacaoDTO';
 import {
   dificuldadeMap,
   acordaDescansadoMap,
@@ -13,18 +13,17 @@ import {
   sofreSonoDiaInvertido,
   usaTelaAntesInvertido,
 } from '../Helpers/EnumsMapper';
-import { Relatorio } from '../../infrastructure/models/Relatorio';
-import { prisma } from '../../infrastructure/bancoContext/prisma';
+import { IRelatorioApplication } from './IRelatorioApplication';
 
 export class RelatorioApplication implements IRelatorioApplication {
   private constructor(
     readonly repository: IRelatorioRepository,
-    readonly repositoryReview: IReviewRepository
+    readonly repositoryReview: IAvaliacaoRepository
   ) {}
 
   public static build(
     repository: IRelatorioRepository,
-    repositoryReview: IReviewRepository
+    repositoryReview: IAvaliacaoRepository
   ) {
     return new RelatorioApplication(repository, repositoryReview);
   }
@@ -51,7 +50,7 @@ export class RelatorioApplication implements IRelatorioApplication {
     return relatorio;
   }
 
-  public async findAllByUserId(userId: string): Promise<ReviewDTO[]> {
+  public async findAllByUserId(userId: string): Promise<AvaliacaoDTO[]> {
     const reviews = await this.repositoryReview.findAllByUserId(userId);
 
     if (!reviews) throw new Error('Usuário não encontrado.');
@@ -92,7 +91,7 @@ export class RelatorioApplication implements IRelatorioApplication {
       somaAcorda += acordaDescansadoMap[r.acordaDescansado];
       somaSofreDia += sofreSonoDiaMap[r.sofreComSonoDuranteODia];
       somaUsaTela += usaTelaAntesMap[r.usaTelaAntesDeDormir];
-      if (r.TemRotinaDeSono) countTemRotina++;
+      if (r.temRotinaDeSono) countTemRotina++;
     }
 
     const total = reviewsFiltrados.length;
