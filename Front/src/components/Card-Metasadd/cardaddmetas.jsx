@@ -1,39 +1,103 @@
 import React, { useState } from 'react'
 import styles from './cardaddmetas.module.css'
 import { Pencil } from 'lucide-react';
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
+import { getAllMetasByUserId, createMeta, updateMeta, deleteMeta } from '../../middleware/auth'
 
 const CardAddmetas = () => {
-    const [metas, setMetas] = useState([])
     const [novaMeta, setNovaMeta] = useState('')
     const [mostrarInput, setMostrarInput] = useState(false)
     const [editandoId, setEditandoId] = useState(null)
     const [textoEditado, setTextoEditado] = useState('')
+    const [metas, setMetas] = useState([])
+    const userId = Cookies.get('Id');
+    
+    useEffect(() => {
+    const fetchMetas = async () => {
+      try {
+        const data = await getAllMetasByUserId(userId);
+        setMetas(data);
+        console.log(data)
+      } catch (err) {
+        console.error('Erro ao buscar metas:', err);
+      }
+    };
+    fetchMetas();
+    }, [userId]);
 
-    const adicionarMeta = () => {
-        if (novaMeta.trim() === '') return
-        setMetas([...metas, { id: Date.now(), texto: novaMeta, concluida: false }])
-        setNovaMeta('')
-        setMostrarInput(false)
-    }
+    const adicionarMeta = async () => {
+        if (novaMeta.trim() === '') return;
 
-    const concluirMeta = (id) => {
-        setMetas(metas.map(meta =>
-            meta.id === id ? { ...meta, concluida: !meta.concluida } : meta
-        ))
-    }
+        try {
+            const metaData = {
+                userId,
+                descricao: novaMeta,
+                isCompleted: false,
+            };
+            const nova = await createMeta(metaData);
+
+            console.log('Metas adicionadas.', nova)
+
+            setMetas((prev) => [...prev, nova]);
+            setNovaMeta('');
+            setMostrarInput(false);
+        } catch (err) {
+            console.error('Erro ao adicionar meta:', err);
+        }
+        
+    };
+
+    const concluirMeta = async (id) => {
+        const meta = metas.find((m) => m.id === id);
+        if (!meta) return;
+
+        try {
+            const atualizada = await updateMeta(id, {
+            ...meta,
+            isCompleted: !meta.isCompleted,
+        });
+
+        setMetas((prev) =>
+        prev.map((m) => (m.id === id ? atualizada : m))
+        );
+        } catch (err) {
+            console.error('Erro ao concluir meta:', err);
+        }
+    };
 
     const iniciarEdicao = (meta) => {
         setEditandoId(meta.id)
-        setTextoEditado(meta.texto)
+        setTextoEditado(meta.descricao)
     }
 
-    const salvarEdicao = (id) => {
-        setMetas(metas.map(meta =>
-            meta.id === id ? { ...meta, texto: textoEditado } : meta
-        ))
-        setEditandoId(null)
-        setTextoEditado('')
+    const salvarEdicao = async (id) => {
+    try {
+        const metaOriginal = metas.find((m) => m.id === id); 
+
+        if (!metaOriginal) {
+            console.error('Meta não encontrada para edição:', id);
+            return;
+        }
+
+        const atualizada = await updateMeta(id, {
+            userId: metaOriginal.userId,
+            descricao: textoEditado,
+            isCompleted: metaOriginal.isCompleted,
+        });
+
+        setMetas((prev) =>
+            prev.map((m) => (m.id === id ? atualizada : m))
+        );
+
+        setEditandoId(null);
+        setTextoEditado('');
+    } catch (err) {
+        console.error('Erro ao editar meta:', err);
     }
+    };
+
+
 
     const handleEditKeyDown = (e, id) => {
         if (e.key === 'Enter') {
@@ -49,9 +113,14 @@ const CardAddmetas = () => {
         }
     }
     
-    const excluirMeta = (id) => {
-        setMetas(metas.filter(meta => meta.id !== id))
-    }
+    const excluirMeta = async (id) => {
+        try {
+            await deleteMeta(id);
+            setMetas((prev) => prev.filter((m) => m.id !== id));
+        } catch (err) {
+            console.error('Erro ao excluir meta:', err);
+        }
+    };
 
     return (
         <div className={styles.card_addmetas}>
@@ -60,7 +129,7 @@ const CardAddmetas = () => {
                     <li key={meta.id} className={styles.item}>
                         <div
                             className={`${styles.statusIcon} ${
-                                meta.concluida ? styles.concluido : styles.pendente
+                                meta.isCompleted ? styles.concluido : styles.pendente
                             }`}
                             onClick={() => concluirMeta(meta.id)}
                         >
@@ -73,17 +142,17 @@ const CardAddmetas = () => {
                                     value={textoEditado}
                                     onChange={(e) => setTextoEditado(e.target.value)}
                                     onKeyDown={(e) => handleEditKeyDown(e, meta.id)}
-                                    onBlur={() => salvarEdicao(meta.id)}
                                     className={styles.inputEdicao}
                                     autoFocus
                                 />
+
                             ) : (
                                 <>
-                                    <span className={styles.texto}>{meta.texto}</span>
+                                    <span className={styles.texto}>{meta.descricao}</span>
                                     <span className={
-                                        meta.concluida ? styles.statusConcluido : styles.statusPendente
+                                        meta.isCompleted ? styles.statusConcluido : styles.statusPendente
                                     }>
-                                        {meta.concluida ? 'concluído' : 'pendente'}
+                                        {meta.isCompleted ? 'concluído' : 'pendente'}
                                     </span>
                                 </>
                             )}
@@ -91,6 +160,7 @@ const CardAddmetas = () => {
                         <button className={styles.botaoEditar} onClick={() => iniciarEdicao(meta)}>
                             <Pencil size={13} color="#3a3a3a" />
                         </button>
+                        <button onClick={() => excluirMeta(meta.id)}>🗑</button>
                     </li>
                 ))}
             </ul>
