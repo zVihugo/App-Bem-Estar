@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 const Autoavaliacao = () => {
   const [respostas, setRespostas] = useState({});
   const [sucesso, setSucesso] = useState(false);
+
   const navigate = useNavigate();
   const id = Cookies.get('Id');
 
