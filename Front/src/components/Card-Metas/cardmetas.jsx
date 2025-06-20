@@ -28,19 +28,27 @@ const CardMetas = () => {
     navigate('/Metas');
   }
 
-    return (
+  return (
     <div className={styles.card_metas}>
       <p> 🎯 Metas em andamento </p>
       <ul className={styles.meta_list}>
-        {metas.slice(0, 3).map(meta => (
-          <li key={meta.id}>
-            <label className={styles.meta_item}>
-              <p>
-                - {meta.descricao}
-              </p>
-            </label>
+        {metas.length === 0 ? (
+          <li>
+            <span className={styles.sem_metas}>
+              Você ainda não cadastrou nenhuma meta. Que tal criar sua primeira?
+            </span>
           </li>
-        ))}
+        ) : (
+          metas.slice(0, 3).map(meta => (
+            <li key={meta.id}>
+              <label className={styles.meta_item}>
+                <p>
+                  - {meta.descricao}
+                </p>
+              </label>
+            </li>
+          ))
+        )}
       </ul>
       <button className={styles.button} onClick={handleClick}>Ver todas as metas</button>
     </div>
