@@ -20,6 +20,7 @@
     text-align: left;
 }
 
+
 .card h1 {
     font-size: 28px;
     color: #050505;
@@ -35,6 +36,17 @@ label {
     cursor: pointer;
     background-color: transparent; 
     padding: 5px 0; 
+}
+
+.sucesso {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 128, 0, 0.1);
 }
 
 label input {

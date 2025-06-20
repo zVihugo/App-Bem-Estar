@@ -5,7 +5,7 @@ import CardMetas from '../../components/Card-Metas/cardmetas'
 import CardAutoavaliacao from '../../components/Card-AutoAvaliacao/cardautoavaliacao'
 import CardHumor from '../../components/Card-Humor/cardhumor'
 import styles from './principal.module.css'
-
+import { allReport } from '../../middleware/auth'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { getUser } from '../../middleware/auth'
@@ -13,23 +13,27 @@ import { getUser } from '../../middleware/auth'
 const Principal = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
-
+  const [relatorios, setRelatorios] = useState([])
   const id = Cookies.get('Id')
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await getUser(id)
-
-        setUser(response.user.name)
-
+        const response = await getUser(id);
+        const responseReports = await allReport(id);
+        setRelatorios(
+          Array.isArray(responseReports.relatorios)
+            ? responseReports.relatorios.length
+            : 0
+        );
+        setUser(response.user.name);
       } catch (error) {
-        console.error('Erro ao buscar dados do usuário:', error)
+        console.error('Erro ao buscar dados do usuário:', error);
       }
-    }
+    };
 
-    fetchUser()
-  }, [id])
+    if (id) fetchUser();
+  }, [id]);
 
 
   return (
@@ -40,7 +44,7 @@ const Principal = () => {
         <h2>Como você está se sentido hoje?</h2>
       </div>
       <div className={styles.cardsGrid}>
-        <CardAutoavaliacao />
+        <CardAutoavaliacao quantidade={relatorios} />
         <CardHumor />
         <CardAutoajuda />
         <CardMetas />

@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 const Autoavaliacao = () => {
   const [respostas, setRespostas] = useState({});
   const [sucesso, setSucesso] = useState(false);
+  const [bloqueado, setBloqueado] = useState(false);
+
 
   const navigate = useNavigate();
   const id = Cookies.get('Id');
@@ -17,6 +19,10 @@ const Autoavaliacao = () => {
         navigate('/Autoavaliacao');
       }, 1000);
       return () => clearTimeout(timer);
+    }
+    const avaliacaoFeita = Cookies.get('autoavaliacaoFeita');
+    if (avaliacaoFeita) {
+      setBloqueado(true);
     }
   }, [sucesso, navigate]);
 
@@ -125,7 +131,8 @@ const Autoavaliacao = () => {
       const response = await reviewCreate(payload);
       console.log('Resposta do servidor:', response);
       if (response) {
-        setSucesso(true); 
+        setSucesso(true);
+        Cookies.set('autoavaliacaoFeita', 'true', { expires: 1 });
         setTimeout(() => {
           window.location.reload();
         }, 1500);
@@ -142,37 +149,42 @@ const Autoavaliacao = () => {
 
   return (
     <div className={styles.autoavaliacaoContainer}>
-      <form onSubmit={handleSubmit}>
+      {bloqueado ? (
+        <div className={styles.sucesso}>
+          Você já realizou sua autoavaliação hoje. Tente novamente amanhã!
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          {perguntas.map((pergunta) => (
+            <div key={pergunta.id} className={styles.card}>
+              <h1>{pergunta.texto}</h1>
+              {pergunta.opcoes.map((opcao) => {
+                const value = typeof opcao === 'object' ? opcao.value : opcao;
+                const label = typeof opcao === 'object' ? opcao.label : opcao;
+                return (
+                  <label key={value}>
+                    <input
+                      type="radio"
+                      name={pergunta.id}
+                      value={value}
+                      onChange={handleChange}
+                      checked={respostas[pergunta.id] === value}
+                    />
+                    {label}
+                  </label>
+                );
+              })}
+            </div>
+          ))}
 
-        {perguntas.map((pergunta) => (
-          <div key={pergunta.id} className={styles.card}>
-            <h1>{pergunta.texto}</h1>
-            {pergunta.opcoes.map((opcao) => {
-              const value = typeof opcao === 'object' ? opcao.value : opcao;
-              const label = typeof opcao === 'object' ? opcao.label : opcao;
-              return (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name={pergunta.id}
-                    value={value}
-                    onChange={handleChange}
-                    checked={respostas[pergunta.id] === value}
-                  />
-                  {label}
-                </label>
-              );
-            })}
-          </div>
-        ))}
-        {sucesso && (
-          <div className={styles.sucesso}>
-            Avaliação registrada com sucesso!<br />
-            
-          </div>
-        )}
-        <button type="submit" className={styles.submitButton}>Enviar</button>
-      </form>
+          {sucesso && (
+            <div className={styles.sucesso}>
+              Avaliação registrada com sucesso!
+            </div>
+          )}
+          <button type="submit" className={styles.submitButton}>Enviar</button>
+        </form>
+      )}
     </div>
   );
 };

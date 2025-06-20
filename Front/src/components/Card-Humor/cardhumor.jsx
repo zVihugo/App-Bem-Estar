@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styles from './cardhumor.module.css';
 import { useNavigate } from 'react-router-dom';
 const CardHumor = () => {
@@ -10,8 +10,8 @@ const CardHumor = () => {
         <div className={styles.card_humor}>
             <p>📊 Seu humor nos últimos dias</p>
             <button onClick={handleClick}>Ver Relatórios</button>
-            <span>Tendência: Você tem se sentido mais calmo 😊</span>
-      </div>
+            <span>Você está no caminho certo para o bem-estar 😊</span>
+        </div>
     );
 };
 

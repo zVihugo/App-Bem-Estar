@@ -1,84 +1,79 @@
 .card_metas {
-    width: 100%;
-    max-width: 552px;
-    height: 255px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: var(--Cosmos-100, #FFDBDB);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 552px;
+  height: 255px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: var(--Cosmos-100, #FFDBDB);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .card_metas p {
-    color: #000;
-    font-family: Montserrat, sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-bottom: 16px;
-    text-align: left;
-    margin: 0;
+  color: #000;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 16px;
+  text-align: left;
+  margin: 0;
 }
-  
-  .meta_list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .meta_item {
-    display: flex;
-    align-items: left;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-  
-  .checkbox {
-    border-radius: 5px;
-    border: 1px solid #000;
-    background-color: transparent;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-  }
-  
-  .meta_item span {
-    color: #000;
-    font-family: Montserrat;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-  }
-  
-  .concluida {
-    text-decoration: line-through;
-    color: #c91870;
-  }
-  
-  .card_metas button {
-    width: 284px;
-    height: 60px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: var(--Cosmos-400, #FD6C6C);
-    color: #FFF;
-    font-family: Montserrat, sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    border: none;
-    cursor: pointer;
+
+
+
+.meta_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checkbox {
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.meta_item p {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.concluida {
+  text-decoration: line-through;
+  color: #c91870;
+}
+
+.card_metas button {
+  width: 284px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: var(--Cosmos-400, #FD6C6C);
+  color: #FFF;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
 }
 
 .card_metas button:hover {
-    background: var(--Cosmos-400, #ff5e5e);
+  background: var(--Cosmos-400, #ff5e5e);
 }
 
 @media (max-width: 1024px) {
@@ -86,7 +81,7 @@
     font-size: 20px;
   }
 
-  .meta_item span {
+  .meta_item p {
     font-size: 18px;
   }
 
@@ -102,7 +97,7 @@
     font-size: 18px;
   }
 
-  .meta_item span {
+  .meta_item sppn {
     font-size: 16px;
   }
 
@@ -118,7 +113,7 @@
     font-size: 16px;
   }
 
-  .meta_item span {
+  .meta_item p {
     font-size: 14px;
   }
 
