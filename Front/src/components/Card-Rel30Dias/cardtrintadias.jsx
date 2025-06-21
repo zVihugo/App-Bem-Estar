@@ -161,7 +161,7 @@ const Cardtrintadias = () => {
                 } else {
                     setTemRelatorio(false);
                 }
-                setRadarData(relatorio);
+                setRadarData(novosDados);
                 setPieValue(parseInt(relatorio.regularidadeRotina.replace('%', '')));
             } catch (error) {
                 console.error('Erro ao buscar dados do relatório:', error);
