@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './cardaddmetas.module.css'
-import { Pencil } from 'lucide-react';
+import { Pencil, Trash } from 'lucide-react';
 import Cookies from 'js-cookie'
 import { useEffect } from 'react'
 import { getAllMetasByUserId, createMeta, updateMeta, deleteMeta } from '../../middleware/auth'
@@ -159,7 +159,9 @@ const CardAddmetas = () => {
                             <button className={styles.botaoEditar} onClick={() => iniciarEdicao(meta)}>
                                 <Pencil size={13} color="#3a3a3a" />
                             </button>
-                            <button onClick={() => excluirMeta(meta.id)}>🗑</button>
+                            <button onClick={() => excluirMeta(meta.id)}>
+                                <Trash size={13} color="#3a3a3a" />
+                            </button>
                         </div>
                     </li>
                 ))}
