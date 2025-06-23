@@ -26,8 +26,7 @@ metaRoutes.get('/:id', (request: Request, response: Response) => {
   controller.findById(request, response);
 });
 
-metaRoutes.get('/todosDoUsuario/:id', (request: Request, response: Response) => {
- console.log(request)
+metaRoutes.get('/todosDoUsuario/:userId', (request: Request, response: Response) => {
   controller.findAllByUserId(request, response);
 });
 

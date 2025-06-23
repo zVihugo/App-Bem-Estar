@@ -34,7 +34,7 @@ export class MetasController {
 
   public async findAllByUserId(request: Request, response: Response) {
     try {
-      const userId = request.params.userId;
+      const { userId } = request.params;
       const metas = await this.metaApplication.findAllByUserId(userId);
 
       return response.status(200).json(metas);
