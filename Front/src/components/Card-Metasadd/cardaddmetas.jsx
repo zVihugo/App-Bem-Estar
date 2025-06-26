@@ -18,7 +18,7 @@ const CardAddmetas = () => {
             try {
                 const data = await getAllMetasByUserId(userId);
                 setMetas(data);
-                console.log(data)
+                
             } catch (err) {
                 console.error('Erro ao buscar metas:', err);
             }
