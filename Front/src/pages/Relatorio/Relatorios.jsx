@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Cardsetedias from '../../components/Card-Rel7Dias/cardsetedias'
-import Cardtrintadias from '../../components/Card-Rel30Dias/cardtrintadias'
+import Cardsetedias from '../../components/Card-Rel7Dias/CardSeteDias'
+import Cardtrintadias from '../../components/Card-Rel30Dias/CardTrintaDias'
 import styles from './Relatorios.module.css'
 
 const Relatorios = () => {

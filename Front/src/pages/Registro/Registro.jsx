@@ -1,5 +1,5 @@
-import ImgRegistro from '../../components/Card-RegistroImagem/cardimgregistro'
-import FormRegistro from '../../components/Card-Registro/cardformregistro'
+import ImgRegistro from '../../components/Card-RegistroImagem/CardImgRegistro'
+import FormRegistro from '../../components/Card-Registro/CardFormRegistro'
 import styles from './Registro.module.css'
 
 const Registro = () => {
