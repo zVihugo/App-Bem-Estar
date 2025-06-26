@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import CardAutoAjuda from '../../components/CardAutoAjuda/cardautoajuda';
+import CardAutoAjuda from '../../components/CardAutoAjuda/CardAutoAjuda';
 import { Plus } from 'lucide-react';
 import styles from './autoajuda.module.css';
-import AddContentModal from '../../components/addDicasModal/addDicasModal';
+import AddContentModal from '../../components/addDicasModal/AddDicasModal';
 import { getDicas, createDicas, deleteDicas, updateDicas, getUser } from '../../middleware/auth';
 
 import Cookies  from 'js-cookie';
