@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './ModalPerfil.module.css';
 
 import { updateUser } from '../../middleware/auth';
@@ -19,12 +19,11 @@ const ModalPerfil = ({ confirmar, cancelar, data, id}) => {
         };
     
         try {
-            console.log('Dados a serem atualizados:', dados);
             const response = await updateUser(id, dados.name, dados.dataDeNascimento, dados.faculdade, dados.curso);
             
             confirmar(); 
         } catch (error) {
-          
+          console.error('Erro ao atualizar usuário:', error);
         }
     };
 

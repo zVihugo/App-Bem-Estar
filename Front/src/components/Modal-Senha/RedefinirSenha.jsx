@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './RedefinirSenha.module.css';
 
 const ModalRedefinirSenha = ({ confirmar, cancelar, erro }) => {
@@ -61,4 +61,5 @@ const ModalRedefinirSenha = ({ confirmar, cancelar, erro }) => {
     </div>
   );
 };
+
 export default ModalRedefinirSenha;

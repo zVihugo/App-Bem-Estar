@@ -78,3 +78,8 @@
   background-color: #FF4C4C;
   color: white;
 }
+
+.erro {
+  color: #FF4C4C;
+  font-weight: 500;
+}

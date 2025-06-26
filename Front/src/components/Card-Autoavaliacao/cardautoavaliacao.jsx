@@ -1,6 +1,6 @@
-
 import styles from './cardautoavaliacao.module.css';
 import { useNavigate } from 'react-router-dom';
+
 const CardAutoAvaliacao = ({quantidade}) => {
     const navigate = useNavigate();
     const handleClick = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Cardsetedias from '../../components/Card-Rel7Dias/cardsetedias'
 import Cardtrintadias from '../../components/Card-Rel30Dias/cardtrintadias'
 import styles from './Relatorios.module.css'

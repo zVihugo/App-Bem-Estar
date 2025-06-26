@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './cardmetas.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +14,6 @@ const CardMetas = () => {
       try {
         const data = await getAllMetasByUserId(userId);
         setMetas(data);
-
       } catch (err) {
         console.error('Erro ao buscar metas:', err);
       }
