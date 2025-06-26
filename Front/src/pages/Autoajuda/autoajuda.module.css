@@ -78,6 +78,27 @@
     background-color: #FF5252;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   }
+
+  .alerta {
+    margin: 16px auto;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .sucesso {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .erro {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
   
   @media (min-width: 640px) {
     .autoajuda_grid {

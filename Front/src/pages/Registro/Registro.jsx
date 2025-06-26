@@ -1,5 +1,3 @@
-import React from 'react'
-
 import ImgRegistro from '../../components/Card-RegistroImagem/cardimgregistro'
 import FormRegistro from '../../components/Card-Registro/cardformregistro'
 import styles from './Registro.module.css'

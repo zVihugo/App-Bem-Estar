@@ -1,9 +1,6 @@
-import React from 'react'
 import styles from './Excluir.module.css'
 
-
 const ModalExcluirConta = ({ confirmar, cancelar }) => (
-
 
   <div className={styles.modal}>
     <div className={styles.modalContent}>

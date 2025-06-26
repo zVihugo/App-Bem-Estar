@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Perfil.module.css';
 import { useNavigate } from 'react-router-dom'
 import InformacaoUsuario from '../../components/Card-usuarios/InformacaoUsuario';
@@ -7,7 +7,7 @@ import ModalExcluirConta from '../../components/Modal-Excluir/Excluir';
 import ModalSessao from '../../components/Model-Sessao/Sessao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { getUser, deleteUser, logout, updateUser, updatePassword } from '../../middleware/auth';
+import { getUser, deleteUser, logout, updatePassword } from '../../middleware/auth';
 import ModalPerfil from '../../components/Modal-Perfil/ModalPerfil';
 import Cookies from 'js-cookie';
 
@@ -21,25 +21,17 @@ const Perfil = () => {
   const [showModalSair, setShowModalSair] = useState(false);
   const [showModalPerfil, setShowModalPerfil] = useState(false);
 
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        console.log(id)
         const response = await getUser(id)
-        console.log(response)
         setUser(response.user)
-
-
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error)
       }
     }
-
     fetchUser()
-    console.log(user)
   }, [id])
-
 
   const handleExcluirConta = async () => {
   
@@ -55,7 +47,6 @@ const Perfil = () => {
       setShowModal(false);
       setErroSenha('');
     } catch (error) {
-
       setErroSenha(error.error);
     }
   };

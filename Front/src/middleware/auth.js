@@ -317,5 +317,6 @@ export const deleteMeta = async (id) => {
 export const logout = () => {
     Cookies.remove('token');
     Cookies.remove('Id');
+    Cookies.remove('autoavaliacaoFeita');
   
 }

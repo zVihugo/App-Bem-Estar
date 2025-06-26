@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Play, Headphones, FileText, Pencil, Trash2 } from 'lucide-react';
 import styles from './cardautoajuda.module.css';
 import Cookies  from 'js-cookie';

@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import styles from './cardformlogin.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { login } from '../../middleware/auth';
-
 
 const CardForm = () => {
     const navigate = useNavigate();
@@ -31,8 +30,6 @@ const CardForm = () => {
                 senha: senha,
             })
             
-            
-
             if(response){
                 setSucesso(true);
                 setEmail('');
@@ -40,7 +37,6 @@ const CardForm = () => {
             }
         }catch(error){
             setErro(error);
-
         }
     }
 

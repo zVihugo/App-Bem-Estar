@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Sessao.module.css'
 
 const ModalSessao = ({confirmar, cancelar}) => {

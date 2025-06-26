@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardAutoAjuda from '../../components/CardAutoAjuda/cardautoajuda';
 import { Plus } from 'lucide-react';
 import styles from './autoajuda.module.css';
 import AddContentModal from '../../components/addDicasModal/addDicasModal';
 import { getDicas, createDicas, deleteDicas, updateDicas, getUser } from '../../middleware/auth';
+
 import Cookies  from 'js-cookie';
+import ModalConfirmDelete from '../../components/Modal-Confirm-Delete/ModalConfirmDelete';
 
 const Autoajuda = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,6 +14,11 @@ const Autoajuda = () => {
     const [loading, setLoading] = useState(true);
     const [editingContent, setEditingContent] = useState(null);
     const [user, setUser] = useState({});
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [dicaParaExcluir, setDicaParaExcluir] = useState(null);
+    const [mensagem, setMensagem] = useState('');
+    const [tipoMensagem, setTipoMensagem] = useState(''); 
+    
     const id = Cookies.get('Id');
 
     const fetchContent = async () => {
@@ -55,10 +62,10 @@ const Autoajuda = () => {
                     thumbnailUrl,
                     link
                 );
-                alert('Dica atualizada com sucesso!');
+                mostrarMensagem('Dica atualizada com sucesso!', 'sucesso');
             } else {
                 await createDicas(formData);
-                alert('Dica adicionada com sucesso!');
+                mostrarMensagem('Dica adicionada com sucesso!', 'sucesso');
             }
 
             setEditingContent(null);
@@ -67,19 +74,21 @@ const Autoajuda = () => {
 
         } catch (error) {
             console.error('Erro ao salvar dica:', error);
-            alert('Não foi possível salvar a dica. Tente novamente.');
+            mostrarMensagem('Erro ao salvar dica!', 'erro');
         }
     };
 
-    const handleDeleteContent = async (idToDelete) => {
-        if (window.confirm("Tem certeza que deseja excluir esta dica?")) {
-            try {
-                await deleteDicas(idToDelete);
-                setConteudo(prevConteudo => prevConteudo.filter(item => item.id !== idToDelete));
-            } catch (error) {
-                console.error('Erro ao deletar conteúdo:', error);
-                alert('Não foi possível excluir a dica. Tente novamente.');
-            }
+    const confirmarExclusao = async () => {
+        try {
+            await deleteDicas(dicaParaExcluir);
+            setConteudo(prev => prev.filter(item => item.id !== dicaParaExcluir));
+            mostrarMensagem('Dica excluída com sucesso!', 'sucesso');
+        } catch (error) {
+            console.error('Erro ao excluir dica:', error);
+            mostrarMensagem('Erro ao excluir dica.', 'erro');
+        } finally {
+            setIsDeleteModalOpen(false);
+            setDicaParaExcluir(null);
         }
     };
 
@@ -98,12 +107,30 @@ const Autoajuda = () => {
         setIsModalOpen(false);
     }
 
+    const handleDeleteContent = (idToDelete) => {
+        setDicaParaExcluir(idToDelete);
+        setIsDeleteModalOpen(true);
+    };
+
+    const mostrarMensagem = (texto, tipo) => {
+        setMensagem(texto);
+        setTipoMensagem(tipo);
+        setTimeout(() => {
+            setMensagem('');
+        }, 3000); 
+    };
+
     return (
         <>
             <div className={styles.autoajuda_container}>
               <div className={styles.autoajuda_header}>
                 <h1>Dicas & Autoajuda</h1>
-              </div>
+              </div>    
+              {mensagem && (
+                <div className={`${styles.alerta} ${tipoMensagem === 'sucesso' ? styles.sucesso : styles.erro}`}>
+                    {mensagem}
+                </div>
+              )}
                 <p className={styles.autoajuda_subtitle}> Conteúdos para te ajudar a viver melhor 🌿</p>
                 <h2 className={styles.autoajuda_secao_title}>Ultimas dicas lançadas</h2>
                 <div className={styles.autoajuda_grid}>
@@ -141,6 +168,12 @@ const Autoajuda = () => {
                 onClose={handleCloseModal}
                 onSave={handleSaveContent}
                 editingContent={editingContent}
+            />
+
+            <ModalConfirmDelete
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={confirmarExclusao}
             />
         </>
     );

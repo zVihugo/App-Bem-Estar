@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import CardAutoajuda from '../../components/Card-Autoajuda/cardautoajuda'
 import CardMetas from '../../components/Card-Metas/cardmetas'
