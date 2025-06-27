@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import CardAutoAjuda from '../../components/CardAutoAjuda/CardAutoAjuda';
+import CardAutoAjuda from '../../components/Card-Autoajuda/cardautoajuda.jsx';
 import { Plus } from 'lucide-react';
 import styles from './autoajuda.module.css';
-import AddContentModal from '../../components/addDicasModal/AddDicasModal';
+import AddContentModal from '../../components/addDicasModal/addDicasModal.jsx';
 import { getDicas, createDicas, deleteDicas, updateDicas, getUser } from '../../middleware/auth';
 
 import Cookies  from 'js-cookie';
-import ModalConfirmDelete from '../../components/Modal-Confirm-Delete/ModalConfirmDelete';
+import ModalConfirmDelete from '../../components/Modal-Confirm-Delete/ModalConfirmDelete.jsx';
 
 const Autoajuda = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

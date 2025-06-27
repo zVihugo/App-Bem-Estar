@@ -1,0 +1,15 @@
+# imagem base
+FROM node:18-alpine
+
+# define diretório de trabalho
+WORKDIR /usr/src/app
+
+# copia apenas package.json e lock, instala dependências
+COPY . .
+RUN npm install
+
+# expõe a porta usada pelo dev server
+EXPOSE 8000
+
+# gera o cliente Prisma e inicia em modo dev
+CMD sh -c "npx prisma generate && npx prisma generate && npm run dev"

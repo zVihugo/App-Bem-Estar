@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import CardAutoajuda from '../../components/Card-Autoajuda/CardAutoAjuda'
-import CardMetas from '../../components/Card-Metas/CardMetas'
-import CardAutoavaliacao from '../../components/Card-AutoAvaliacao/CardAutoAvaliacao'
-import CardHumor from '../../components/Card-Humor/cardhumor'
+import CardAutoAjuda from '../../components/Card-Autoajuda/cardautoajuda.jsx'
+import CardMetas from '../../components/Card-Metas/cardmetas.jsx'
+import CardAutoavaliacao from '../../components/Card-Autoavaliacao/cardautoavaliacao.jsx'
+import CardHumor from '../../components/Card-Humor/cardhumor.jsx'
 import styles from './principal.module.css'
 import { allReport } from '../../middleware/auth'
 import { useNavigate } from 'react-router-dom'
@@ -45,7 +45,7 @@ const Principal = () => {
       <div className={styles.cardsGrid}>
         <CardAutoavaliacao quantidade={relatorios} />
         <CardHumor />
-        <CardAutoajuda />
+        <CardAutoAjuda />
         <CardMetas />
       </div>
       <div className={styles.card_ajuda}>

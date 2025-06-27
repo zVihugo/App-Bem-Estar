@@ -1,6 +1,6 @@
 import styles from './Login.module.css'
-import CardFormulario from '../../components/Card-FormLogin/CardFormLogin'
-import CardImage from '../../components/Card-ImgLogin/CardImgLogin'
+import CardFormulario from '../../components/Card-FormLogin/cardformlogin.jsx'
+import CardImage from '../../components/Card-ImgLogin/cardimglogin.jsx'
 
 
 const Login = () => {

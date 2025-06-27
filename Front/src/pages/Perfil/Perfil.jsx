@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import styles from './Perfil.module.css';
 import { useNavigate } from 'react-router-dom'
-import InformacaoUsuario from '../../components/Card-usuarios/InformacaoUsuario';
-import ModalRedefinirSenha from '../../components/Modal-Senha/RedefinirSenha';
-import ModalExcluirConta from '../../components/Modal-Excluir/Excluir';
-import ModalSessao from '../../components/Model-Sessao/Sessao';
+import InformacaoUsuario from '../../components/Card-usuarios/InformacaoUsuario.jsx';
+import ModalRedefinirSenha from '../../components/Modal-Senha/RedefinirSenha.jsx';
+import ModalExcluirConta from '../../components/Modal-Excluir/Excluir.jsx';
+import ModalSessao from '../../components/Model-Sessao/Sessao.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { getUser, deleteUser, logout, updatePassword } from '../../middleware/auth';
-import ModalPerfil from '../../components/Modal-Perfil/ModalPerfil';
+import ModalPerfil from '../../components/Modal-Perfil/ModalPerfil.jsx';
 import Cookies from 'js-cookie';
 
 const Perfil = () => {
